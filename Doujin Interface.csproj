@@ -1,0 +1,317 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4AA5100C-DD7E-487E-97E6-DA6F8DC5A8AE}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Doujin_Interface</RootNamespace>
+    <AssemblyName>Doujin Interface</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HtmlAgilityPack, Version=1.11.23.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>packages\HtmlAgilityPack.1.11.23\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="ConnectionStuff\Shared\SendType.cs" />
+    <Compile Include="ConnectionStuff\StartConnection.cs" />
+    <Compile Include="Database\DatabaseControler.cs" />
+    <Compile Include="DoujinControl.xaml.cs">
+      <DependentUpon>DoujinControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DoujinTemplate.cs" />
+    <Compile Include="HIDoujin.cs" />
+    <Compile Include="Hitomi\HitomiController.cs" />
+    <Compile Include="IDoujin.cs" />
+    <Compile Include="Notifications\NotificationControlListControl\NotificationControlList.xaml.cs">
+      <DependentUpon>NotificationControlList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Notifications\NotificationControlPBar.xaml.cs">
+      <DependentUpon>NotificationControlPBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Notifications\NotificationControl.xaml.cs">
+      <DependentUpon>NotificationControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Notifications\Notifications.cs" />
+    <Compile Include="UiElements\AccountElements\LoginAndRegister\RegisterElementE.xaml.cs">
+      <DependentUpon>RegisterElementE.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UiElements\AccountElements\LoginAndRegister\RegisterElement.cs" />
+    <Compile Include="UiElements\SettingsElement\NewSettingsElement.xaml.cs">
+      <DependentUpon>NewSettingsElement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UiElements\SettingsElement\SettingsElement.xaml.cs">
+      <DependentUpon>SettingsElement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UiElements\SettingsElement\STE.cs" />
+    <Compile Include="UiElements\UiState.cs" />
+    <Compile Include="UiElements\IControlElement.cs" />
+    <Compile Include="UiElements\NavBar\NavBar.cs" />
+    <Compile Include="UiElements\NavBar\NavBarLeftSide.xaml.cs">
+      <DependentUpon>NavBarLeftSide.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UiElements\OldUi.xaml.cs">
+      <DependentUpon>OldUi.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UiElements\SearchElement\SE.cs" />
+    <Compile Include="UiElements\SearchElement\SearchElementLeftSide.xaml.cs">
+      <DependentUpon>SearchElementLeftSide.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UiElements\UpdateFeed\NotifyerElement.xaml.cs">
+      <DependentUpon>NotifyerElement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UiElements\UpdateFeed\Types.cs" />
+    <Compile Include="UiElements\UpdateFeed\UpdateChecker.cs" />
+    <Compile Include="Watchlist.xaml.cs">
+      <DependentUpon>Watchlist.xaml</DependentUpon>
+    </Compile>
+    <Page Include="DetailsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DoujinControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DoujinViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DetailsWindow.xaml.cs">
+      <DependentUpon>DetailsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Doujin.cs" />
+    <Compile Include="Database\DoujinSet.cs">
+      <DependentUpon>DoujinSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Database\DoujinSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DoujinSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DoujinUtility.cs" />
+    <Compile Include="DoujinViewer.xaml.cs">
+      <DependentUpon>DoujinViewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Notifications\NotificationControlListControl\NotificationControlList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Notifications\NotificationControlPBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Notifications\NotificationControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UiElements\AccountElements\LoginAndRegister\RegisterElementE.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UiElements\NavBar\NavBarLeftSide.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UiElements\OldUi.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UiElements\SearchElement\SearchElementLeftSide.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UiElements\SettingsElement\NewSettingsElement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UiElements\SettingsElement\SettingsElement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UiElements\UpdateFeed\NotifyerElement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Watchlist.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Database\DoujinSet.xsc">
+      <DependentUpon>DoujinSet.xsd</DependentUpon>
+    </None>
+    <None Include="Database\DoujinSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DoujinSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Database\DoujinSet.xss">
+      <DependentUpon>DoujinSet.xsd</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 und x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\heart_nofav.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UiElements\NavBar\barIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UiElements\NavBar\homeIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UiElements\NavBar\favIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UiElements\NavBar\gameIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UiElements\NavBar\accountIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UiElements\NavBar\settingsIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UiElements\NavBar\notificationsIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\download.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="heart_nofav.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="download.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="heart_fav.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

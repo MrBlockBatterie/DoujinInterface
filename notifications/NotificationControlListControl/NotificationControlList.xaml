@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="Doujin_Interface.Notifications.NotificationControlListControl.NotificationControlList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Doujin_Interface.Notifications.NotificationControlListControl"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="1000" Height="80" Foreground="{x:Null}">
+    <Grid>
+        <Rectangle Fill="#FF292B2F" Height="80"/>
+        <TextBlock x:Name="timeTextBox" HorizontalAlignment="Right" Height="45" Margin="0,20,20,0" TextWrapping="Wrap" Text="00:00" VerticalAlignment="Top" Width="140" FontFamily="Segoe UI Semibold" FontSize="24" TextAlignment="Center" Foreground="White"/>
+        <ProgressBar HorizontalAlignment="Right" Height="2" Margin="0,50,60,0" VerticalAlignment="Top" Width="60" Background="#FF7C1685" BorderBrush="{x:Null}" Foreground="#FF7C1685" Value="100" Panel.ZIndex="3"/>
+        <Grid x:Name="notificationAdd" HorizontalAlignment="Left" Height="80" VerticalAlignment="Top" Width="1000" Panel.ZIndex="1"/>
+        <TextBlock x:Name="headlineText" HorizontalAlignment="Left" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Margin="10,5,0,0" Width="400" Height="28" Foreground="White" FontFamily="Segoe UI Semibold" FontSize="18"/>
+        <TextBlock x:Name="underlineText" HorizontalAlignment="Left" Height="10" Margin="10,29,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="400" Foreground="#FF747474" FontSize="7"/>
+        <TextBlock x:Name="captionText" HorizontalAlignment="Left" Margin="10,38,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="400" Height="32" Foreground="#FF747474"/>
+    </Grid>
+</UserControl>

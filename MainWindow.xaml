@@ -1,0 +1,41 @@
+﻿<Window x:Class="Sankaku_Interface.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sankaku_Interface" xmlns:searchelement="clr-namespace:Doujin_Interface.uiElements.searchElement" xmlns:navBar="clr-namespace:Doujin_Interface.uiElements.navBar"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="808.4" Width="1200
+        " Background="#FF424141">
+
+    <Grid x:Name="rootGrid" Background="#FF36393F">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+
+
+
+        <ScrollViewer x:Name="scroll" Margin="283,10,10,10" ScrollChanged="scroll_ScrollChanged">
+            <WrapPanel x:Name="picgrid" Visibility="Visible" Background="{DynamicResource BackgroundBrush}" Loaded="picgrid_Loaded"/>
+        </ScrollViewer>
+
+        <ScrollViewer x:Name="favscroll" Margin="84,10,10,10" IsEnabled="False" Visibility="Hidden">
+            <WrapPanel x:Name="favgrid" Background="#FF36393F"/>
+        </ScrollViewer>
+
+
+        <ProgressBar x:Name="progress" HorizontalAlignment="Left" Height="22" VerticalAlignment="Top" Width="873" Margin="283,744,0,0" Foreground="#FF7817B0" Visibility="Hidden"/>
+
+        <ScrollViewer x:Name="notificationscroll" Margin="283,10,10,10" Visibility="Hidden">
+            <StackPanel x:Name="notificationsgrid"/>
+        </ScrollViewer>
+
+        <WrapPanel x:Name="notificationPanellul" Width="350" HorizontalAlignment="Right" Margin="0,92,0,40">
+            <WrapPanel.LayoutTransform>
+                <RotateTransform Angle="180"/>
+            </WrapPanel.LayoutTransform>
+        </WrapPanel>
+    </Grid>
+
+</Window>

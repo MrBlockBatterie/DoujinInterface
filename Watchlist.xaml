@@ -1,0 +1,32 @@
+﻿<Window x:Class="Doujin_Interface.Watchlist"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Doujin_Interface"
+        mc:Ignorable="d"
+        Title="Wwatchlist" Height="450" Width="285.18" Left="1300">
+    <Grid Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TreeView x:Name="Root" HorizontalAlignment="Left" Height="399" Margin="10,10,0,0" VerticalAlignment="Top" Width="260" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}">
+            <TreeViewItem x:Name="GeneralList" Background="{x:Null}" Foreground="White" Header="General" RenderTransformOrigin="0,0">
+                <TextBox x:Name="GeneralWatch" Width="100" KeyDown="GeneralWatch_KeyDown"/>
+            </TreeViewItem>
+            <TreeViewItem x:Name="TagsList" Foreground="White" Header="Tags">
+                <TextBox x:Name="TagsWatch" Width="100" KeyDown="TagsWatch_KeyDown"/>
+            </TreeViewItem>
+            <TreeViewItem x:Name="ArtistList" Foreground="White" Header="Artist">
+                <TextBox x:Name="ArtistWatch" Width="100" KeyDown="ArtistWatch_KeyDown"/>
+            </TreeViewItem>
+            <TreeViewItem x:Name="CharaList"  Foreground="White" Header="Character">
+                <TextBox x:Name="CharaWatch" Width="100" KeyDown="CharaWatch_KeyDown" />
+            </TreeViewItem>
+            <TreeViewItem x:Name="ParodyList" Foreground="White" Header="Parody">
+                <TextBox x:Name="ParodyWatch" Width="100" KeyDown="ParodyWatch_KeyDown"/>
+            </TreeViewItem>
+        </TreeView>
+
+    </Grid>
+</Window>
