@@ -59,7 +59,7 @@ namespace Doujin_Interface
                     doujin.favorised = true;
 
                     Console.WriteLine("fav matched");
-                    heart.Source = new BitmapImage(new Uri("pack://application:,,,/heart_fav.png"));
+                    heart.Source = new BitmapImage(new Uri("pack://application:,,,/UiElements/heart_fav.png"));
 
 
                 }

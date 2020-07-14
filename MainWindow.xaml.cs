@@ -167,6 +167,12 @@ namespace Sankaku_Interface
             {
                 foreach (DoujinDataRow row in DatabaseControler.favorites)
                 {
+                    /*
+                    DoujinControl doujinControl = new DoujinControl(row.nHentaiID);
+                    doujinControl.heart.Source = new BitmapImage(new Uri("pack://application:,,,/UiElements/heart_fav.png"));
+                    favgrid.Children.Add(doujinControl);
+                    */
+                    
                     Doujin doujin = DoujinUtility.DataRowToDoujin(row);
                     if (DoujinUtility.DoujinIsPartOfDataTable(doujin, DatabaseControler.localDummy))
                     {
@@ -184,7 +190,7 @@ namespace Sankaku_Interface
                     doujinControl.img.Margin = new Thickness(5, 3, 5, 3);
                     doujinControl.img.MouseLeftButtonDown += Img_MouseLeftButtonDown;
                     doujinControl.img.MouseRightButtonDown += Img_MouseRightButtonDown;
-                    doujinControl.heart.Source = new BitmapImage(new Uri("pack://application:,,,/heart_fav.png"));
+                    doujinControl.heart.Source = new BitmapImage(new Uri("pack://application:,,,/UiElements/heart_fav.png"));
                     doujinControl.heart.MouseLeftButtonDown += Heart_MouseLeftButtonDown;
                     Thickness margin = doujinControl.Margin;
                     margin.Right = 10;
@@ -193,6 +199,7 @@ namespace Sankaku_Interface
                     doujinControl.doujinName.Text = doujin.name;
                     doujinControl.doujinCreator.Text = doujin.ArtistsConcat();
                     doujinControl.doujinTags.Text = doujin.TagsConcat();
+                    
 
                     DatabaseControler.localDummy.AddDoujinDataRow(DatabaseControler.mainDataTable.Rows.Count, row.nHentaiID, row.mediaID, row.name, row.fullName, row.artist, row.character, row.parody, row.group, row.tags, row.language, true, row.pages, row.coverUrl, row.extension);
                 }
