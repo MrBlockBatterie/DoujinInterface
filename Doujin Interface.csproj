@@ -300,18 +300,16 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="heart_nofav.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="download.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="heart_fav.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UiElements\heart_fav.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UiElements\heart_nofav.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UiElements\download.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
