@@ -162,7 +162,7 @@ namespace Doujin_Interface
             {
                 DatabaseControler.favorites.FindBynHentaiID(nhId).favorite = false;
                 DatabaseControler.mainDataTable.FindBynHentaiID(nhId).favorite = false;
-                control.heart.Source = new BitmapImage(new Uri("pack://application:,,,/heart_nofav.png"));
+                control.heart.Source = new BitmapImage(new Uri("pack://application:,,,/UiElements/heart_nofav.png"));
                 DatabaseControler.favorites.RemoveDoujinDataRow(DatabaseControler.favorites.FindBynHentaiID(nhId));
 
                 DatabaseControler.favorites.WriteXml("favs.xml");
@@ -171,7 +171,7 @@ namespace Doujin_Interface
             {
                 Doujin doujin = new Doujin(nhId);
                 DatabaseControler.mainDataTable.FindBynHentaiID(nhId).favorite = true;
-                control.heart.Source = new BitmapImage(new Uri("pack://application:,,,/heart_fav.png"));
+                control.heart.Source = new BitmapImage(new Uri("pack://application:,,,/UiElements/heart_fav.png"));
                 DoujinUtility.AddDoujinDataRow(doujin, DatabaseControler.favorites);
                 DatabaseControler.favorites.WriteXml("favs.xml");
                 //.Add();
