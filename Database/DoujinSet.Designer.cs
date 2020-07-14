@@ -1654,8 +1654,6 @@ namespace Doujin_Interface.Database {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class DoujinCacheDataTable : global::System.Data.TypedTableBase<DoujinCacheRow> {
             
-            private global::System.Data.DataColumn columniD;
-            
             private global::System.Data.DataColumn columnhentaiID;
             
             private global::System.Data.DataColumn columnallreadyRead;
@@ -1691,14 +1689,6 @@ namespace Doujin_Interface.Database {
             protected DoujinCacheDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn iDColumn {
-                get {
-                    return this.columniD;
-                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1754,15 +1744,21 @@ namespace Doujin_Interface.Database {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public DoujinCacheRow AddDoujinCacheRow(int iD, int hentaiID, bool allreadyRead) {
+            public DoujinCacheRow AddDoujinCacheRow(int hentaiID, bool allreadyRead) {
                 DoujinCacheRow rowDoujinCacheRow = ((DoujinCacheRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        iD,
                         hentaiID,
                         allreadyRead};
                 rowDoujinCacheRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowDoujinCacheRow);
                 return rowDoujinCacheRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public DoujinCacheRow FindByhentaiID(int hentaiID) {
+                return ((DoujinCacheRow)(this.Rows.Find(new object[] {
+                            hentaiID})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1782,7 +1778,6 @@ namespace Doujin_Interface.Database {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             internal void InitVars() {
-                this.columniD = base.Columns["iD"];
                 this.columnhentaiID = base.Columns["hentaiID"];
                 this.columnallreadyRead = base.Columns["allreadyRead"];
             }
@@ -1790,12 +1785,14 @@ namespace Doujin_Interface.Database {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             private void InitClass() {
-                this.columniD = new global::System.Data.DataColumn("iD", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columniD);
                 this.columnhentaiID = new global::System.Data.DataColumn("hentaiID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnhentaiID);
                 this.columnallreadyRead = new global::System.Data.DataColumn("allreadyRead", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnallreadyRead);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnhentaiID}, true));
+                this.columnhentaiID.AllowDBNull = false;
+                this.columnhentaiID.Unique = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2507,30 +2504,9 @@ namespace Doujin_Interface.Database {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public int iD {
-                get {
-                    try {
-                        return ((int)(this[this.tableDoujinCache.iDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("Der Wert für Spalte iD in Tabelle DoujinCache ist DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableDoujinCache.iDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public int hentaiID {
                 get {
-                    try {
-                        return ((int)(this[this.tableDoujinCache.hentaiIDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("Der Wert für Spalte hentaiID in Tabelle DoujinCache ist DBNull.", e);
-                    }
+                    return ((int)(this[this.tableDoujinCache.hentaiIDColumn]));
                 }
                 set {
                     this[this.tableDoujinCache.hentaiIDColumn] = value;
@@ -2551,30 +2527,6 @@ namespace Doujin_Interface.Database {
                 set {
                     this[this.tableDoujinCache.allreadyReadColumn] = value;
                 }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsiDNull() {
-                return this.IsNull(this.tableDoujinCache.iDColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetiDNull() {
-                this[this.tableDoujinCache.iDColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IshentaiIDNull() {
-                return this.IsNull(this.tableDoujinCache.hentaiIDColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SethentaiIDNull() {
-                this[this.tableDoujinCache.hentaiIDColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

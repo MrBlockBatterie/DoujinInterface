@@ -76,10 +76,11 @@ namespace Doujin_Interface.uiElements.searchElement
                 foreach (Image img in result.images)
                 {
                     //Image img = new Image();
-                    DoujinControl doujinControl = new DoujinControl();
+                    
 
                     Doujin doujin = result.doujinshi.ElementAt(result.images.IndexOf(img));
-                    
+                    DoujinControl doujinControl = new DoujinControl(doujin);
+
                     Console.WriteLine(result.doujinshi.ElementAt(result.images.IndexOf(img)).coverUrl);
 
                     foreach (Database.DoujinSet.DoujinDataRow row in Database.DatabaseControler.favorites)
@@ -96,8 +97,9 @@ namespace Doujin_Interface.uiElements.searchElement
 
                         }
                     }
-
+                    
                     picgrid.Children.Add(doujinControl);
+                    /*
                     var source = new BitmapImage(new Uri(result.doujinshi.ElementAt(result.images.IndexOf(img)).coverUrl));
                     doujinControl.img.Source = source;
                     double ratio = source.Width / source.Height;
@@ -116,7 +118,7 @@ namespace Doujin_Interface.uiElements.searchElement
                     doujinControl.doujinName.Text = doujin.name;
                     doujinControl.doujinCreator.Text = doujin.ArtistsConcat();
                     doujinControl.doujinTags.Text = doujin.TagsConcat();
-
+                    */
                     //DoujinUtility.AddDoujinDataRow(doujin, DatabaseControler.mainDataTable);
                 }
                 DatabaseControler.mainDataTable.Init(localDoujinList);

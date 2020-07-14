@@ -1,6 +1,7 @@
 ﻿using Sankaku_Interface;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -27,6 +28,7 @@ namespace Doujin_Interface
         private int doujinPage = 1;
         private List<BitmapImage> cache = new List<BitmapImage>();
         private double ratio;
+        private double readP;
         public DoujinViewer(Doujin doujin)
         {
             InitializeComponent();
@@ -34,6 +36,7 @@ namespace Doujin_Interface
             gDoujin = doujin;
             Load(doujin);
             viewport.EndInit();
+            
             //gDoujin.pageExt = DoujinUtility.GetPage(gDoujin);
         }
         public DoujinViewer(int mediaid, int nhentaiid, int pages, string coverurl, string ext)
@@ -122,6 +125,15 @@ namespace Doujin_Interface
             else
             {
                 page.Source = cache.ElementAt(p - 1);
+            }
+
+            readP = (double)p / (double)gDoujin.pageCount;
+            Console.WriteLine($"Doujin Viewer: p={p}, page count={gDoujin.pageCount}, readP={readP}");
+            if (readP >= 0.8 && !(Database.DatabaseControler.doujinCache.AsEnumerable().Any(row => gDoujin.nhentaiId == row.Field<Int32>("hentaiID"))))
+            {
+                Database.DatabaseControler.doujinCache.AddDoujinCacheRow(gDoujin.nhentaiId, true);
+                Database.DatabaseControler.doujinCache.WriteXml("cache.xml");
+                DoujinUtility.FindChild<DoujinControl>(DoujinUtility.MainWindow.picgrid, gDoujin.nhentaiId.ToString()).img.Opacity = 0.3;
             }
         
         }

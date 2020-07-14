@@ -3,6 +3,7 @@ using Doujin_Interface.uiElements;
 using Sankaku_Interface;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -33,6 +34,7 @@ namespace Doujin_Interface
         private double tagsPrevSize;
         private double gridPrevSize;
         private bool expanded = false;
+        private bool allreadyRead = false;
         public DoujinControl()
         {
             InitializeComponent();
@@ -48,7 +50,7 @@ namespace Doujin_Interface
             gridPrevSize = infoGrid.Height;
             Doujin doujin = new Doujin(nhentaiId);
 
-            
+
 
             foreach (Database.DoujinSet.DoujinDataRow row in Database.DatabaseControler.favorites)
             {
@@ -65,7 +67,7 @@ namespace Doujin_Interface
                 }
             }
 
-            
+
             var source = new BitmapImage(new Uri(doujin.coverUrl));
             img.Source = source;
             double ratio = source.Width / source.Height;
@@ -84,10 +86,73 @@ namespace Doujin_Interface
             doujinName.Text = doujin.name;
             doujinCreator.Text = doujin.ArtistsConcat();
             doujinTags.Text = doujin.TagsConcat();
+            var testRow = DatabaseControler.doujinCache.NewRow();
+            testRow[0] = nhentaiId;
+            testRow[1] = true;
+            
+            bool contains = DatabaseControler.doujinCache.AsEnumerable().Any(row => nhentaiId == row.Field<Int32>("hentaiID"));
+            if (contains)
+            {
+                throw new Exception(nhentaiId.ToString());
+            }
+        }
+        public DoujinControl(Doujin doujin)
+        {
+            InitializeComponent();
+            prevSize = this.Height;
+            tagsPrevSize = doujinTags.Height;
+            gridPrevSize = infoGrid.Height;
+            
+
+
+
+            foreach (Database.DoujinSet.DoujinDataRow row in Database.DatabaseControler.favorites)
+            {
+                if (row.nHentaiID == doujin.nhentaiId)
+                {
+
+                    doujin = new Doujin(row.nHentaiID);
+                    doujin.favorised = true;
+
+                    Console.WriteLine("fav matched");
+                    heart.Source = new BitmapImage(new Uri("pack://application:,,,/UiElements/heart_fav.png"));
+
+
+                }
+            }
+
+
+            var source = new BitmapImage(new Uri(doujin.coverUrl));
+            img.Source = source;
+            double ratio = source.Width / source.Height;
+            img.ToolTip = doujin.name;
+            img.Tag = doujin.nhentaiId;
+            img.Width = 160;
+            img.Height = 230;
+            img.Margin = new Thickness(5, 3, 5, 3);
+            img.MouseLeftButtonDown += Img_MouseLeftButtonDown;
+            img.MouseRightButtonDown += Img_MouseRightButtonDown;
+            heart.MouseLeftButtonDown += Heart_MouseLeftButtonDown;
+            Thickness margin = Margin;
+            margin.Right = 10;
+            margin.Bottom = 10;
+            Margin = margin;
+            doujinName.Text = doujin.name;
+            doujinCreator.Text = doujin.ArtistsConcat();
+            doujinTags.Text = doujin.TagsConcat();
+            Tag = doujin.nhentaiId.ToString();
+           
+
+            bool contains = DatabaseControler.doujinCache.AsEnumerable().Any(row => doujin.nhentaiId == row.Field<Int32>("hentaiID"));
+            if (contains)
+            {
+                img.Opacity = 0.3;
+            }
         }
 
-        
-        private void Heart_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+
+
+            private void Heart_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Image obj = (Image)sender;
             Grid grid = (Grid)obj.Parent;

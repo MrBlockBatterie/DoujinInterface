@@ -71,6 +71,7 @@ namespace Sankaku_Interface
             
             InitializeComponent();
             
+
             DoujinUtility.MainWindow = this;
             DoujinUtility.MainWindow.animatedBrush.Color = Color.FromArgb(255, 138, 0, 219);
             //var test = new HIDoujin("Bokurano@Mii-chan | Our @Mii-chan","english", 1278968);
@@ -125,10 +126,15 @@ namespace Sankaku_Interface
                     
                 }
             }
+            if (File.Exists("cache.xml"))
+            {
+                DatabaseControler.doujinCache.ReadXml("cache.xml");
+                
+            }
             //Page(1);
 
 
-            
+
 
         }
         public void DisplayNotifyer()
@@ -181,6 +187,7 @@ namespace Sankaku_Interface
                     DoujinControl doujinControl = new DoujinControl();
                     
                     favgrid.Children.Add(doujinControl);
+                    
                     var source = new BitmapImage(new Uri(row.coverUrl));
                     doujinControl.img.Source = source;
                     doujinControl.img.ToolTip = doujin.name;
@@ -200,6 +207,7 @@ namespace Sankaku_Interface
                     doujinControl.doujinCreator.Text = doujin.ArtistsConcat();
                     doujinControl.doujinTags.Text = doujin.TagsConcat();
                     
+
 
                     DatabaseControler.localDummy.AddDoujinDataRow(DatabaseControler.mainDataTable.Rows.Count, row.nHentaiID, row.mediaID, row.name, row.fullName, row.artist, row.character, row.parody, row.group, row.tags, row.language, true, row.pages, row.coverUrl, row.extension);
                 }

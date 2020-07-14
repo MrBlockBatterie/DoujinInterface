@@ -12,7 +12,7 @@
   <xs:element name="DoujinSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DoujinSet" msprop:Generator_UserDSName="DoujinSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="DoujinData" msprop:Generator_TableClassName="DoujinDataDataTable" msprop:Generator_TableVarName="tableDoujinData" msprop:Generator_TablePropName="DoujinData" msprop:Generator_RowDeletingName="DoujinDataRowDeleting" msprop:Generator_RowChangingName="DoujinDataRowChanging" msprop:Generator_RowEvHandlerName="DoujinDataRowChangeEventHandler" msprop:Generator_RowDeletedName="DoujinDataRowDeleted" msprop:Generator_UserTableName="DoujinData" msprop:Generator_RowChangedName="DoujinDataRowChanged" msprop:Generator_RowEvArgName="DoujinDataRowChangeEvent" msprop:Generator_RowClassName="DoujinDataRow">
+        <xs:element name="DoujinData" msprop:Generator_TableClassName="DoujinDataDataTable" msprop:Generator_TableVarName="tableDoujinData" msprop:Generator_RowChangedName="DoujinDataRowChanged" msprop:Generator_TablePropName="DoujinData" msprop:Generator_RowDeletingName="DoujinDataRowDeleting" msprop:Generator_RowChangingName="DoujinDataRowChanging" msprop:Generator_RowEvHandlerName="DoujinDataRowChangeEventHandler" msprop:Generator_RowDeletedName="DoujinDataRowDeleted" msprop:Generator_RowClassName="DoujinDataRow" msprop:Generator_UserTableName="DoujinData" msprop:Generator_RowEvArgName="DoujinDataRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
@@ -33,18 +33,18 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Artists" msprop:Generator_TableClassName="ArtistsDataTable" msprop:Generator_TableVarName="tableArtists" msprop:Generator_TablePropName="Artists" msprop:Generator_RowDeletingName="ArtistsRowDeleting" msprop:Generator_RowChangingName="ArtistsRowChanging" msprop:Generator_RowEvHandlerName="ArtistsRowChangeEventHandler" msprop:Generator_RowDeletedName="ArtistsRowDeleted" msprop:Generator_UserTableName="Artists" msprop:Generator_RowChangedName="ArtistsRowChanged" msprop:Generator_RowEvArgName="ArtistsRowChangeEvent" msprop:Generator_RowClassName="ArtistsRow">
+        <xs:element name="Artists" msprop:Generator_TableClassName="ArtistsDataTable" msprop:Generator_TableVarName="tableArtists" msprop:Generator_RowChangedName="ArtistsRowChanged" msprop:Generator_TablePropName="Artists" msprop:Generator_RowDeletingName="ArtistsRowDeleting" msprop:Generator_RowChangingName="ArtistsRowChanging" msprop:Generator_RowEvHandlerName="ArtistsRowChangeEventHandler" msprop:Generator_RowDeletedName="ArtistsRowDeleted" msprop:Generator_RowClassName="ArtistsRow" msprop:Generator_UserTableName="Artists" msprop:Generator_RowEvArgName="ArtistsRowChangeEvent">
           <xs:complexType>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Character" msprop:Generator_TableClassName="CharacterDataTable" msprop:Generator_TableVarName="tableCharacter" msprop:Generator_TablePropName="Character" msprop:Generator_RowDeletingName="CharacterRowDeleting" msprop:Generator_RowChangingName="CharacterRowChanging" msprop:Generator_RowEvHandlerName="CharacterRowChangeEventHandler" msprop:Generator_RowDeletedName="CharacterRowDeleted" msprop:Generator_UserTableName="Character" msprop:Generator_RowChangedName="CharacterRowChanged" msprop:Generator_RowEvArgName="CharacterRowChangeEvent" msprop:Generator_RowClassName="CharacterRow">
+        <xs:element name="Character" msprop:Generator_TableClassName="CharacterDataTable" msprop:Generator_TableVarName="tableCharacter" msprop:Generator_RowChangedName="CharacterRowChanged" msprop:Generator_TablePropName="Character" msprop:Generator_RowDeletingName="CharacterRowDeleting" msprop:Generator_RowChangingName="CharacterRowChanging" msprop:Generator_RowEvHandlerName="CharacterRowChangeEventHandler" msprop:Generator_RowDeletedName="CharacterRowDeleted" msprop:Generator_RowClassName="CharacterRow" msprop:Generator_UserTableName="Character" msprop:Generator_RowEvArgName="CharacterRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Characters" msprop:Generator_ColumnVarNameInTable="columnCharacters" msprop:Generator_ColumnPropNameInRow="Characters" msprop:Generator_ColumnPropNameInTable="CharactersColumn" msprop:Generator_UserColumnName="Characters" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="KeepUpdated" msprop:Generator_TableClassName="KeepUpdatedDataTable" msprop:Generator_TableVarName="tableKeepUpdated" msprop:Generator_TablePropName="KeepUpdated" msprop:Generator_RowDeletingName="KeepUpdatedRowDeleting" msprop:Generator_RowChangingName="KeepUpdatedRowChanging" msprop:Generator_RowEvHandlerName="KeepUpdatedRowChangeEventHandler" msprop:Generator_RowDeletedName="KeepUpdatedRowDeleted" msprop:Generator_UserTableName="KeepUpdated" msprop:Generator_RowChangedName="KeepUpdatedRowChanged" msprop:Generator_RowEvArgName="KeepUpdatedRowChangeEvent" msprop:Generator_RowClassName="KeepUpdatedRow">
+        <xs:element name="KeepUpdated" msprop:Generator_TableClassName="KeepUpdatedDataTable" msprop:Generator_TableVarName="tableKeepUpdated" msprop:Generator_RowChangedName="KeepUpdatedRowChanged" msprop:Generator_TablePropName="KeepUpdated" msprop:Generator_RowDeletingName="KeepUpdatedRowDeleting" msprop:Generator_RowChangingName="KeepUpdatedRowChanging" msprop:Generator_RowEvHandlerName="KeepUpdatedRowChangeEventHandler" msprop:Generator_RowDeletedName="KeepUpdatedRowDeleted" msprop:Generator_RowClassName="KeepUpdatedRow" msprop:Generator_UserTableName="KeepUpdated" msprop:Generator_RowEvArgName="KeepUpdatedRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
@@ -54,11 +54,10 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="DoujinCache" msprop:Generator_TableClassName="DoujinCacheDataTable" msprop:Generator_TableVarName="tableDoujinCache" msprop:Generator_TablePropName="DoujinCache" msprop:Generator_RowDeletingName="DoujinCacheRowDeleting" msprop:Generator_RowChangingName="DoujinCacheRowChanging" msprop:Generator_RowEvHandlerName="DoujinCacheRowChangeEventHandler" msprop:Generator_RowDeletedName="DoujinCacheRowDeleted" msprop:Generator_UserTableName="DoujinCache" msprop:Generator_RowChangedName="DoujinCacheRowChanged" msprop:Generator_RowEvArgName="DoujinCacheRowChangeEvent" msprop:Generator_RowClassName="DoujinCacheRow">
+        <xs:element name="DoujinCache" msprop:Generator_TableClassName="DoujinCacheDataTable" msprop:Generator_TableVarName="tableDoujinCache" msprop:Generator_RowChangedName="DoujinCacheRowChanged" msprop:Generator_TablePropName="DoujinCache" msprop:Generator_RowDeletingName="DoujinCacheRowDeleting" msprop:Generator_RowChangingName="DoujinCacheRowChanging" msprop:Generator_RowEvHandlerName="DoujinCacheRowChangeEventHandler" msprop:Generator_RowDeletedName="DoujinCacheRowDeleted" msprop:Generator_RowClassName="DoujinCacheRow" msprop:Generator_UserTableName="DoujinCache" msprop:Generator_RowEvArgName="DoujinCacheRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="iD" msprop:Generator_ColumnVarNameInTable="columniD" msprop:Generator_ColumnPropNameInRow="iD" msprop:Generator_ColumnPropNameInTable="iDColumn" msprop:Generator_UserColumnName="iD" type="xs:int" minOccurs="0" />
-              <xs:element name="hentaiID" msprop:Generator_ColumnVarNameInTable="columnhentaiID" msprop:Generator_ColumnPropNameInRow="hentaiID" msprop:Generator_ColumnPropNameInTable="hentaiIDColumn" msprop:Generator_UserColumnName="hentaiID" type="xs:int" minOccurs="0" />
+              <xs:element name="hentaiID" msprop:Generator_ColumnVarNameInTable="columnhentaiID" msprop:Generator_ColumnPropNameInRow="hentaiID" msprop:Generator_ColumnPropNameInTable="hentaiIDColumn" msprop:Generator_UserColumnName="hentaiID" type="xs:int" />
               <xs:element name="allreadyRead" msprop:Generator_ColumnVarNameInTable="columnallreadyRead" msprop:Generator_ColumnPropNameInRow="allreadyRead" msprop:Generator_ColumnPropNameInTable="allreadyReadColumn" msprop:Generator_UserColumnName="allreadyRead" type="xs:boolean" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
@@ -72,6 +71,10 @@
     <xs:unique name="KeepUpdated_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:KeepUpdated" />
       <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="DoujinCache_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:DoujinCache" />
+      <xs:field xpath="mstns:hentaiID" />
     </xs:unique>
   </xs:element>
 </xs:schema>
