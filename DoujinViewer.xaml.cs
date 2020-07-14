@@ -133,7 +133,12 @@ namespace Doujin_Interface
             {
                 Database.DatabaseControler.doujinCache.AddDoujinCacheRow(gDoujin.nhentaiId, true);
                 Database.DatabaseControler.doujinCache.WriteXml("cache.xml");
-                DoujinUtility.FindChild<DoujinControl>(DoujinUtility.MainWindow.picgrid, gDoujin.nhentaiId.ToString()).img.Opacity = 0.3;
+
+                
+                if (DoujinUtility.FindChild<DoujinControl>(DoujinUtility.MainWindow.picgrid, gDoujin.nhentaiId.ToString()) != null)
+                {
+                    DoujinUtility.FindChild<DoujinControl>(DoujinUtility.MainWindow.picgrid, gDoujin.nhentaiId.ToString()).img.Opacity = 0.3;
+                }
             }
         
         }
