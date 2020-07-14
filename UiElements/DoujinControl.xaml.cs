@@ -216,7 +216,13 @@ namespace Doujin_Interface
 
         private void infoGrid_MouseLeave(object sender, MouseEventArgs e)
         {
-            
+            var fadeOut = new DoubleAnimation(prevSize, TimeSpan.FromSeconds(0.2));
+            var tagsFadeOut = new DoubleAnimation(tagsPrevSize, TimeSpan.FromSeconds(0.2));
+            var gridFadeOut = new DoubleAnimation(gridPrevSize, TimeSpan.FromSeconds(0.2));
+            infoGrid.BeginAnimation(Grid.HeightProperty, gridFadeOut);
+            doujinTags.BeginAnimation(UserControl.HeightProperty, tagsFadeOut);
+            this.BeginAnimation(UserControl.HeightProperty, fadeOut);
+            expanded = false;
         }
 
         private void infoGrid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
