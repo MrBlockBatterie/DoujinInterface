@@ -84,7 +84,7 @@
     <Compile Include="ConnectionStuff\Shared\SendType.cs" />
     <Compile Include="ConnectionStuff\StartConnection.cs" />
     <Compile Include="Database\DatabaseControler.cs" />
-    <Compile Include="DoujinControl.xaml.cs">
+    <Compile Include="UiElements\DoujinControl.xaml.cs">
       <DependentUpon>DoujinControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="DoujinTemplate.cs" />
@@ -137,7 +137,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DoujinControl.xaml">
+    <Page Include="UiElements\DoujinControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

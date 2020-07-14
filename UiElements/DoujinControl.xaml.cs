@@ -32,6 +32,7 @@ namespace Doujin_Interface
         private double prevSize;
         private double tagsPrevSize;
         private double gridPrevSize;
+        private bool expanded = false;
         public DoujinControl()
         {
             InitializeComponent();
@@ -210,22 +211,36 @@ namespace Doujin_Interface
 
         private void infoGrid_MouseEnter(object sender, MouseEventArgs e)
         {
-            var fadeIn = new DoubleAnimation(prevSize+100, TimeSpan.FromSeconds(0.2));
-            var tagsFadeIn = new DoubleAnimation(tagsPrevSize + 100, TimeSpan.FromSeconds(0.2));
-            var gridFadeIn = new DoubleAnimation(gridPrevSize + 100, TimeSpan.FromSeconds(0.2));
-            infoGrid.BeginAnimation(Grid.HeightProperty, gridFadeIn);
-            doujinTags.BeginAnimation(TextBlock.HeightProperty, tagsFadeIn);
-            this.BeginAnimation(UserControl.HeightProperty, fadeIn);
+            
         }
 
         private void infoGrid_MouseLeave(object sender, MouseEventArgs e)
         {
+            
+        }
+
+        private void infoGrid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var fadeIn = new DoubleAnimation(prevSize + 100, TimeSpan.FromSeconds(0.2));
+            var tagsFadeIn = new DoubleAnimation(tagsPrevSize + 100, TimeSpan.FromSeconds(0.2));
+            var gridFadeIn = new DoubleAnimation(gridPrevSize + 100, TimeSpan.FromSeconds(0.2));
             var fadeOut = new DoubleAnimation(prevSize, TimeSpan.FromSeconds(0.2));
             var tagsFadeOut = new DoubleAnimation(tagsPrevSize, TimeSpan.FromSeconds(0.2));
             var gridFadeOut = new DoubleAnimation(gridPrevSize, TimeSpan.FromSeconds(0.2));
-            infoGrid.BeginAnimation(Grid.HeightProperty,gridFadeOut);
-            doujinTags.BeginAnimation(UserControl.HeightProperty, tagsFadeOut);
-            this.BeginAnimation(UserControl.HeightProperty, fadeOut);
+            if (expanded)
+            {
+                infoGrid.BeginAnimation(Grid.HeightProperty, gridFadeOut);
+                doujinTags.BeginAnimation(UserControl.HeightProperty, tagsFadeOut);
+                this.BeginAnimation(UserControl.HeightProperty, fadeOut);
+                expanded = false;
+            }
+            else
+            {
+                infoGrid.BeginAnimation(Grid.HeightProperty, gridFadeIn);
+                doujinTags.BeginAnimation(TextBlock.HeightProperty, tagsFadeIn);
+                this.BeginAnimation(UserControl.HeightProperty, fadeIn);
+                expanded = true;
+            }
         }
     }
 }
