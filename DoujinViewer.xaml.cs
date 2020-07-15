@@ -29,6 +29,7 @@ namespace Doujin_Interface
         private List<BitmapImage> cache = new List<BitmapImage>();
         private double ratio;
         private double readP;
+        private bool streched = true;
         public DoujinViewer(Doujin doujin)
         {
             InitializeComponent();
@@ -120,7 +121,8 @@ namespace Doujin_Interface
                 }
                 
                 page.Source = cache.ElementAt(p - 1);
-                ratio = page.Source.Width / page.Source.Height;
+                ratio = page.Width / page.Height;
+                //Console.WriteLine($"Doujin Viewer: Ratio is {ratio}, {page.Source.Width}/{page.Source.Height}");
             }
             else
             {
@@ -156,7 +158,7 @@ namespace Doujin_Interface
                 {
                     if (doujinPage < gDoujin.pageCount)
                     {
-                        pagescroll.ScrollToHorizontalOffset(1);
+                        pagescroll.ScrollToHome();
                         doujinPage++;
                         LoadPage(doujinPage);
                         
@@ -168,7 +170,7 @@ namespace Doujin_Interface
                 {
                     if (doujinPage > 1)
                     {
-                        pagescroll.ScrollToHorizontalOffset(1);
+                        pagescroll.ScrollToHome();
                         doujinPage--;
                         LoadPage(doujinPage);
                         
@@ -177,14 +179,18 @@ namespace Doujin_Interface
                 }
                 if (e.Key == Key.Up || e.Key == Key.W)
                 {
+                    pagescroll.ScrollToVerticalOffset(pagescroll.VerticalOffset - 50);
+                    /*
                     viewport.Visibility = Visibility.Visible;
                     scrollview.Visibility = Visibility.Visible;
                     page.Visibility = Visibility.Hidden;
                     pagescroll.Visibility = Visibility.Hidden;
+                    */
                 }
-                if (e.Key == Key.E)
+                if (e.Key == Key.E && streched)
                 {
                     double stretch = (this.ActualWidth / page.ActualWidth)/2;
+                    
                     Console.WriteLine($"Doujin Viewer: factor:{stretch}, {this.Width}/{page.ActualWidth}");
                     page.Height = pagescroll.ActualHeight;
                     page.Stretch = Stretch.Uniform;
@@ -192,15 +198,22 @@ namespace Doujin_Interface
                     margin.Top = 0;
                     page.Margin = margin;
                     pagescroll.IsEnabled = false;
+                    streched = false;
 
 
                 }
-                if (e.Key == Key.Q)
+                if (e.Key == Key.Q && !streched)
                 {
-                    page.Width = scrollview.ActualWidth;
+                    //Console.WriteLine($"Doujin Viewer: Ratio is {ratio}");
+                    page.Width = scrollview.Width;
                     page.Height = page.Height * ratio;
                     page.Stretch = Stretch.Uniform;
                     pagescroll.IsEnabled = true;
+                    streched = true;
+                }
+                if (e.Key == Key.Down)
+                {
+                    pagescroll.ScrollToVerticalOffset(pagescroll.VerticalOffset + 50);
                 }
                 
             }
@@ -226,7 +239,7 @@ namespace Doujin_Interface
                     Console.WriteLine("faved");
                 }
 
-                MainWindow.favs.WriteXml("favs.xml");
+                MainWindow.favs.WriteXml(Database.DatabaseControler.favDataPath);
             }
         }
 

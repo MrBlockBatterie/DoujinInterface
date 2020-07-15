@@ -9,6 +9,9 @@ namespace Doujin_Interface.Database
 {
     class DatabaseControler
     {
+        public const string favDataPath = "favs.xml";
+        public const string cacheDataPath = "cache.xml";
+
         public static DoujinDataDataTable mainDataTable = new DoujinDataDataTable();
         public static DoujinDataDataTable favorites = new DoujinDataDataTable();
         public static DoujinDataDataTable localDummy = new DoujinDataDataTable();

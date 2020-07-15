@@ -23,8 +23,8 @@
         <Image x:Name="heart" HorizontalAlignment="Left" Height="33" Margin="120,194,0,0" VerticalAlignment="Top" Width="34" Source="heart_nofav.png" Opacity="0"/>
         <Grid x:Name="infoGrid" HorizontalAlignment="Left" Height="54" Margin="-1,232,0,0" VerticalAlignment="Top" Width="160" MouseEnter="infoGrid_MouseEnter" MouseLeave="infoGrid_MouseLeave" MouseLeftButtonDown="infoGrid_MouseLeftButtonDown">
             <TextBlock x:Name="doujinName" HorizontalAlignment="Left" Height="19" Margin="10,1,0,0" TextWrapping="Wrap" Text="TestName" VerticalAlignment="Top" Width="140" FontFamily="Segoe UI Semibold" Foreground="White" FontSize="16"/>
-            <TextBlock x:Name="doujinCreator" HorizontalAlignment="Left" Height="12" Margin="10,24,0,0" TextWrapping="Wrap" Text="TestCreator" VerticalAlignment="Top" Width="140" Foreground="#FF9E9E9E" FontSize="10"/>
-            <TextBlock x:Name="doujinTags" HorizontalAlignment="Left" Height="14" Margin="10,36,0,0" TextWrapping="Wrap" Text="Tag1,Tag2,Tag3,Tag4,Tag5,Tag6" VerticalAlignment="Top" Width="140" Foreground="#FF9E9E9E" FontSize="10"/>
+            <TextBlock x:Name="doujinCreator" HorizontalAlignment="Left" Height="16" Margin="10,20,0,0" TextWrapping="Wrap" Text="TestCreator" VerticalAlignment="Top" Width="140" Foreground="#FF9E9E9E"/>
+            <TextBlock x:Name="doujinTags" HorizontalAlignment="Left" Height="18" Margin="10,36,0,0" TextWrapping="Wrap" Text="Tag1,Tag2,Tag3,Tag4,Tag5,Tag6" VerticalAlignment="Top" Width="140" Foreground="#FF9E9E9E"/>
         </Grid>
         <Image x:Name="download" HorizontalAlignment="Left" Height="35" Margin="10,192,0,0" VerticalAlignment="Top" Width="35" Source="download.png" Opacity="0" MouseLeftButtonDown="download_MouseLeftButtonDown"/>
         

@@ -144,7 +144,7 @@ namespace Doujin_Interface.uiElements.searchElement
                 control.heart.Source = new BitmapImage(new Uri("pack://application:,,,/heart_nofav.png"));
                 DatabaseControler.favorites.RemoveDoujinDataRow(DatabaseControler.favorites.FindBynHentaiID(nhId));
                 
-                DatabaseControler.favorites.WriteXml("favs.xml");
+                DatabaseControler.favorites.WriteXml(DatabaseControler.favDataPath);
             }
             else
             {
@@ -152,7 +152,7 @@ namespace Doujin_Interface.uiElements.searchElement
                 DatabaseControler.mainDataTable.FindBynHentaiID(nhId).favorite = true;
                 control.heart.Source = new BitmapImage(new Uri("pack://application:,,,/heart_fav.png"));
                 DoujinUtility.AddDoujinDataRow(doujin, DatabaseControler.favorites);
-                DatabaseControler.favorites.WriteXml("favs.xml");
+                DatabaseControler.favorites.WriteXml(DatabaseControler.favDataPath);
                 //.Add();
 
                 var notify = Notifications.Notifications.NotificationNoImg(window, doujin.name, "", "The doujin got favorised and you can acess it at your favourite page");

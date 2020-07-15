@@ -111,7 +111,7 @@ namespace Doujin_Interface
                 if (row.nHentaiID == doujin.nhentaiId)
                 {
 
-                    doujin = new Doujin(row.nHentaiID);
+                    //doujin = new Doujin(row.nHentaiID);
                     doujin.favorised = true;
 
                     Console.WriteLine("fav matched");
@@ -139,7 +139,7 @@ namespace Doujin_Interface
             Margin = margin;
             doujinName.Text = doujin.name;
             doujinCreator.Text = doujin.ArtistsConcat();
-            doujinTags.Text = doujin.TagsConcat();
+            doujinTags.Text = string.Join(", ", doujin.tags);
             Tag = doujin.nhentaiId.ToString();
            
 
@@ -165,7 +165,7 @@ namespace Doujin_Interface
                 control.heart.Source = new BitmapImage(new Uri("pack://application:,,,/UiElements/heart_nofav.png"));
                 DatabaseControler.favorites.RemoveDoujinDataRow(DatabaseControler.favorites.FindBynHentaiID(nhId));
 
-                DatabaseControler.favorites.WriteXml("favs.xml");
+                DatabaseControler.favorites.WriteXml(DatabaseControler.favDataPath);
             }
             else
             {
@@ -173,7 +173,7 @@ namespace Doujin_Interface
                 //DatabaseControler.mainDataTable.FindBynHentaiID(nhId).favorite = true;
                 control.heart.Source = new BitmapImage(new Uri("pack://application:,,,/UiElements/heart_fav.png"));
                 DoujinUtility.AddDoujinDataRow(doujin, DatabaseControler.favorites);
-                DatabaseControler.favorites.WriteXml("favs.xml");
+                DatabaseControler.favorites.WriteXml(DatabaseControler.favDataPath);
                 //.Add();
 
                 var notify = Notifications.Notifications.NotificationNoImg(DoujinUtility.MainWindow, doujin.name, "", "The doujin got favorised and you can acess it at your favourite page");

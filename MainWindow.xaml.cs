@@ -114,9 +114,9 @@ namespace Sankaku_Interface
             settingElement.Margin = margin;
             rootGrid.Children.Add(settingElement);
 
-            if (File.Exists("favs.xml"))
+            if (File.Exists(DatabaseControler.favDataPath))
             {
-                DatabaseControler.favorites.ReadXml("favs.xml");
+                DatabaseControler.favorites.ReadXml(DatabaseControler.favDataPath);
                 foreach (var row in DatabaseControler.favorites)
                 {
                     row.favorite = true;
