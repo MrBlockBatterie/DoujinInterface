@@ -126,7 +126,7 @@ namespace Doujin_Interface
             img.Source = source;
             double ratio = source.Width / source.Height;
             img.ToolTip = doujin.name;
-            img.Tag = doujin.nhentaiId;
+            img.Tag = (int)doujin.nhentaiId;
             img.Width = 160;
             img.Height = 230;
             img.Margin = new Thickness(5, 3, 5, 3);
@@ -161,7 +161,7 @@ namespace Doujin_Interface
             if (DoujinUtility.CheckFavorised(new Doujin(nhId)))
             {
                 DatabaseControler.favorites.FindBynHentaiID(nhId).favorite = false;
-                DatabaseControler.mainDataTable.FindBynHentaiID(nhId).favorite = false;
+                //DatabaseControler.mainDataTable.FindBynHentaiID(nhId).favorite = false;
                 control.heart.Source = new BitmapImage(new Uri("pack://application:,,,/UiElements/heart_nofav.png"));
                 DatabaseControler.favorites.RemoveDoujinDataRow(DatabaseControler.favorites.FindBynHentaiID(nhId));
 
@@ -170,7 +170,7 @@ namespace Doujin_Interface
             else
             {
                 Doujin doujin = new Doujin(nhId);
-                DatabaseControler.mainDataTable.FindBynHentaiID(nhId).favorite = true;
+                //DatabaseControler.mainDataTable.FindBynHentaiID(nhId).favorite = true;
                 control.heart.Source = new BitmapImage(new Uri("pack://application:,,,/UiElements/heart_fav.png"));
                 DoujinUtility.AddDoujinDataRow(doujin, DatabaseControler.favorites);
                 DatabaseControler.favorites.WriteXml("favs.xml");

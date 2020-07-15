@@ -88,11 +88,11 @@ namespace Doujin_Interface.uiElements.searchElement
                         if (row.nHentaiID == doujin.nhentaiId)
                         {
 
-                            doujin = new Doujin(row.nHentaiID);
+                            //doujin = new Doujin(row.nHentaiID);
                             doujin.favorised = true;
 
                             Console.WriteLine("fav matched");
-                            doujinControl.heart.Source = new BitmapImage(new Uri("pack://application:,,,/heart_fav.png"));
+                            doujinControl.heart.Source = new BitmapImage(new Uri("pack://application:,,,/UiElements/heart_fav.png"));
 
 
                         }
