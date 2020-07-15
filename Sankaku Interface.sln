@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Doujin Interface", "Doujin 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LLLServer", "..\LLLServer\LLLServer.csproj", "{7664FEAB-607C-4AE3-88BF-922A1CA9D10C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LLLServer HTTP", "..\LLLServer HTTP\LLLServer HTTP.csproj", "{EF138211-161B-4AF0-A62A-E825DF7A77F1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{7664FEAB-607C-4AE3-88BF-922A1CA9D10C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7664FEAB-607C-4AE3-88BF-922A1CA9D10C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7664FEAB-607C-4AE3-88BF-922A1CA9D10C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF138211-161B-4AF0-A62A-E825DF7A77F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF138211-161B-4AF0-A62A-E825DF7A77F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF138211-161B-4AF0-A62A-E825DF7A77F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF138211-161B-4AF0-A62A-E825DF7A77F1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

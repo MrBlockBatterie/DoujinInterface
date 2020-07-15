@@ -37,6 +37,7 @@ namespace Doujin_Interface.Notifications
             notificationControlList.captionText.Text = caption;
             notificationControlList.timeTextBox.Text = DateTime.Now.ToShortTimeString();
             DoujinUtility.MainWindow.NotificationList.Add(notificationControlList);
+
         }
 
         public static Control NotificationNoImg(Window mainWindow, string header, string underline, string caption) 
@@ -65,7 +66,7 @@ namespace Doujin_Interface.Notifications
             GetThicc(notificationControl);
             GetSmoll(notificationControl);
             NotificationControlForList(header, underline, caption);
-
+            notificationControl.boarder.BorderBrush = DoujinUtility.MainWindow.animatedBrush;
             return notificationControl;
         }
 

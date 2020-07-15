@@ -6,13 +6,15 @@
              xmlns:local="clr-namespace:Doujin_Interface.Notifications"
              mc:Ignorable="d" 
              d:DesignHeight="80" d:DesignWidth="300">
-    <Grid Name="rootGrid" Background="#FF36393F">
+    <Grid Name="rootGrid">
         <Grid HorizontalAlignment="Left" Height="71" Margin="5,5,0,0" VerticalAlignment="Top" Width="290" Panel.ZIndex="10">
             <Image x:Name="img" HorizontalAlignment="Left" Height="44" Margin="10,17,0,17" VerticalAlignment="Top" Width="44"/>
             <TextBox x:Name="header" HorizontalAlignment="Left" Height="20" Margin="54,4,0,0" TextWrapping="Wrap" Text="Header" VerticalAlignment="Top" Width="226" BorderBrush="#00000000" Background="Transparent" Foreground="White" FontFamily="Segoe UI Semibold" FontSize="14" Focusable="False" AllowDrop="False" SelectionBrush="{x:Null}" BorderThickness="0,0,4,0" IsReadOnlyCaretVisible="True"/>
             <TextBox x:Name="underline" HorizontalAlignment="Left" Height="20" Margin="54,20,0,0" TextWrapping="Wrap" Text="underline" VerticalAlignment="Top" Width="226" BorderBrush="#00000000" Background="#00000000" Foreground="#FF999999" FontSize="10" Focusable="False" AllowDrop="False" SelectionBrush="{x:Null}" BorderThickness="0" IsReadOnlyCaretVisible="True"/>
             <TextBox x:Name="caption" HorizontalAlignment="Left" Height="29" Margin="54,36,0,0" TextWrapping="Wrap" Text="caption" VerticalAlignment="Top" Width="226" BorderBrush="#00000000" Background="#00000000" Foreground="#FF999999" FontSize="10" Focusable="False" AllowDrop="False" SelectionBrush="{x:Null}" BorderThickness="0" IsReadOnlyCaretVisible="True"/>
         </Grid>
+        <Border x:Name="boarder" BorderBrush="{DynamicResource InterfacePurple}" BorderThickness="1" HorizontalAlignment="Left" Height="80" VerticalAlignment="Top" Width="300" CornerRadius="2" Panel.ZIndex="2"/>
+        <Border BorderBrush="{DynamicResource BackgroundBrush}" BorderThickness="1" HorizontalAlignment="Left" Height="80" VerticalAlignment="Top" Width="300" CornerRadius="2" Panel.ZIndex="1" Background="{DynamicResource BackgroundBrush}"/>
 
     </Grid>
 </UserControl>
