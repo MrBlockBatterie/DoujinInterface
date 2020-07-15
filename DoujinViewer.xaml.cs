@@ -37,7 +37,7 @@ namespace Doujin_Interface
             gDoujin = doujin;
             Load(doujin);
             viewport.EndInit();
-            
+            control.parent = this;
             //gDoujin.pageExt = DoujinUtility.GetPage(gDoujin);
         }
         public DoujinViewer(int mediaid, int nhentaiid, int pages, string coverurl, string ext)
@@ -189,13 +189,13 @@ namespace Doujin_Interface
                 }
                 if (e.Key == Key.E && streched)
                 {
-                    double stretch = (this.ActualWidth / page.ActualWidth)/2;
+                    double stretch = (viewport.ActualWidth / page.ActualWidth)/2;
                     
                     Console.WriteLine($"Doujin Viewer: factor:{stretch}, {this.Width}/{page.ActualWidth}");
-                    page.Height = pagescroll.ActualHeight;
+                    page.Height = scrollview.RenderSize.Height - control.Height;
                     page.Stretch = Stretch.Uniform;
                     var margin = page.Margin;
-                    margin.Top = 0;
+                    margin.Top = control.Height;
                     page.Margin = margin;
                     pagescroll.IsEnabled = false;
                     streched = false;
@@ -248,6 +248,61 @@ namespace Doujin_Interface
             GC.Collect();
         }
 
+        public void Strech()
+        {
+            if (!streched)
+            {
+                page.Width = scrollview.Width;
+                page.Height = page.Height * ratio;
+                page.Stretch = Stretch.Uniform;
+                pagescroll.IsEnabled = true;
+                streched = true;
+            }
+            else
+            {
+                double stretch = (viewport.ActualWidth / page.ActualWidth) / 2;
+
+                Console.WriteLine($"Doujin Viewer: factor:{stretch}, {this.Width}/{page.ActualWidth}");
+                page.Height = scrollview.RenderSize.Height - control.Height;
+                page.Stretch = Stretch.Uniform;
+                var margin = page.Margin;
+                margin.Top = control.Height;
+                page.Margin = margin;
+                pagescroll.IsEnabled = false;
+                streched = false;
+            }
+        }
+        public void PageNext()
+        {
+            if (doujinPage < gDoujin.pageCount)
+            {
+                pagescroll.ScrollToHome();
+                doujinPage++;
+                LoadPage(doujinPage);
+
+            }
+        }
+        public void PagePrev()
+        {
+            if (doujinPage > 1)
+            {
+                pagescroll.ScrollToHome();
+                doujinPage--;
+                LoadPage(doujinPage);
+
+            }
+        }
+        public void Home()
+        {
+            viewport.Visibility = Visibility.Visible;
+            scrollview.Visibility = Visibility.Visible;
+            page.Visibility = Visibility.Hidden;
+            pagescroll.Visibility = Visibility.Hidden;
+        }
+        public void Fav()
+        {
+
+        }
         
     }
 }

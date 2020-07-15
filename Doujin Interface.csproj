@@ -105,6 +105,9 @@
       <DependentUpon>RegisterElementE.xaml</DependentUpon>
     </Compile>
     <Compile Include="UiElements\AccountElements\LoginAndRegister\RegisterElement.cs" />
+    <Compile Include="UiElements\Viewer\ViewerControl.xaml.cs">
+      <DependentUpon>ViewerControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UiElements\SettingsElement\NewSettingsElement.xaml.cs">
       <DependentUpon>NewSettingsElement.xaml</DependentUpon>
     </Compile>
@@ -186,6 +189,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UiElements\AccountElements\LoginAndRegister\RegisterElementE.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UiElements\Viewer\ViewerControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -310,6 +317,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="UiElements\download.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UiElements\Viewer\baseline_keyboard_arrow_left_black_18dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UiElements\Viewer\baseline_grade_black_18dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UiElements\Viewer\baseline_home_black_18dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UiElements\Viewer\baseline_open_in_full_black_18dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UiElements\Viewer\baseline_keyboard_arrow_right_black_18dp.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

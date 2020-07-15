@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Doujin_Interface"
+        xmlns:local="clr-namespace:Doujin_Interface" xmlns:doujinviewer="clr-namespace:Doujin_Interface.UiElements.DoujinViewer"
         mc:Ignorable="d"
         Title="DoujinViewer" Height="750.9" Width="1031.6" Closing="Window_Closing" Closed="Window_Closed" KeyDown="scrollview_KeyDown">
     <Grid Background="#FF36393F">
@@ -11,18 +11,19 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ScrollViewer x:Name="scrollview" Margin="6,7,10.6,10.6" Background="#FF36393F">
+        <ScrollViewer x:Name="scrollview" Margin="6,40,11,11" Background="#FF36393F">
             <Grid>
                 <WrapPanel x:Name="viewport">
-                    
+
                 </WrapPanel>
-                
+
             </Grid>
-            
+
         </ScrollViewer>
         <ScrollViewer x:Name="pagescroll" Margin="6,7,10.6,10.6" Background="#FF36393F" Visibility="Hidden">
             <Image x:Name="page" Margin="10,10,9.6,10.6" Visibility="Hidden" HorizontalAlignment="Center" VerticalAlignment="Top"/>
         </ScrollViewer>
+        <doujinviewer:ViewerControl x:Name="control" Height="40" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

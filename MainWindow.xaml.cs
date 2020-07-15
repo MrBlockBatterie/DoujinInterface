@@ -60,7 +60,7 @@ namespace Sankaku_Interface
         public List<NotificationControlList> NotificationList = new List<NotificationControlList>();
         private static readonly HttpClient client = new HttpClient();
         public string[] extensions = {".png",".jpg"};
-        public int page = 2;
+        public int page = 1;
         public SearchElementLeftSide search;
         public NewSettingsElement settingElement = new NewSettingsElement();
         public RegisterElementE registerAndLoginElement;
