@@ -29,11 +29,12 @@ using Doujin_Interface.uiElements.searchElement;
 using Doujin_Interface.UiElements.SettingsElement;
 using Doujin_Interface.Database;
 using Doujin_Interface.Notifications.NotificationControlListControl;
-using Doujin_Interface.ConnectionStuff;
+
 using Doujin_Interface.UiElements.AccountElements;
-using Doujin_Interface.ConnectionStuff.Shared;
+
 using Doujin_Interface.UiElements.UpdateFeed;
 using Doujin_Interface.UiElements.AccountElements.LoginAndRegister;
+using Doujin_Interface.Connection;
 
 namespace Sankaku_Interface
 {
@@ -70,7 +71,7 @@ namespace Sankaku_Interface
         {
             
             InitializeComponent();
-            
+            Connection.LoginToServer("meName", "mePassword");
 
             DoujinUtility.MainWindow = this;
             DoujinUtility.MainWindow.animatedBrush.Color = Color.FromArgb(255, 138, 0, 219);

@@ -81,8 +81,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ConnectionStuff\Shared\SendType.cs" />
-    <Compile Include="ConnectionStuff\StartConnection.cs" />
+    <Compile Include="Connection\Connection.cs" />
+    <Compile Include="Connection\JSON\LoginForm.cs" />
     <Compile Include="Database\DatabaseControler.cs" />
     <Compile Include="UiElements\DoujinControl.xaml.cs">
       <DependentUpon>DoujinControl.xaml</DependentUpon>
