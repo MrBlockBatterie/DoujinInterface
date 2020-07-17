@@ -180,7 +180,7 @@ namespace Doujin_Interface.uiElements.searchElement
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        public void Button_Click(object sender, RoutedEventArgs e)
         {
             DoujinUtility.MainWindow.scroll.ScrollToVerticalOffset(0);
             DatabaseControler.mainDataTable.Clear();

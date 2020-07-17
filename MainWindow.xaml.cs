@@ -285,6 +285,10 @@ namespace Sankaku_Interface
             {
                 strgKey = false;
             }
+            if (e.Key == Key.Enter)
+            {
+                search.Button_Click(sender, e);
+            }
         }
 
         private void Img_MouseRightButtonDown(object sender, MouseButtonEventArgs e)

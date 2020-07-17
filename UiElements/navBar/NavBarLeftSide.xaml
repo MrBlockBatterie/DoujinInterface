@@ -38,6 +38,7 @@
         <TextBlock x:Name="updateFeedText" HorizontalAlignment="Left" Height="32" Margin="72,400,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="198" Background="Transparent" Foreground="White" FontFamily="Segoe UI Semibold" FontSize="22" Text="Update Feed" Panel.ZIndex="2000" MouseLeftButtonDown="updateFeedText_MouseLeftButtonDown"/>
         <Rectangle Fill="#FF202225" HorizontalAlignment="Left" Height="1960" Stroke="Black" VerticalAlignment="Top" Width="280" Grid.RowSpan="2" Panel.ZIndex="10"/>
         <Rectangle Fill="{DynamicResource UiDarkGray}" HorizontalAlignment="Left" Height="1960" Stroke="Black" VerticalAlignment="Top" Width="280" Grid.RowSpan="2" Panel.ZIndex="10"/>
+        <Grid HorizontalAlignment="Left" Height="72" Margin="0,60,0,0" VerticalAlignment="Top" Width="280"/>
 
     </Grid>
 </UserControl>
