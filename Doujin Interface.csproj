@@ -83,6 +83,7 @@
     </ApplicationDefinition>
     <Compile Include="Connection\Connection.cs" />
     <Compile Include="Connection\JSON\LoginForm.cs" />
+    <Compile Include="Connection\JSON\RegisterForm.cs" />
     <Compile Include="Database\DatabaseControler.cs" />
     <Compile Include="UiElements\DoujinControl.xaml.cs">
       <DependentUpon>DoujinControl.xaml</DependentUpon>

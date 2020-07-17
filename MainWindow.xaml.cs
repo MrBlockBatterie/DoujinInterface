@@ -71,7 +71,8 @@ namespace Sankaku_Interface
         {
             
             InitializeComponent();
-            Connection.LoginToServer("meName", "mePassword");
+            //Connection.RegisterToServer("testname@testmail.com", "mePassword1!", "mePassword1!");
+            
 
             DoujinUtility.MainWindow = this;
             DoujinUtility.MainWindow.animatedBrush.Color = Color.FromArgb(255, 138, 0, 219);
@@ -187,7 +188,7 @@ namespace Sankaku_Interface
                     }
                     DoujinControl doujinControl = new DoujinControl();
                     
-                    favgrid.Children.Add(doujinControl);
+                    favgrid.Children.Insert(0,doujinControl);
                     
                     var source = new BitmapImage(new Uri(row.coverUrl));
                     doujinControl.img.Source = source;
