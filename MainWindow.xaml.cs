@@ -287,6 +287,7 @@ namespace Sankaku_Interface
             }
             if (e.Key == Key.Enter)
             {
+                sender = search.searchButton;
                 search.Button_Click(sender, e);
             }
         }
