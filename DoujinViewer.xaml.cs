@@ -163,7 +163,7 @@ namespace Doujin_Interface
                         pagescroll.ScrollToHome();
                         doujinPage++;
                         LoadPage(doujinPage);
-                        
+                        UpdatePageNumber();
                     }
 
                 }
@@ -175,7 +175,7 @@ namespace Doujin_Interface
                         pagescroll.ScrollToHome();
                         doujinPage--;
                         LoadPage(doujinPage);
-                        
+                        UpdatePageNumber();
                     }
 
                 }
