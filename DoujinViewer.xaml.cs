@@ -12,6 +12,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using static Doujin_Interface.Database.DoujinSet;
@@ -95,7 +96,7 @@ namespace Doujin_Interface
                     Console.WriteLine(img.Source);
                 }
                 Console.WriteLine("pages=" + doujin.pageCount + ", entires=" + images.Count);
-
+                pageNumberText.Text = $"Pages: {gDoujin.pageCount}";
             }
             
         }
@@ -108,6 +109,7 @@ namespace Doujin_Interface
             pagescroll.Visibility = Visibility.Visible;
             LoadPage(images.IndexOf((Image)sender)+1);
             doujinPage = images.IndexOf((Image)sender)+1;
+            UpdatePageNumber();
         }
 
         private void LoadPage(int p)
@@ -279,7 +281,7 @@ namespace Doujin_Interface
                 pagescroll.ScrollToHome();
                 doujinPage++;
                 LoadPage(doujinPage);
-
+                UpdatePageNumber();
             }
         }
         public void PagePrev()
@@ -289,7 +291,7 @@ namespace Doujin_Interface
                 pagescroll.ScrollToHome();
                 doujinPage--;
                 LoadPage(doujinPage);
-
+                UpdatePageNumber();
             }
         }
         public void Home()
@@ -298,10 +300,39 @@ namespace Doujin_Interface
             scrollview.Visibility = Visibility.Visible;
             page.Visibility = Visibility.Hidden;
             pagescroll.Visibility = Visibility.Hidden;
+            pageNumberText.Text = $"Pages: {gDoujin.pageCount}";
         }
         public void Fav()
         {
 
+        }
+        public void UpdatePageNumber()
+        {
+            pageNumberText.Text = $"Page: {doujinPage + 1}/{gDoujin.pageCount}";
+            pageNumberText.Opacity = 100;
+            PageNumberFadeOut();
+        }
+        public void PageNumberFadeOut()
+        {
+            RegisterName("FadeOutName", pageNumberBackground);
+            DoubleAnimationUsingKeyFrames fadeOutAnimation = new DoubleAnimationUsingKeyFrames();
+            fadeOutAnimation.Duration = TimeSpan.FromSeconds(4);
+            fadeOutAnimation.KeyFrames.Add(
+                new SplineDoubleKeyFrame(
+                    100,
+                    KeyTime.FromTimeSpan(TimeSpan.FromSeconds(2)))
+                );
+            fadeOutAnimation.KeyFrames.Add(
+                new SplineDoubleKeyFrame(
+                    0,
+                    KeyTime.FromTimeSpan(TimeSpan.FromSeconds(4)),
+                    new KeySpline(0.25,0.5,0.75,1.0))
+                );
+            Storyboard.SetTargetName(fadeOutAnimation, "FadeOutName");
+            Storyboard.SetTargetProperty(fadeOutAnimation, new PropertyPath(OpacityProperty));
+            Storyboard fadeOutStoryboard = new Storyboard();
+            fadeOutStoryboard.Children.Add(fadeOutAnimation);
+            fadeOutStoryboard.Begin(pageNumberBackground);
         }
         
     }
