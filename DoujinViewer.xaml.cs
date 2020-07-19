@@ -314,6 +314,7 @@ namespace Doujin_Interface
         }
         public void PageNumberFadeOut()
         {
+            //That code tho
             RegisterName("FadeOutName", pageNumberBackground);
             DoubleAnimationUsingKeyFrames fadeOutAnimation = new DoubleAnimationUsingKeyFrames();
             fadeOutAnimation.Duration = TimeSpan.FromSeconds(4);
