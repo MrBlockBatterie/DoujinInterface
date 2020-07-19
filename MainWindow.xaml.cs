@@ -71,7 +71,15 @@ namespace Sankaku_Interface
         {
             
             InitializeComponent();
-            //Connection.RegisterToServer("testname@testmail.com", "mePassword1!", "mePassword1!");
+            var client = new Client();
+            //client.RegisterToServer("david@david.david.com", "David@1&1.de", "David@1&1.de").Wait();
+            
+            
+            //-----------------------------------------------------------------------------
+            //For Damian
+            //On stackoverflow they said the way the task is called migth cause deadlock so it might be a good idea to start looking here
+            //-------------------------------------------------------------------------------
+            client.RegisterToServer("mail@email.de", "Pass1234.", "Pass1234.");
             
 
             DoujinUtility.MainWindow = this;
