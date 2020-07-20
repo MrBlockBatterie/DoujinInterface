@@ -12,33 +12,48 @@
             <RowDefinition Height="227*"/>
             <RowDefinition Height="263*"/>
         </Grid.RowDefinitions>
-        <Image x:Name="barIcon" HorizontalAlignment="Left" Height="32" Margin="10,10,0,0" VerticalAlignment="Top" Width="32" Source="barIcon.png" Stretch="None" Cursor="None" Panel.ZIndex="2000"/>
-        <Image x:Name="homeIcon" HorizontalAlignment="Left" Height="32" Margin="10,80,0,0" VerticalAlignment="Top" Width="32" Source="homeIcon.png" Cursor="Arrow" Panel.ZIndex="2000"/>
-        <Image x:Name="favIcon" HorizontalAlignment="Left" Height="32" Margin="10,160,0,0" VerticalAlignment="Top" Width="32" Source="favIcon.png" Cursor="Arrow" Panel.ZIndex="2000"/>
-        <Image x:Name="gameIcon" HorizontalAlignment="Left" Height="32" Margin="10,240,0,0" VerticalAlignment="Top" Width="32" Source="gameIcon.png" Cursor="Arrow" Panel.ZIndex="2000"/>
-        <Image x:Name="accountIcon" HorizontalAlignment="Left" Height="32" Margin="10,480,0,0" VerticalAlignment="Top" Width="32" Source="accountIcon.png" Cursor="Arrow" Panel.ZIndex="2000"/>
-        <Image x:Name="settingsIcon" HorizontalAlignment="Left" Height="32" Margin="10,560,0,0" VerticalAlignment="Top" Width="32" Source="settingsIcon.png" Cursor="Arrow" Panel.ZIndex="2000"/>
-        <TextBlock x:Name="homeText" HorizontalAlignment="Left" Height="32" Margin="72,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="198" Background="Transparent"  Foreground="White" FontFamily="Segoe UI Semibold" FontSize="22" Cursor="Arrow" Panel.ZIndex="2000" Text="Home" MouseLeftButtonDown="homeText_MouseLeftButtonDown"/>
-        <TextBlock x:Name="favText" HorizontalAlignment="Left" Height="32" Margin="72,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="198" Background="Transparent" Foreground="White" FontFamily="Segoe UI Semibold" FontSize="22" Text="Favorites" Panel.ZIndex="2000" MouseLeftButtonDown="favText_MouseLeftButtonDown"/>
-        <TextBlock x:Name="gamesText" HorizontalAlignment="Left" Height="32" Margin="72,240,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="198" Background="Transparent" Foreground="White" FontFamily="Segoe UI Semibold" FontSize="22" Text="H-Games" Panel.ZIndex="2000"/>
-        <TextBlock x:Name="accountText" HorizontalAlignment="Left" Height="32" Margin="72,480,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="198" Background="Transparent" Foreground="White" FontFamily="Segoe UI Semibold" FontSize="22" Text="Account" Panel.ZIndex="2000" MouseLeftButtonDown="accountText_MouseLeftButtonDown"/>
-        <TextBlock x:Name="settingsText" HorizontalAlignment="Left" Height="32" Margin="72,560,0,0" TextWrapping="Wrap" Text="Settings" VerticalAlignment="Top" Width="198" Background="Transparent" Foreground="White" FontFamily="Segoe UI Semibold" FontSize="22" Panel.ZIndex="2000" MouseLeftButtonDown="settingsText_MouseLeftButtonDown"/>
-        <Image x:Name="notificationsIcon" HorizontalAlignment="Left" Height="32" Margin="10,320,0,0" VerticalAlignment="Top" Width="32" Source="notificationsIcon.png" Cursor="Arrow" Panel.ZIndex="2000"/>
-        <TextBlock x:Name="notificationsText" HorizontalAlignment="Left" Height="32" Margin="72,320,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="198" Background="Transparent" Foreground="White" FontFamily="Segoe UI Semibold" FontSize="22" Text="Notifications" Panel.ZIndex="2000" MouseLeftButtonDown="notificationsText_MouseLeftButtonDown"/>
-        <ProgressBar x:Name="settingsBar" HorizontalAlignment="Left" Height="2" VerticalAlignment="Top" Width="198" Margin="72,590,0,0" Background="White" BorderBrush="#00BCBCBC" Panel.ZIndex="2000" Foreground="#FF5D0093" Value="-1" SmallChange="1"/>
-        <ProgressBar x:Name="accountBar" HorizontalAlignment="Left" Height="2" VerticalAlignment="Top" Width="198" Margin="72,510,0,0" Background="White" BorderBrush="#00BCBCBC" Panel.ZIndex="2000" Foreground="#FF5D0093" SmallChange="1"/>
-        <ProgressBar x:Name="notificationsBar" HorizontalAlignment="Left" Height="2" VerticalAlignment="Top" Width="198" Margin="72,350,0,0" Background="White" BorderBrush="#00BCBCBC" Panel.ZIndex="2000" Foreground="#FF5D0093" SmallChange="1"/>
-        <ProgressBar x:Name="updateFeedBar" HorizontalAlignment="Left" Height="2" VerticalAlignment="Top" Width="198" Margin="72,430,0,0" Background="White" BorderBrush="#00BCBCBC" Panel.ZIndex="2000" Foreground="#FF5D0093" SmallChange="1"/>
-        <ProgressBar x:Name="gamesBar" HorizontalAlignment="Left" Height="2" VerticalAlignment="Top" Width="198" Margin="72,270,0,0" Background="White" BorderBrush="#00BCBCBC" Panel.ZIndex="2000" Foreground="#FF5D0093" SmallChange="1"/>
-        <ProgressBar x:Name="favBar" HorizontalAlignment="Left" Height="2" VerticalAlignment="Top" Width="198" Margin="72,190,0,0" Background="White" BorderBrush="#00BCBCBC" Panel.ZIndex="2000" Foreground="#FF5D0093" SmallChange="0"/>
-        <ProgressBar x:Name="homeBar" HorizontalAlignment="Left" Height="2" VerticalAlignment="Top" Width="198" Margin="72,110,0,0" Background="White" BorderBrush="#00BCBCBC" Panel.ZIndex="2000" Foreground="#FF5D0093" SmallChange="1"/>
         <Rectangle Fill="#FF202225" HorizontalAlignment="Left" Height="1960" Stroke="Black" VerticalAlignment="Top" Width="280" Grid.RowSpan="2" Panel.ZIndex="10"/>
-        <Border x:Name="activeWindow" BorderBrush="{DynamicResource InterfacePurple}" BorderThickness="1" HorizontalAlignment="Left" Height="28" Margin="4,82,0,0" VerticalAlignment="Top" Width="3" CornerRadius="1" Panel.ZIndex="40" Background="{DynamicResource InterfacePurple}"/>
-        <Image x:Name="updateFeedIcon" HorizontalAlignment="Left" Height="32" Margin="10,400,0,0" VerticalAlignment="Top" Width="32" Source="notificationsIcon.png" Cursor="Arrow" Panel.ZIndex="2000"/>
-        <TextBlock x:Name="updateFeedText" HorizontalAlignment="Left" Height="32" Margin="72,400,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="198" Background="Transparent" Foreground="White" FontFamily="Segoe UI Semibold" FontSize="22" Text="Update Feed" Panel.ZIndex="2000" MouseLeftButtonDown="updateFeedText_MouseLeftButtonDown"/>
+        <Border x:Name="activeWindow" BorderBrush="{DynamicResource InterfacePurple}" BorderThickness="1" HorizontalAlignment="Left" Height="32" Margin="4,87,0,0" VerticalAlignment="Top" Width="4" CornerRadius="1" Panel.ZIndex="40" Background="{DynamicResource InterfacePurple}"/>
         <Rectangle Fill="#FF202225" HorizontalAlignment="Left" Height="1960" Stroke="Black" VerticalAlignment="Top" Width="280" Grid.RowSpan="2" Panel.ZIndex="10"/>
-        <Rectangle Fill="{DynamicResource UiDarkGray}" HorizontalAlignment="Left" Height="1960" Stroke="Black" VerticalAlignment="Top" Width="280" Grid.RowSpan="2" Panel.ZIndex="10"/>
-        <Grid HorizontalAlignment="Left" Height="72" Margin="0,60,0,0" VerticalAlignment="Top" Width="280"/>
-
+        <Rectangle Fill="{DynamicResource UiDarkGray}" HorizontalAlignment="Left" Height="1960" Stroke="Black" VerticalAlignment="Top" Width="280" Grid.RowSpan="2" Panel.ZIndex="1"/>
+        <Grid x:Name="dashboardGrid" HorizontalAlignment="Left" Height="54" VerticalAlignment="Top" Width="280" Panel.ZIndex="10">
+            <Image x:Name="barIcon" HorizontalAlignment="Left" Height="32" Margin="10,11,0,0" VerticalAlignment="Top" Width="32" Source="barIcon.png" Stretch="None" Cursor="None" Panel.ZIndex="2000" RenderTransformOrigin="0.703,0.375"/>
+            <ProgressBar x:Name="dashboardBar" HorizontalAlignment="Left" Height="2" VerticalAlignment="Top" Width="198" Margin="72,37,0,0" Background="White" BorderBrush="#00BCBCBC" Panel.ZIndex="2000" Foreground="#FF5D0093" SmallChange="1" Visibility="Hidden"/>
+        </Grid>
+        <Grid x:Name="homeGrid" HorizontalAlignment="Left" Height="54" VerticalAlignment="Top" Width="280" Panel.ZIndex="12000" Margin="0,54,0,0" MouseLeftButtonDown="homeGrid_MouseLeftButtonDown">
+            <Image x:Name="homeIcon" HorizontalAlignment="Left" Height="32" Margin="10,11,0,0" VerticalAlignment="Top" Width="32" Source="homeIcon.png" Cursor="Arrow" Panel.ZIndex="2000"/>
+            <TextBlock x:Name="homeText" HorizontalAlignment="Left" Height="32" Margin="72,11,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="198" Background="Transparent"  Foreground="White" FontFamily="Segoe UI Semibold" FontSize="22" Cursor="Arrow" Panel.ZIndex="2000" Text="Home"/>
+            <ProgressBar x:Name="homeBar" HorizontalAlignment="Left" Height="2" VerticalAlignment="Top" Width="198" Margin="72,37,0,0" Background="White" BorderBrush="#00BCBCBC" Panel.ZIndex="2000" Foreground="#FF5D0093" SmallChange="1"/>
+        </Grid>
+        <Grid x:Name="favGrid" HorizontalAlignment="Left" Height="54" VerticalAlignment="Top" Width="280" Panel.ZIndex="12" Margin="0,108,0,0" MouseLeftButtonDown="favGrid_MouseLeftButtonDown">
+            <TextBlock x:Name="favText" HorizontalAlignment="Left" Height="32" Margin="72,11,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="198" Background="Transparent" Foreground="White" FontFamily="Segoe UI Semibold" FontSize="22" Text="Favorites" Panel.ZIndex="2000"/>
+            <Image x:Name="favIcon" HorizontalAlignment="Left" Height="32" Margin="10,11,0,0" VerticalAlignment="Top" Width="32" Source="favIcon.png" Cursor="Arrow" Panel.ZIndex="2000"/>
+            <ProgressBar x:Name="favBar" HorizontalAlignment="Left" Height="2" VerticalAlignment="Top" Width="198" Margin="72,37,0,0" Background="White" BorderBrush="#00BCBCBC" Panel.ZIndex="2000" Foreground="#FF5D0093" SmallChange="0"/>
+        </Grid>
+        <Grid x:Name="hgamesGrid" HorizontalAlignment="Left" Height="54" VerticalAlignment="Top" Width="280" Panel.ZIndex="12" Margin="0,162,0,0">
+            <TextBlock x:Name="gamesText" HorizontalAlignment="Left" Height="32" Margin="72,11,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="198" Background="Transparent" Foreground="White" FontFamily="Segoe UI Semibold" FontSize="22" Text="H-Games" Panel.ZIndex="2000"/>
+            <Image x:Name="gameIcon" HorizontalAlignment="Left" Height="32" Margin="10,11,0,0" VerticalAlignment="Top" Width="32" Source="gameIcon.png" Cursor="Arrow" Panel.ZIndex="2000"/>
+            <ProgressBar x:Name="gamesBar" HorizontalAlignment="Left" Height="2" VerticalAlignment="Top" Width="198" Margin="72,37,0,0" Background="White" BorderBrush="#00BCBCBC" Panel.ZIndex="2000" Foreground="#FF5D0093" SmallChange="1"/>
+        </Grid>
+        <Grid x:Name="notificationsGrid" HorizontalAlignment="Left" Height="54" VerticalAlignment="Top" Width="280" Panel.ZIndex="12" Margin="0,216,0,0" MouseLeftButtonDown="notificationsGrid_MouseLeftButtonDown">
+            <TextBlock x:Name="notificationsText" HorizontalAlignment="Left" Height="32" Margin="72,11,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="198" Background="Transparent" Foreground="White" FontFamily="Segoe UI Semibold" FontSize="22" Text="Notifications" Panel.ZIndex="2000"/>
+            <Image x:Name="notificationsIcon" HorizontalAlignment="Left" Height="32" Margin="10,11,0,0" VerticalAlignment="Top" Width="32" Source="notificationsIcon.png" Cursor="Arrow" Panel.ZIndex="2000"/>
+            <ProgressBar x:Name="notificationsBar" HorizontalAlignment="Left" Height="2" VerticalAlignment="Top" Width="198" Margin="72,37,0,0" Background="White" BorderBrush="#00BCBCBC" Panel.ZIndex="2000" Foreground="#FF5D0093" SmallChange="1"/>
+        </Grid>
+        <Grid x:Name="updateFeedGrid" HorizontalAlignment="Left" Height="54" VerticalAlignment="Top" Width="280" Panel.ZIndex="12" Margin="0,270,0,0" MouseLeftButtonDown="updateFeedGrid_MouseLeftButtonDown">
+            <TextBlock x:Name="updateFeedText" HorizontalAlignment="Left" Height="32" Margin="72,11,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="198" Background="Transparent" Foreground="White" FontFamily="Segoe UI Semibold" FontSize="22" Text="Update Feed" Panel.ZIndex="2000"/>
+            <Image x:Name="updateFeedIcon" HorizontalAlignment="Left" Height="32" Margin="10,11,0,0" VerticalAlignment="Top" Width="32" Source="notificationsIcon.png" Cursor="Arrow" Panel.ZIndex="2000"/>
+            <ProgressBar x:Name="updateFeedBar" HorizontalAlignment="Left" Height="2" VerticalAlignment="Top" Width="198" Margin="72,37,0,0" Background="White" BorderBrush="#00BCBCBC" Panel.ZIndex="2000" Foreground="#FF5D0093" SmallChange="1"/>
+        </Grid>
+        <Grid x:Name="accountGrid" HorizontalAlignment="Left" Height="54" VerticalAlignment="Top" Width="280" Panel.ZIndex="12" Margin="0,324,0,0" MouseLeftButtonDown="accountGrid_MouseLeftButtonDown">
+            <TextBlock x:Name="accountText" HorizontalAlignment="Left" Height="32" Margin="72,11,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="198" Background="Transparent" Foreground="White" FontFamily="Segoe UI Semibold" FontSize="22" Text="Account" Panel.ZIndex="2000"/>
+            <Image x:Name="accountIcon" HorizontalAlignment="Left" Height="32" Margin="10,11,0,0" VerticalAlignment="Top" Width="32" Source="accountIcon.png" Cursor="Arrow" Panel.ZIndex="2000"/>
+            <ProgressBar x:Name="accountBar" HorizontalAlignment="Left" Height="2" VerticalAlignment="Top" Width="198" Margin="72,37,0,0" Background="White" BorderBrush="#00BCBCBC" Panel.ZIndex="2000" Foreground="#FF5D0093" SmallChange="1"/>
+        </Grid>
+        <Grid x:Name="settingsGrid" HorizontalAlignment="Left" Height="54" VerticalAlignment="Top" Width="280" Panel.ZIndex="12" Margin="0,378,0,0" MouseLeftButtonDown="settingsGrid_MouseLeftButtonDown">
+            <TextBlock x:Name="settingsText" HorizontalAlignment="Left" Height="32" Margin="72,11,0,0" TextWrapping="Wrap" Text="Settings" VerticalAlignment="Top" Width="198" Background="Transparent" Foreground="White" FontFamily="Segoe UI Semibold" FontSize="22" Panel.ZIndex="2000"/>
+            <Image x:Name="settingsIcon" HorizontalAlignment="Left" Height="32" Margin="10,11,0,0" VerticalAlignment="Top" Width="32" Source="settingsIcon.png" Cursor="Arrow" Panel.ZIndex="2000"/>
+            <ProgressBar x:Name="settingsBar" HorizontalAlignment="Left" Height="2" VerticalAlignment="Top" Width="198" Margin="72,36,0,0" Background="White" BorderBrush="#00BCBCBC" Panel.ZIndex="2000" Foreground="#FF5D0093" Value="-1" SmallChange="1"/>
+        </Grid>
     </Grid>
 </UserControl>
