@@ -71,7 +71,8 @@ namespace Sankaku_Interface
         {
             
             InitializeComponent();
-            var client = new Client();
+            
+            //var client = new ApiHelper();
             //client.RegisterToServer("david@david.david.com", "David@1&1.de", "David@1&1.de").Wait();
             
             
@@ -79,7 +80,7 @@ namespace Sankaku_Interface
             //For Damian
             //On stackoverflow they said the way the task is called migth cause deadlock so it might be a good idea to start looking here
             //-------------------------------------------------------------------------------
-            client.RegisterToServer("mail@email.de", "Pass1234.", "Pass1234.");
+            
             
 
             DoujinUtility.MainWindow = this;
