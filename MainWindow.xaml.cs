@@ -72,7 +72,7 @@ namespace Sankaku_Interface
             
             InitializeComponent();
             
-            //var client = new ApiHelper();
+            var client = new ApiHelper();
             //client.RegisterToServer("david@david.david.com", "David@1&1.de", "David@1&1.de").Wait();
             
             

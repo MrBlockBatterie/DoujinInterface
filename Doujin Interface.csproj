@@ -91,6 +91,7 @@
     <Compile Include="Connection\ApiHelper.cs" />
     <Compile Include="Connection\JSON\LoginForm.cs" />
     <Compile Include="Connection\JSON\RegisterForm.cs" />
+    <Compile Include="Connection\Models\AuthenticatedUser.cs" />
     <Compile Include="Database\DatabaseControler.cs" />
     <Compile Include="UiElements\DoujinControl.xaml.cs">
       <DependentUpon>DoujinControl.xaml</DependentUpon>
@@ -112,7 +113,6 @@
     <Compile Include="UiElements\AccountElements\LoginAndRegister\RegisterElementE.xaml.cs">
       <DependentUpon>RegisterElementE.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UiElements\AccountElements\LoginAndRegister\RegisterElement.cs" />
     <Compile Include="UiElements\Viewer\ViewerControl.xaml.cs">
       <DependentUpon>ViewerControl.xaml</DependentUpon>
     </Compile>

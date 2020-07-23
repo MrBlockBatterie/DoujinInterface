@@ -1,4 +1,5 @@
 ﻿using Doujin_Interface.Connection.JSON;
+using Doujin_Interface.Connection.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Net.Mime;
+using System.Net.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
@@ -17,22 +19,31 @@ namespace Doujin_Interface.Connection
 {
     public class ApiHelper
     {
-        private const string IP = "http://127.0.0.1:44323/api";
+        private const string IP = "https://localhost:44323";
         private HttpClient client;
         public ApiHelper()
         {
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(IP);
+            var httpClientHandler = new HttpClientHandler
+            {
+                Proxy = new WebProxy("https://localhost:44323/", true),
+                UseProxy = true
+            };
+            
+            HttpClient client = new HttpClient(/*handler: httpClientHandler*/);
+            //client.BaseAddress = new Uri("https://localhost:44323/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+            
             this.client = client;
-            var response = RegisterToServer("mail@email.de", "Pass1234.", "Pass1234.").Result;
-            Console.WriteLine(response);
+            //var response = RegisterToServer("davis@email.de", "Pass1234.", "Pass1234.").Result;
+            var user = GetToken("davis@email.de", "Pass1234.").Result;
+            Console.WriteLine(user.Access_Token);
+            
 
         }
 
         
-        public async Task<string> RegisterToServer(string email, string password, string repeatPassword)
+        public async Task<string> OldPost(string email, string password, string repeatPassword)
         {
             if (password == repeatPassword)
             {
@@ -96,9 +107,9 @@ namespace Doujin_Interface.Connection
             }
         }
 
-        public async Task<string> PostAsync(string email, string password, string repeatPassword)
+        public async Task<string> RegisterToServer(string email, string password, string repeatPassword)
         {
-            HttpWebRequest webRequest = HttpWebRequest.CreateHttp("http://localhost:44323/api/Account/Register");
+            HttpWebRequest webRequest = HttpWebRequest.CreateHttp("https://localhost:44323/api/Account/Register");
             {
                 var form = new RegisterForm(email, password, repeatPassword);
                 var formData = JsonConvert.SerializeObject(form);
@@ -107,11 +118,14 @@ namespace Doujin_Interface.Connection
                 webRequest.Method = "POST";
                 webRequest.ContentType = "application/json";
                 webRequest.ContentLength = data.Length;
+                webRequest.Proxy = new WebProxy("https://localhost:44323/", true);
+                
 
                 using (Stream stream = webRequest.GetRequestStream())
                 {
                     stream.Write(data, 0, data.Length);
                 }
+                
             }
 
             using (HttpWebResponse webResponse = (HttpWebResponse)webRequest.GetResponse())
@@ -125,6 +139,41 @@ namespace Doujin_Interface.Connection
             }
             
         }
+
+        private async Task<AuthenticatedUser> GetToken(string name, string password)
+        {
+
+            HttpWebRequest webRequest = HttpWebRequest.CreateHttp("https://localhost:44323/token");
+            {
+                
+                byte[] data = Encoding.UTF8.GetBytes($"grant_type=password&username={name}&password={password}");
+
+                webRequest.Method = "POST";
+                webRequest.ContentType = "raw/text";
+                webRequest.ContentLength = data.Length;
+                webRequest.Proxy = new WebProxy("https://localhost:44323/", true);
+
+
+                using (Stream stream = webRequest.GetRequestStream())
+                {
+                    stream.Write(data, 0, data.Length);
+                }
+
+            }
+
+            using (HttpWebResponse webResponse = (HttpWebResponse)webRequest.GetResponse())
+            {
+                using (StreamReader streamReader = new StreamReader(webResponse.GetResponseStream()))
+                {
+                    string response = await streamReader.ReadToEndAsync();
+                    var user = JsonConvert.DeserializeObject<AuthenticatedUser>(response);
+                    return user;
+                }
+
+            }
+        }
+
+
 
 
 

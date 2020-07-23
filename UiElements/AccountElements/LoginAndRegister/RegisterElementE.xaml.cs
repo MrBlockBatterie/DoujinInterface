@@ -23,6 +23,17 @@ namespace Doujin_Interface.UiElements.AccountElements.LoginAndRegister
         public RegisterElementE()
         {
             InitializeComponent();
+            
+            this.HorizontalAlignment = HorizontalAlignment.Center;
+            this.VerticalAlignment = VerticalAlignment.Center;
+            this.IsEnabled = true;
+            
+            
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
