@@ -67,7 +67,7 @@ namespace Doujin_Interface.UpdateFeed
             }
             
         }
-        public void CheckForUpdates()
+        public async void CheckForUpdates()
         {
             foreach (var row in DatabaseControler.updates)
             {
@@ -170,7 +170,7 @@ namespace Doujin_Interface.UpdateFeed
 
             }
             Thread.Sleep(1000);
-            notifyerElement.DisplayNewUploads(this);
+            await notifyerElement.Test(this);
             
 
         }
