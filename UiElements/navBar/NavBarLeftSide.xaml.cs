@@ -97,66 +97,66 @@ namespace Doujin_Interface.uiElements.navBar
 
         }
 
-        private void favText_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void homeGrid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Console.WriteLine("Nogger");
+            if (uiState != UiState.Home)
+            {
+                uiState = UiState.Home;
+                NavBar.MoveActivIndicator(this, homeGrid);
+                NavBar.alwaysMaxed = false;
+            }
+        }
+
+        private void favGrid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (uiState != UiState.Favorites)
             {
                 uiState = UiState.Favorites;
-                NavBar.MoveActivIndicator(this, favText);
+                NavBar.MoveActivIndicator(this, favGrid);
                 NavBar.alwaysMaxed = false;
             }
-                
         }
 
-        private void homeText_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            if(uiState != UiState.Home)
-            {
-                uiState = UiState.Home;
-                NavBar.MoveActivIndicator(this, homeText);
-                NavBar.alwaysMaxed = false;
-            }  
-        }
-
-        private void settingsText_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            if (uiState != UiState.Settings)
-            {
-                uiState = UiState.Settings;
-                NavBar.MoveActivIndicator(this, settingsText);
-                NavBar.alwaysMaxed = true;
-            }
-        }
-
-        private void notificationsText_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void notificationsGrid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (uiState != UiState.Notifications)
             {
                 uiState = UiState.Notifications;
-                NavBar.MoveActivIndicator(this, notificationsText);
+                NavBar.MoveActivIndicator(this, notificationsGrid);
                 NavBar.alwaysMaxed = true;
                 Notifications.Notifications.AddNotifications();
             }
         }
-        private void accountText_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            if (uiState != UiState.Account)
-            {
-                uiState = UiState.Account;
-                NavBar.MoveActivIndicator(this, accountText);
-                NavBar.alwaysMaxed = false;
-            }
-        }
 
-        private void updateFeedText_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void updateFeedGrid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (uiState != UiState.Notifyer)
             {
                 uiState = UiState.Notifyer;
-                NavBar.MoveActivIndicator(this, updateFeedText);
+                NavBar.MoveActivIndicator(this, updateFeedGrid);
                 NavBar.alwaysMaxed = false;
             }
         }
 
+        private void accountGrid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (uiState != UiState.Account)
+            {
+                uiState = UiState.Account;
+                NavBar.MoveActivIndicator(this, accountGrid);
+                NavBar.alwaysMaxed = false;
+            }
+        }
+
+        private void settingsGrid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (uiState != UiState.Settings)
+            {
+                uiState = UiState.Settings;
+                NavBar.MoveActivIndicator(this, settingsGrid);
+                NavBar.alwaysMaxed = true;
+            }
+        }
     }
 }
