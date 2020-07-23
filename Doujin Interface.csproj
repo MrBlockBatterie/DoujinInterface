@@ -92,6 +92,7 @@
     <Compile Include="Connection\JSON\LoginForm.cs" />
     <Compile Include="Connection\JSON\RegisterForm.cs" />
     <Compile Include="Connection\Models\AuthenticatedUser.cs" />
+    <Compile Include="Connection\Models\RecommendedDoujin.cs" />
     <Compile Include="Database\DatabaseControler.cs" />
     <Compile Include="UiElements\DoujinControl.xaml.cs">
       <DependentUpon>DoujinControl.xaml</DependentUpon>

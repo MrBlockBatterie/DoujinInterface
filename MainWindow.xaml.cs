@@ -71,11 +71,11 @@ namespace Sankaku_Interface
         {
             
             InitializeComponent();
-            
-            
+
+
             //client.RegisterToServer("david@david.david.com", "David@1&1.de", "David@1&1.de").Wait();
-            
-            
+
+            var cleint = new ApiHelper();
             //-----------------------------------------------------------------------------
             //For Damian
             //On stackoverflow they said the way the task is called migth cause deadlock so it might be a good idea to start looking here

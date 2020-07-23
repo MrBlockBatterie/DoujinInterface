@@ -23,13 +23,13 @@ namespace Doujin_Interface.UiElements.SettingsElement
     /// </summary>
     public partial class NewSettingsElement : UserControl
     {
+        
         public NewSettingsElement()
         {
             InitializeComponent();
             doujinSavePath.Text = Properties.Settings.Default.Savepath;
             this.Visibility = Visibility.Hidden;
             this.IsEnabled = false;
-            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

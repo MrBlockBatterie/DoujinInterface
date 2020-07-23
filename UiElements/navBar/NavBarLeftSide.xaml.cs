@@ -86,6 +86,11 @@ namespace Doujin_Interface.uiElements.navBar
         }
         private UiState _uiState = UiState.Home;
     
+        public NavBarLeftSide()
+        {
+            InitializeComponent();
+            
+        }
         public NavBarLeftSide(MainWindow mainWindow)
         {
             InitializeComponent();
