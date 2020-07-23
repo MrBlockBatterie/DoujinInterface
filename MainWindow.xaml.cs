@@ -72,7 +72,7 @@ namespace Sankaku_Interface
             
             InitializeComponent();
             
-            var client = new ApiHelper();
+            
             //client.RegisterToServer("david@david.david.com", "David@1&1.de", "David@1&1.de").Wait();
             
             
@@ -108,7 +108,7 @@ namespace Sankaku_Interface
             search = SE.CreateSearchElement(picgrid, rootGrid, this);
             rootGrid.Children.Add(search);
 
-            registerAndLoginElement = RegisterElement.CreateRegisterElement();
+            registerAndLoginElement = new RegisterElementE();
             rootGrid.Children.Add(registerAndLoginElement);
             rootGrid.Children.Add(notifyer);
             

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Doujin_Interface.Connection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,13 +28,21 @@ namespace Doujin_Interface.UiElements.AccountElements.LoginAndRegister
             this.HorizontalAlignment = HorizontalAlignment.Center;
             this.VerticalAlignment = VerticalAlignment.Center;
             this.IsEnabled = true;
+            Visibility = Visibility.Hidden;
             
             
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            if (checkBox1.IsChecked.Value && checkBox2.IsChecked.Value)
+            {
+                if (password.Password == password_Copy.Password)
+                {
+                    var apiHelper = new ApiHelper();
+                    await apiHelper.RegisterToServer(emailText.Text, password.Password, password_Copy.Password, username.Text); 
+                }
+            }
         }
     }
 }

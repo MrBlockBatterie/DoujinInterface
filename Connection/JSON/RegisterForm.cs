@@ -11,12 +11,13 @@ namespace Doujin_Interface.Connection.JSON
         public string Email { get; set; }
         public string Password { get; set; }
         public string ConfirmPassword { get; set; }
-
-        public RegisterForm(string email, string password, string confirm)
+        public string Username { get; set; }
+        public RegisterForm(string email, string password, string confirm, string username)
         {
             Email = email;
             Password = password;
             ConfirmPassword = confirm;
+            Username = username;
         }
     }
 }

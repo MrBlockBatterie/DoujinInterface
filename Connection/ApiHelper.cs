@@ -21,6 +21,7 @@ namespace Doujin_Interface.Connection
     {
         private const string IP = "https://localhost:44323";
         private HttpClient client;
+        private AuthenticatedUser _user;
         public ApiHelper()
         {
             var httpClientHandler = new HttpClientHandler
@@ -36,8 +37,8 @@ namespace Doujin_Interface.Connection
             
             this.client = client;
             //var response = RegisterToServer("davis@email.de", "Pass1234.", "Pass1234.").Result;
-            var user = GetToken("davis@email.de", "Pass1234.").Result;
-            Console.WriteLine(user.Access_Token);
+            //_user = GetToken("davis@email.de", "Pass1234.").Result;
+            //Console.WriteLine(_user.Access_Token);
             
 
         }
@@ -49,7 +50,7 @@ namespace Doujin_Interface.Connection
             {
                 
                 //client.BaseAddress = new Uri(IP);
-                var form = new RegisterForm(email, password, repeatPassword);
+                var form = new RegisterForm(email, password, repeatPassword, "");
                 var data = JsonConvert.SerializeObject(form);
                 var data2 = new FormUrlEncodedContent( new[]
                 {
@@ -98,7 +99,7 @@ namespace Doujin_Interface.Connection
         {
             using (HttpClient httpClient = new HttpClient())
             {
-                var form = new RegisterForm(email, password, repeatPassword);
+                var form = new RegisterForm(email, password, repeatPassword, "");
                 var data = JsonConvert.SerializeObject(form);
                 HttpResponseMessage responseMessage = await httpClient.PostAsync("http://localhost:44323/api/Account/Register", new StringContent(data));
                     
@@ -107,11 +108,11 @@ namespace Doujin_Interface.Connection
             }
         }
 
-        public async Task<string> RegisterToServer(string email, string password, string repeatPassword)
+        public async Task<string> RegisterToServer(string email, string password, string repeatPassword, string username)
         {
             HttpWebRequest webRequest = HttpWebRequest.CreateHttp("https://localhost:44323/api/Account/Register");
             {
-                var form = new RegisterForm(email, password, repeatPassword);
+                var form = new RegisterForm(email, password, repeatPassword, username);
                 var formData = JsonConvert.SerializeObject(form);
                 byte[] data = Encoding.UTF8.GetBytes(formData);
 
@@ -171,6 +172,11 @@ namespace Doujin_Interface.Connection
                 }
 
             }
+        }
+
+        public void Login(string name, string password)
+        {
+            _user = GetToken(name, password).GetAwaiter().GetResult();
         }
 
 
