@@ -29,7 +29,7 @@ namespace Doujin_Interface.uiElements.navBar
     class NavBar
     {
         public static bool alwaysMaxed = false;
-        
+
         public static NavBarLeftSide CreateNavBar(MainWindow window)
         {
             NavBarLeftSide navBar = new NavBarLeftSide(window);
@@ -65,16 +65,17 @@ namespace Doujin_Interface.uiElements.navBar
             {
                 navBar.Width = 280;
             }
-                foreach (object obj in navBar.rootGrid.Children)
+            foreach (Grid obj in navBar.rootGrid.Children.OfType<Grid>())
             {
-                if (obj.GetType() == typeof(Grid))
-                {
-                    blocks.Add((Grid)obj);
-                }
+                DoujinUtility.FindChild<ProgressBar>(obj, null).Foreground = DoujinUtility.MainWindow.animatedBrush;
+
+
+                blocks.Add(obj);
+
             }
             foreach (Grid grid in blocks)
             {
-                    navBar.Width = 52;
+                navBar.Width = 52;
                 grid.MouseEnter += delegate (object sender, MouseEventArgs e) { NavBarText_MouseEnter(sender, e, navBar, grid, refDict[grid]); };
                 grid.MouseLeave += delegate (object sender, MouseEventArgs e) { NavBarText_MouseLeave(sender, e, navBar, grid, refDict[grid]); };
                 grid.Margin = new Thickness(grid.Margin.Left, (prefGrid.Margin.Top + grid.Height + 11), grid.Margin.Right, grid.Margin.Bottom);
@@ -96,7 +97,7 @@ namespace Doujin_Interface.uiElements.navBar
             DoubleAnimation doubleanimation = new DoubleAnimation(progressBar.Value - 100, duration);
             progressBar.BeginAnimation(ProgressBar.ValueProperty, doubleanimation);
 
-            
+
         }
 
         private static void NavBarText_MouseEnter(object sender, MouseEventArgs e, NavBarLeftSide navBar, Grid grid, ProgressBar progressBar)
@@ -126,7 +127,7 @@ namespace Doujin_Interface.uiElements.navBar
             {
                 navBar.Width = 280;
             }
-            
+
         }
 
         private static void NavBar_MouseEnter(object sender, MouseEventArgs e, NavBarLeftSide navBar)
@@ -148,7 +149,7 @@ namespace Doujin_Interface.uiElements.navBar
             {
                 navBar.Width = 280;
             }
-            
+
         }
     }
 }
