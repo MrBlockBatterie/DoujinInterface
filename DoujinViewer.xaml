@@ -11,7 +11,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ScrollViewer x:Name="scrollview" Margin="6,40,11,11" Background="#FF36393F">
+        <ScrollViewer x:Name="scrollview"  Style="{StaticResource ScrollViewerStyle}" Margin="6,40,11,11" Background="#FF36393F">
             <Grid>
                 <WrapPanel x:Name="viewport">
 

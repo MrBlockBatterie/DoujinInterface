@@ -16,18 +16,18 @@
 
 
 
-        <ScrollViewer x:Name="scroll" Margin="283,10,10,10" ScrollChanged="scroll_ScrollChanged">
+        <ScrollViewer x:Name="scroll" Style="{StaticResource ScrollViewerStyle}" Margin="283,10,10,10" ScrollChanged="scroll_ScrollChanged" Foreground="{DynamicResource InterfacePurple}" >
             <WrapPanel x:Name="picgrid" Visibility="Visible" Background="{DynamicResource BackgroundBrush}" Loaded="picgrid_Loaded"/>
         </ScrollViewer>
 
-        <ScrollViewer x:Name="favscroll" Margin="84,10,10,10" IsEnabled="False" Visibility="Hidden">
+        <ScrollViewer x:Name="favscroll" Style="{StaticResource ScrollViewerStyle}" Margin="84,10,10,10" IsEnabled="False" Visibility="Hidden">
             <WrapPanel x:Name="favgrid" Background="#FF36393F"/>
         </ScrollViewer>
 
 
         <ProgressBar x:Name="progress" HorizontalAlignment="Left" Height="22" VerticalAlignment="Top" Width="873" Margin="283,744,0,0" Foreground="#FF7817B0" Visibility="Hidden"/>
 
-        <ScrollViewer x:Name="notificationscroll" Margin="283,10,10,10" Visibility="Hidden">
+        <ScrollViewer x:Name="notificationscroll" Style="{StaticResource ScrollViewerStyle}" Margin="283,10,10,10" Visibility="Hidden">
             <StackPanel x:Name="notificationsgrid"/>
         </ScrollViewer>
 

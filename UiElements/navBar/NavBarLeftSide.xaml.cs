@@ -42,7 +42,8 @@ namespace Doujin_Interface.uiElements.navBar
                     case UiState.Games:
                         break;
                     case UiState.Account:
-                        window.registerAndLoginElement.Visibility = Visibility.Hidden;
+                        //window.registerAndLoginElement.Visibility = Visibility.Hidden;
+                        window.accountElement.Visibility = Visibility.Hidden;
                         break;
                     case UiState.Notifications:
                         window.notificationscroll.Visibility = Visibility.Hidden;
@@ -99,7 +100,6 @@ namespace Doujin_Interface.uiElements.navBar
 
         private void homeGrid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            Console.WriteLine("Nogger");
             if (uiState != UiState.Home)
             {
                 uiState = UiState.Home;

@@ -35,6 +35,8 @@ using Doujin_Interface.UiElements.AccountElements;
 using Doujin_Interface.UiElements.UpdateFeed;
 using Doujin_Interface.UiElements.AccountElements.LoginAndRegister;
 using Doujin_Interface.Connection;
+using Doujin_Interface.UiElements.AccountElements.MainAccountPage;
+using System.Drawing.Printing;
 
 namespace Sankaku_Interface
 {
@@ -64,7 +66,8 @@ namespace Sankaku_Interface
         public int page = 1;
         public SearchElementLeftSide search;
         public NewSettingsElement settingElement = new NewSettingsElement();
-        public RegisterElementE registerAndLoginElement;
+        //public RegisterElementE registerAndLoginElement;
+        public AccountElement accountElement;
         public NotifyerElement notifyer = new NotifyerElement(); //notifyer
         public SolidColorBrush animatedBrush = new SolidColorBrush();
         public MainWindow()
@@ -108,11 +111,15 @@ namespace Sankaku_Interface
             search = SE.CreateSearchElement(picgrid, rootGrid, this);
             rootGrid.Children.Add(search);
 
-            registerAndLoginElement = new RegisterElementE();
-            rootGrid.Children.Add(registerAndLoginElement);
+            //registerAndLoginElement = new registerAndLoginElementE();
+            //rootGrid.Children.Add(registerAndLoginElement);
+            accountElement = new AccountElement();
+            rootGrid.Children.Add(accountElement);
+            accountElement.Visibility = Visibility.Hidden;
+            accountElement.Margin = new Thickness(52, 0, 0, 0);
             rootGrid.Children.Add(notifyer);
-            
-            
+
+
             //has to be added last
             var navBar = new NavBar();
             rootGrid.Children.Add(NavBar.CreateNavBar(this));
@@ -156,7 +163,8 @@ namespace Sankaku_Interface
         }
         public void DisplayAccount()
         {
-            registerAndLoginElement.Visibility = Visibility.Visible;
+            //registerAndLoginElement.Visibility = Visibility.Visible;
+            accountElement.Visibility = Visibility.Visible;
             search.Visibility = Visibility.Hidden;
         }
         public void DisplaySettings()

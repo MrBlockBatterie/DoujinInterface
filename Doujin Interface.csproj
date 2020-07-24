@@ -93,6 +93,15 @@
     <Compile Include="Connection\JSON\RegisterForm.cs" />
     <Compile Include="Connection\Models\AuthenticatedUser.cs" />
     <Compile Include="Database\DatabaseControler.cs" />
+    <Compile Include="UiElements\AccountElements\MainAccountPage\AccountElement.xaml.cs">
+      <DependentUpon>AccountElement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UiElements\AccountElements\MainAccountPage\showcaseElement.xaml.cs">
+      <DependentUpon>showcaseElement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UiElements\AccountElements\UserControl1.xaml.cs">
+      <DependentUpon>UserControl1.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UiElements\DoujinControl.xaml.cs">
       <DependentUpon>DoujinControl.xaml</DependentUpon>
     </Compile>
@@ -145,6 +154,18 @@
       <DependentUpon>Watchlist.xaml</DependentUpon>
     </Compile>
     <Page Include="DetailsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UiElements\AccountElements\MainAccountPage\AccountElement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UiElements\AccountElements\MainAccountPage\showcaseElement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UiElements\AccountElements\UserControl1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -341,5 +362,6 @@
   <ItemGroup>
     <Resource Include="UiElements\Viewer\baseline_keyboard_arrow_right_black_18dp.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
