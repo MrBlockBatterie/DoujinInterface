@@ -40,9 +40,9 @@ namespace Doujin_Interface.UiElements.UpdateFeed
                 }
 
             }
-            
-            
-            
+
+
+
             updateChecker = new UpdateChecker(this);
             this.Visibility = Visibility.Hidden;
             var margin = this.Margin;
@@ -50,7 +50,31 @@ namespace Doujin_Interface.UiElements.UpdateFeed
             Margin = margin;
 
         }
-        public void DisplayNewUploads(UpdateChecker checker)
+        public async Task<List<DoujinControl>> DisplayNewUploads(UpdateChecker checker, string distinct)
+        {
+            List<DoujinControl> list = new List<DoujinControl>();
+
+            
+            foreach (var item in checker.newReleases)
+            {
+                if (item.Value == distinct)
+                {
+                    DoujinControl control;
+                    control = new DoujinControl(item.Key);
+                    list.Add(control);
+                    await Task.Run(delegate
+                    {
+                        int i = 1;
+                        i++;
+                    });
+                }
+                
+            }
+            return list;
+
+
+        }
+        public async Task Test(UpdateChecker checker)
         {
             foreach (var distinct in checker.newReleases.Values.Distinct())
             {
@@ -61,13 +85,10 @@ namespace Doujin_Interface.UiElements.UpdateFeed
                 tab.Content = scroll;
                 tabs.Items.Add(tab);
                 scroll.Content = wrap;
-                foreach (var item in checker.newReleases)
+                foreach (var item in await DisplayNewUploads(checker, distinct))
                 {
-                    if (item.Value == distinct)
-                    {
-                        wrap.Children.Add(new DoujinControl(item.Key));
-                    }
-                }      
+                    wrap.Children.Add(item);
+                }
             }
         }
 
@@ -76,7 +97,7 @@ namespace Doujin_Interface.UiElements.UpdateFeed
             var type = (Types)comboBox.SelectedIndex;
             var item = new ListBoxItem();
             item.Content = input.Text;
-            
+
             item.Foreground = Brushes.White;
             list.Items.Add(item);
             updateChecker.AddObject(input.Text, type);
@@ -85,7 +106,7 @@ namespace Doujin_Interface.UiElements.UpdateFeed
         private void removeButton_Click(object sender, RoutedEventArgs e)
         {
             var item = (ListBoxItem)list.SelectedItem;
-            
+
             list.Items.Remove(item);
         }
     }
