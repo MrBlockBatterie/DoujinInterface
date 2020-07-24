@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="Doujin_Interface.Notifications.friendControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Doujin_Interface.Notifications"
+             mc:Ignorable="d" 
+             d:DesignHeight="80" d:DesignWidth="300">
+    <Grid Name="rootGrid">
+        <Grid HorizontalAlignment="Left" Height="71" Margin="5,5,0,0" VerticalAlignment="Top" Width="290" Panel.ZIndex="10">
+            <Image x:Name="profilePic" HorizontalAlignment="Left" Height="52" Margin="10,10,0,0" VerticalAlignment="Top" Width="52"/>
+            <TextBox x:Name="name" HorizontalAlignment="Left" Height="20" Margin="64,5,0,0" TextWrapping="Wrap" Text="UserName123" VerticalAlignment="Top" Width="216" BorderBrush="#00000000" Background="Transparent" Foreground="White" FontFamily="Segoe UI Semibold" FontSize="14" Focusable="False" AllowDrop="False" SelectionBrush="{x:Null}" BorderThickness="0,0,4,0" IsReadOnlyCaretVisible="True"/>
+            <TextBox x:Name="friendsCount" HorizontalAlignment="Left" Height="20" Margin="64,22,0,0" TextWrapping="Wrap" Text="Friends: 20" VerticalAlignment="Top" Width="226" BorderBrush="#00000000" Background="#00000000" Foreground="#FF999999" FontSize="10" Focusable="False" AllowDrop="False" SelectionBrush="{x:Null}" BorderThickness="0" IsReadOnlyCaretVisible="True"/>
+            <TextBox x:Name="doujinsRated" HorizontalAlignment="Left" Height="29" Margin="64,35,0,0" TextWrapping="Wrap" Text="Doujins rated: 1337" VerticalAlignment="Top" Width="226" BorderBrush="#00000000" Background="#00000000" Foreground="#FF999999" FontSize="10" Focusable="False" AllowDrop="False" SelectionBrush="{x:Null}" BorderThickness="0" IsReadOnlyCaretVisible="True"/>
+        </Grid>
+        <Border x:Name="boarder" BorderThickness="1" HorizontalAlignment="Left" Height="80" VerticalAlignment="Top" Width="300" CornerRadius="2" Panel.ZIndex="2"/>
+        <Border BorderBrush="{DynamicResource BackgroundBrush}" BorderThickness="1" HorizontalAlignment="Left" Height="80" VerticalAlignment="Top" Width="300" CornerRadius="2" Panel.ZIndex="1" Background="{DynamicResource UiDarkGray}"/>
+
+    </Grid>
+</UserControl>

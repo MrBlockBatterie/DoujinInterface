@@ -97,11 +97,20 @@
     <Compile Include="UiElements\AccountElements\MainAccountPage\AccountElement.xaml.cs">
       <DependentUpon>AccountElement.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UiElements\AccountElements\MainAccountPage\Addables\AccountDoujinControl.xaml.cs">
+      <DependentUpon>AccountDoujinControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UiElements\AccountElements\MainAccountPage\Addables\friendControl.xaml.cs">
+      <DependentUpon>friendControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UiElements\AccountElements\MainAccountPage\recomendedElement.xaml.cs">
+      <DependentUpon>recomendedElement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UiElements\AccountElements\MainAccountPage\friendsElement.xaml.cs">
+      <DependentUpon>friendsElement.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UiElements\AccountElements\MainAccountPage\showcaseElement.xaml.cs">
       <DependentUpon>showcaseElement.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UiElements\AccountElements\UserControl1.xaml.cs">
-      <DependentUpon>UserControl1.xaml</DependentUpon>
     </Compile>
     <Compile Include="UiElements\DoujinControl.xaml.cs">
       <DependentUpon>DoujinControl.xaml</DependentUpon>
@@ -162,11 +171,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UiElements\AccountElements\MainAccountPage\showcaseElement.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="UiElements\AccountElements\MainAccountPage\Addables\AccountDoujinControl.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
-    <Page Include="UiElements\AccountElements\UserControl1.xaml">
+    <Page Include="UiElements\AccountElements\MainAccountPage\Addables\friendControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UiElements\AccountElements\MainAccountPage\recomendedElement.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UiElements\AccountElements\MainAccountPage\friendsElement.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UiElements\AccountElements\MainAccountPage\showcaseElement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -363,6 +384,20 @@
   <ItemGroup>
     <Resource Include="UiElements\Viewer\baseline_keyboard_arrow_right_black_18dp.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="UiElements\AccountElements\MainAccountPage\Addables\download.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UiElements\AccountElements\MainAccountPage\Addables\heart_fav.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UiElements\AccountElements\MainAccountPage\Addables\heart_nofav.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

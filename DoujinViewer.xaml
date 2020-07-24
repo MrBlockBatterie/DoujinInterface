@@ -20,7 +20,7 @@
             </Grid>
 
         </ScrollViewer>
-        <ScrollViewer x:Name="pagescroll" Margin="6,7,10.6,10.6" Background="#FF36393F" Visibility="Hidden">
+        <ScrollViewer x:Name="pagescroll" Style="{StaticResource ScrollViewerStyle}" Margin="6,40,11,11" Background="#FF36393F" Visibility="Hidden">
             <Image x:Name="page" Margin="10,10,9.6,10.6" Visibility="Hidden" HorizontalAlignment="Center" VerticalAlignment="Top"/>
         </ScrollViewer>
         <doujinviewer:ViewerControl x:Name="control" Height="40" VerticalAlignment="Top"/>

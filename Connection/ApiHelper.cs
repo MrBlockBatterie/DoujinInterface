@@ -295,7 +295,7 @@ namespace Doujin_Interface.Connection
 
         public void Login(string name, string password)
         {
-            _user = GetToken(name, password).GetAwaiter().GetResult();
+           // _user = GetToken(name, password).GetAwaiter().GetResult();
         }
 
 

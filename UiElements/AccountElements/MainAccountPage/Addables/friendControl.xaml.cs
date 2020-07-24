@@ -19,15 +19,26 @@ namespace Doujin_Interface.Notifications
     /// <summary>
     /// Interaktionslogik für notificationControl.xaml
     /// </summary>
-    public partial class NotificationControl : UserControl, IDisposable
+    public partial class friendControl : UserControl
     {
         
-        public NotificationControl()
+        public friendControl(string userName, int friendCount, int ratingCount)
         {
-
             InitializeComponent();
+            name.Text = userName;
+            friendsCount.Text = friendCount.ToString();
+            doujinsRated.Text = ratingCount.ToString();
         }
 
+        //optinal
+        public friendControl(string userName, BitmapImage profilepic, int friendCount, int ratingCount)
+        {
+            InitializeComponent();
+            name.Text = userName;
+            profilePic.Source = profilepic;
+            friendsCount.Text = friendCount.ToString();
+            doujinsRated.Text = ratingCount.ToString();
+        }
         #region IDisposable Support
         private bool disposedValue = false; // Dient zur Erkennung redundanter Aufrufe.
 

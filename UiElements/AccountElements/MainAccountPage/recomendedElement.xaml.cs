@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Doujin_Interface.UiElements.AccountElements
+namespace Doujin_Interface.UiElements.AccountElements.MainAccountPage
 {
     /// <summary>
-    /// Interaktionslogik für UserControl1.xaml
+    /// Interaktionslogik für showcaseElement.xaml
     /// </summary>
-    public partial class UserControl1 : UserControl
+    public partial class recomendedElement : UserControl
     {
-        public UserControl1()
+        public recomendedElement()
         {
             InitializeComponent();
         }

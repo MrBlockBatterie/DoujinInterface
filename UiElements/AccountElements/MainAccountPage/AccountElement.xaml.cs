@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -20,12 +21,14 @@ namespace Doujin_Interface.UiElements.AccountElements.MainAccountPage
     /// </summary>
     public partial class AccountElement : UserControl
     {
+        Grid currentWindowButtonGrid;
         public AccountElement()
         {
             InitializeComponent();
             List<Grid> tabSelectorGrids = new List<Grid>();
             Grid prefGrid = new Grid();
             prefGrid.Margin = new Thickness(0, 0, 0, 0);
+            currentWindowButtonGrid = showcaseGrid;
             Dictionary<Grid, ProgressBar> refDict = new Dictionary<Grid, ProgressBar>()
             {
                 {this.showcaseGrid, this.showcaseBar },
@@ -68,21 +71,36 @@ namespace Doujin_Interface.UiElements.AccountElements.MainAccountPage
                 i++;
                 //(((tabSelectorGrid.RenderSize.Height / (childCount + 1)) * (i + 1)) - (showcaseGrid.Height / 2))
             }
+            moveActiveIndicator();
         }
 
         private void showcaseGrid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-
+            accountTabs.SelectedIndex = 0;
+            currentWindowButtonGrid = showcaseGrid;
+            moveActiveIndicator();
         }
 
         private void recommendedGrid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-
+            accountTabs.SelectedIndex = 1;
+            currentWindowButtonGrid = recommendedGrid;
+            moveActiveIndicator();
         }
 
         private void friendsGrid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-
+            accountTabs.SelectedIndex = 2;
+            currentWindowButtonGrid = friendsGrid;
+            moveActiveIndicator();
         }
+
+        private void moveActiveIndicator()
+        {
+            Duration duration = new Duration(TimeSpan.FromMilliseconds(200));
+            ThicknessAnimation move = new ThicknessAnimation(new Thickness(activeIndicator.Margin.Left, activeIndicator.Margin.Top, 0, 0), new Thickness(activeIndicator.Margin.Left, currentWindowButtonGrid.Margin.Top, 0, 0), duration);
+            activeIndicator.BeginAnimation(Border.MarginProperty, move);
+        }
+
     }
 }
