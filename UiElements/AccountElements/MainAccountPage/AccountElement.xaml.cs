@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Doujin_Interface.Connection;
+using Doujin_Interface.Connection.Models;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +25,39 @@ namespace Doujin_Interface.UiElements.AccountElements.MainAccountPage
     public partial class AccountElement : UserControl
     {
         Grid currentWindowButtonGrid;
+        public AuthenticatedUser user;
+        private bool _loggedIn = false;
+        public bool loggedIn { 
+            get
+            {
+                return _loggedIn;
+            }
+            set
+            {
+                _loggedIn = value;
+                loggedInAs.Text = $"logged in as {user.UserName}";
+            }
+        }
+        private ApiHelper _apiHelper;
+        public ApiHelper apiHelper
+        {
+            get
+            {
+                if (_apiHelper != null)
+                {
+                    return _apiHelper;
+                }
+                else
+                {
+                    _apiHelper = new ApiHelper();
+                    return _apiHelper;
+                }
+            }
+            set
+            {
+                _apiHelper = value;
+            }
+        }
         public AccountElement()
         {
             InitializeComponent();

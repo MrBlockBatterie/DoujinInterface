@@ -37,6 +37,8 @@ using Doujin_Interface.UiElements.AccountElements.LoginAndRegister;
 using Doujin_Interface.Connection;
 using Doujin_Interface.UiElements.AccountElements.MainAccountPage;
 using System.Drawing.Printing;
+using System.Diagnostics;
+using HtmlAgilityPack;
 
 namespace Sankaku_Interface
 {
@@ -45,7 +47,7 @@ namespace Sankaku_Interface
     /// </summary>
     public partial class MainWindow : Window
     {
-        
+
         public string url = "https://nhentai.net/api/galleries/search?query=";
         public string lang = "language%3Aenglish";
         public Boolean popOrder = false;
@@ -62,30 +64,36 @@ namespace Sankaku_Interface
         private List<int> favId = new List<int>();
         public List<NotificationControlList> NotificationList = new List<NotificationControlList>();
         private static readonly HttpClient client = new HttpClient();
-        public string[] extensions = {".png",".jpg"};
+        public string[] extensions = { ".png", ".jpg" };
         public int page = 1;
         public SearchElementLeftSide search;
         public NewSettingsElement settingElement = new NewSettingsElement();
-        //public RegisterElementE registerAndLoginElement;
+        public RegisterElementE registerAndLoginElement;
         public AccountElement accountElement;
         public NotifyerElement notifyer = new NotifyerElement(); //notifyer
         public SolidColorBrush animatedBrush = new SolidColorBrush();
         public MainWindow()
         {
-            
+
             InitializeComponent();
+            Init();
 
 
+
+
+
+
+        }
+        public void Init()
+        {
             //client.RegisterToServer("david@david.david.com", "David@1&1.de", "David@1&1.de").Wait();
 
-            var cleint = new ApiHelper();
+            //Doujin_Interface.Properties.Settings.Default.User = null;
+            
             //-----------------------------------------------------------------------------
             //For Damian
             //On stackoverflow they said the way the task is called migth cause deadlock so it might be a good idea to start looking here
             //-------------------------------------------------------------------------------
-            
-            
-
             DoujinUtility.MainWindow = this;
             DoujinUtility.MainWindow.animatedBrush.Color = Color.FromArgb(255, 138, 0, 219);
             //var test = new HIDoujin("Bokurano@Mii-chan | Our @Mii-chan","english", 1278968);
@@ -95,15 +103,6 @@ namespace Sankaku_Interface
 
             //Application.Current.Resources["UiDarkGray"] = new SolidColorBrush(Color.FromArgb(100, 200, 20, 20));
             //Color.FromArgb(100, 200, 20, 20);
-
-
-
-
-
-
-
-
-
             this.KeyDown += MainWindow_KeyDown;
             this.KeyUp += MainWindow_KeyUp;
 
@@ -111,8 +110,9 @@ namespace Sankaku_Interface
             search = SE.CreateSearchElement(picgrid, rootGrid, this);
             rootGrid.Children.Add(search);
 
-            //registerAndLoginElement = new registerAndLoginElementE();
-            //rootGrid.Children.Add(registerAndLoginElement);
+            registerAndLoginElement = new RegisterElementE();
+            rootGrid.Children.Add(registerAndLoginElement);
+            registerAndLoginElement.Visibility = Visibility.Hidden;
             accountElement = new AccountElement();
             rootGrid.Children.Add(accountElement);
             accountElement.Visibility = Visibility.Hidden;
@@ -123,9 +123,6 @@ namespace Sankaku_Interface
             //has to be added last
             var navBar = new NavBar();
             rootGrid.Children.Add(NavBar.CreateNavBar(this));
-
-           
-
 
             Thickness margin = settingElement.Margin;
             margin.Left = 283;
@@ -140,20 +137,16 @@ namespace Sankaku_Interface
                     row.favorite = true;
                     favId.Add(row.nHentaiID);
                     favDoujin.Add(DoujinUtility.DataRowToDoujin(row));
-                    Console.WriteLine("fav added to list " + row.nHentaiID );
-                    
+                    Console.WriteLine("fav added to list " + row.nHentaiID);
+
                 }
             }
             if (File.Exists("cache.xml"))
             {
                 DatabaseControler.doujinCache.ReadXml("cache.xml");
-                
+
             }
             //Page(1);
-
-
-
-
         }
         public void DisplayNotifyer()
         {
@@ -163,9 +156,46 @@ namespace Sankaku_Interface
         }
         public void DisplayAccount()
         {
+            if (!accountElement.loggedIn)
+            {
+                if (Doujin_Interface.Properties.Settings.Default.User == "skip")
+                {
+                    accountElement.Visibility = Visibility.Visible;
+                    search.Visibility = Visibility.Hidden;
+                    return;
+                }
+                if (Doujin_Interface.Properties.Settings.Default.User != null && Doujin_Interface.Properties.Settings.Default.TokenExpiration != null)
+                {
+                    if (DateTime.Now > Doujin_Interface.Properties.Settings.Default.TokenExpiration)
+                    {
+                        accountElement.Visibility = Visibility.Hidden;
+                        registerAndLoginElement.Visibility = Visibility.Visible;
+                        return;
+                    }
+                    else
+                    {
+                        accountElement.user = JsonConvert.DeserializeObject<Doujin_Interface.Connection.Models.AuthenticatedUser>(Doujin_Interface.Properties.Settings.Default.User);
+                        accountElement.loggedIn = true;
+                        accountElement.Visibility = Visibility.Visible;
+                        search.Visibility = Visibility.Hidden;
+
+                    }
+                }
+                else
+                {
+                    accountElement.Visibility = Visibility.Hidden;
+                    registerAndLoginElement.Visibility = Visibility.Visible;
+                }
+                
+            }
+            else
+            {
+                accountElement.Visibility = Visibility.Visible;
+                search.Visibility = Visibility.Hidden;
+            }
+            
             //registerAndLoginElement.Visibility = Visibility.Visible;
-            accountElement.Visibility = Visibility.Visible;
-            search.Visibility = Visibility.Hidden;
+            
         }
         public void DisplaySettings()
         {
@@ -187,7 +217,7 @@ namespace Sankaku_Interface
             favscroll.Visibility = Visibility.Visible;
             favscroll.IsEnabled = true;
 
-            
+
             if (favgrid.Children.Count < DatabaseControler.favorites.Count)
             {
                 foreach (DoujinDataRow row in DatabaseControler.favorites)
@@ -197,16 +227,16 @@ namespace Sankaku_Interface
                     doujinControl.heart.Source = new BitmapImage(new Uri("pack://application:,,,/UiElements/heart_fav.png"));
                     favgrid.Children.Add(doujinControl);
                     */
-                    
+
                     Doujin doujin = DoujinUtility.DataRowToDoujin(row);
                     if (DoujinUtility.DoujinIsPartOfDataTable(doujin, DatabaseControler.localDummy))
                     {
                         continue;
                     }
                     DoujinControl doujinControl = new DoujinControl();
-                    
-                    favgrid.Children.Insert(0,doujinControl);
-                    
+
+                    favgrid.Children.Insert(0, doujinControl);
+
                     var source = new BitmapImage(new Uri(row.coverUrl));
                     doujinControl.img.Source = source;
                     doujinControl.img.ToolTip = doujin.name;
@@ -225,13 +255,13 @@ namespace Sankaku_Interface
                     doujinControl.doujinName.Text = doujin.name;
                     doujinControl.doujinCreator.Text = doujin.ArtistsConcat();
                     doujinControl.doujinTags.Text = doujin.TagsConcat();
-                    
+
 
 
                     DatabaseControler.localDummy.AddDoujinDataRow(DatabaseControler.mainDataTable.Rows.Count, row.nHentaiID, row.mediaID, row.name, row.fullName, row.artist, row.character, row.parody, row.group, row.tags, row.language, true, row.pages, row.coverUrl, row.extension);
                 }
-                
-                
+
+
             }
             else if (favgrid.Children.Count > DatabaseControler.favorites.Count)
             {
@@ -250,10 +280,10 @@ namespace Sankaku_Interface
                     favgrid.Children.Remove(doujinControl);
                 }
             }
-            
+
         }
 
-  
+
 
         public void DisplayHome()
         {
@@ -289,7 +319,7 @@ namespace Sankaku_Interface
             }
             if (strgKey && fKey)
             {
-                
+
             }
         }
         private void MainWindow_KeyUp(object sender, KeyEventArgs e)
@@ -318,7 +348,7 @@ namespace Sankaku_Interface
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-           
+
 
         }
 
@@ -326,15 +356,15 @@ namespace Sankaku_Interface
         {
             var img = (Image)sender;
             var viewer = new DoujinViewer(new Doujin((int)img.Tag));
-            viewer.Show();            
+            viewer.Show();
         }
         public void Img_MouseLeftButtonDown(int mediaid, int nhentaiid, int pages, string coverurl, string ext)
         {
 
-            var viewer = new DoujinViewer(mediaid,nhentaiid,pages,coverurl,ext);
+            var viewer = new DoujinViewer(mediaid, nhentaiid, pages, coverurl, ext);
             viewer.Show();
         }
-        
+
 
         private void FavImg_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -357,10 +387,10 @@ namespace Sankaku_Interface
             dt.Clear();
             //favs.Clear();
             page = 1;
-            
+
             //Page(1);
         }
-        
+
         private void scroll_ScrollChanged(object sender, ScrollChangedEventArgs e)
         {
             var scroll = (ScrollViewer)sender;
@@ -370,7 +400,7 @@ namespace Sankaku_Interface
                 search.Page(page);
                 page++;
             }
-            
+
         }
 
         private void picgrid_Loaded(object sender, RoutedEventArgs e)
@@ -386,6 +416,12 @@ namespace Sankaku_Interface
             {
                 this.notificationPanellul.Children.Add(Notifications.NotificationNoImg(this, $"No new uploads on subscribed tags", "", ""));
             }
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Doujin_Interface.Properties.Settings.Default.Save();
+           
         }
     }
 }

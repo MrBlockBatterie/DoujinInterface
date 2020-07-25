@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Sankaku_Interface" xmlns:searchelement="clr-namespace:Doujin_Interface.uiElements.searchElement" xmlns:navBar="clr-namespace:Doujin_Interface.uiElements.navBar"
         mc:Ignorable="d"
         Title="MainWindow" Height="808.4" Width="1200
-        " Background="#FF424141">
+        " Background="#FF424141" Closing="Window_Closing">
 
     <Grid x:Name="rootGrid" Background="#FF36393F">
         <Grid.RowDefinitions>

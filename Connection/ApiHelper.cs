@@ -1,8 +1,10 @@
 ﻿using Doujin_Interface.Connection.JSON;
 using Doujin_Interface.Connection.Models;
 using Newtonsoft.Json;
+using Sankaku_Interface;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -15,6 +17,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Results;
 
 namespace Doujin_Interface.Connection
 {
@@ -171,6 +174,7 @@ namespace Doujin_Interface.Connection
                 {
                     string response = await streamReader.ReadToEndAsync();
                     var user = JsonConvert.DeserializeObject<AuthenticatedUser>(response);
+                    Properties.Settings.Default.TokenExpiration = DateTime.Now.AddDays(14);
                     return user;
                 }
 
@@ -293,9 +297,11 @@ namespace Doujin_Interface.Connection
             }
         } 
 
-        public void Login(string name, string password)
+        public async Task<HttpStatusCode> Login(string name, string password)
         {
-           // _user = GetToken(name, password).GetAwaiter().GetResult();
+           _user = await GetToken(name, password);
+            Properties.Settings.Default.User = JsonConvert.SerializeObject(_user);
+            return HttpStatusCode.OK;
         }
 
 
@@ -303,9 +309,6 @@ namespace Doujin_Interface.Connection
 
 
     }
-    public class Client
-    {
-
-    }
+ 
 }
 

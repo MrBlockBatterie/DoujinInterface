@@ -34,5 +34,28 @@ namespace Doujin_Interface.Properties {
                 this["Savepath"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string User {
+            get {
+                return ((string)(this["User"]));
+            }
+            set {
+                this["User"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.DateTime TokenExpiration {
+            get {
+                return ((global::System.DateTime)(this["TokenExpiration"]));
+            }
+            set {
+                this["TokenExpiration"] = value;
+            }
+        }
     }
 }

@@ -185,19 +185,19 @@
     <Grid Margin="0,0,400,0">
         <Border  Margin="0,0,-400,0" Background="#FF292B2F" BorderBrush="{DynamicResource InterfacePurple}" CornerRadius="30" Panel.ZIndex="-5"/>
         <Grid HorizontalAlignment="Left" Height="500" Margin="0,0,-400,0" VerticalAlignment="Top" Width="400">
-            <TextBox x:Name="emailText" Margin="20,40,19,0" TextWrapping="Wrap" Text="E-Mail" VerticalAlignment="Top" Width="361" Height="50" FontFamily="Segoe UI Semibold" FontSize="36" Foreground="White" TextAlignment="Center" Panel.ZIndex="10" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="#667C1685" CaretBrush="White"/>
-            <Border BorderBrush="#FF7C1685" BorderThickness="2" Height="50" Margin="15,40,15,0" VerticalAlignment="Top" CornerRadius="5" Background="#FF202225"/>
+            <TextBox x:Name="emailText" Margin="20,40,19,0" TextWrapping="Wrap" Text="E-Mail" VerticalAlignment="Top" Width="361" Height="50" FontFamily="Segoe UI Semibold" FontSize="36" Foreground="White" TextAlignment="Center" Panel.ZIndex="10" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="#667C1685" CaretBrush="White" Visibility="Hidden"/>
+            <Border x:Name="emailBorder" BorderBrush="#FF7C1685" BorderThickness="2" Height="50" Margin="15,40,15,0" VerticalAlignment="Top" CornerRadius="5" Background="#FF202225" Visibility="Hidden"/>
             <TextBox x:Name="username" Margin="20,110,19,0" TextWrapping="Wrap" Text="Username" VerticalAlignment="Top" Width="361" Height="50" FontFamily="Segoe UI Semibold" FontSize="36" Foreground="White" TextAlignment="Center" Panel.ZIndex="10" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="{DynamicResource SelectionBrush}" CaretBrush="{DynamicResource CaretBrush}"/>
             <Border BorderBrush="#FF7C1685" BorderThickness="2" Height="50" Margin="15,110,15,0" VerticalAlignment="Top" CornerRadius="5" Background="#FF202225"/>
             <PasswordBox x:Name="password" Margin="20,180,19,0" VerticalAlignment="Top" Width="361" Height="50" FontFamily="Segoe UI Semibold" FontSize="36" Foreground="White" Panel.ZIndex="10" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="#667C1685" CaretBrush="White"/>
             <Border BorderBrush="#FF7C1685" BorderThickness="2" Height="50" Margin="15,180,15,0" VerticalAlignment="Top" CornerRadius="5" Background="#FF202225"/>
-            <Button Content="Register" Height="50" Margin="20,420,20,0" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Panel.ZIndex="10" Foreground="White" FontFamily="Segoe UI Semibold" FontSize="20" Cursor="Hand" Click="Button_Click"/>
+            <Button x:Name="button" Content="Login" Height="50" Margin="20,420,20,0" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Panel.ZIndex="10" Foreground="White" FontFamily="Segoe UI Semibold" FontSize="20" Cursor="Hand" Click="Button_Click"/>
             <Border BorderBrush="#9958008B" BorderThickness="1" Height="50" Margin="20,420,20,0" VerticalAlignment="Top" CornerRadius="5" Background="#667C1685"/>
-            <CheckBox x:Name="checkBox1" Content="I am 18+ years old" Height="16" Margin="20,335,20,0" VerticalAlignment="Top" Background="#FF202225" BorderBrush="#FF7C1685" Foreground="#FFBBBBBB" Panel.ZIndex="10"/>
-            <CheckBox x:Name="checkBox2" Content="I accept the Terms of Service [ToS]" Height="16" Margin="20,358,20,0" VerticalAlignment="Top" Background="#FF202225" BorderBrush="#FF7C1685" Foreground="#FFBBBBBB" Panel.ZIndex="10"/>
-            <TextBlock Height="25" Margin="20,305,30,0" TextWrapping="Wrap" Text="Click here to login" VerticalAlignment="Top" FontSize="14" Foreground="#FF7C2185" Panel.ZIndex="10"/>
-            <PasswordBox x:Name="password_Copy" Margin="19,250,20,0" VerticalAlignment="Top" Width="361" Height="50" FontFamily="Segoe UI Semibold" FontSize="36" Foreground="White" Panel.ZIndex="10" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="#667C1685" CaretBrush="White"/>
-            <Border BorderBrush="#FF7C1685" BorderThickness="2" Height="50" Margin="15,250,15,0" VerticalAlignment="Top" CornerRadius="5" Background="#FF202225"/>
+            <CheckBox x:Name="checkBox1" Content="I am 18+ years old" Height="16" Margin="20,335,20,0" VerticalAlignment="Top" Background="#FF202225" BorderBrush="#FF7C1685" Foreground="#FFBBBBBB" Panel.ZIndex="10" Visibility="Hidden"/>
+            <CheckBox x:Name="checkBox2" Content="I accept the Terms of Service [ToS]" Height="16" Margin="20,358,20,0" VerticalAlignment="Top" Background="#FF202225" BorderBrush="#FF7C1685" Foreground="#FFBBBBBB" Panel.ZIndex="10" Visibility="Hidden"/>
+            <TextBlock x:Name="text" Height="25" Margin="20,305,30,0" TextWrapping="Wrap" Text="Click here to register" VerticalAlignment="Top" FontSize="14" Foreground="#FF7C2185" Panel.ZIndex="10" MouseDown="TextBlock_MouseDown"/>
+            <PasswordBox x:Name="password_Copy" Margin="19,250,20,0" VerticalAlignment="Top" Width="361" Height="50" FontFamily="Segoe UI Semibold" FontSize="36" Foreground="White" Panel.ZIndex="10" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="#667C1685" CaretBrush="White" Visibility="Hidden"/>
+            <Border x:Name="passwort_copyBorder" BorderBrush="#FF7C1685" BorderThickness="2" Height="50" Margin="15,250,15,0" VerticalAlignment="Top" CornerRadius="5" Background="#FF202225" Visibility="Hidden"/>
         </Grid>
 
     </Grid>
