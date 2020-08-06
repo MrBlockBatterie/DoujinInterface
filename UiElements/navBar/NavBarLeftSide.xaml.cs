@@ -42,7 +42,7 @@ namespace Doujin_Interface.uiElements.navBar
                     case UiState.Games:
                         break;
                     case UiState.Account:
-                        //window.registerAndLoginElement.Visibility = Visibility.Hidden;
+                        window.registerAndLoginElement.Visibility = Visibility.Hidden;
                         window.accountElement.Visibility = Visibility.Hidden;
                         break;
                     case UiState.Notifications:
