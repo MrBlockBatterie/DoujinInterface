@@ -92,6 +92,12 @@ namespace Doujin_Interface
             margin.Bottom = 10;
             Margin = margin;
             doujinName.Text = doujin.name;
+            foreach (var tag in doujin.tags)
+            {
+                DoujinUtility.MainWindow.tagList.Add(tag);
+                Console.WriteLine(tag);
+            }
+            Console.WriteLine(doujin.TagsConcat());
             doujinCreator.Text = doujin.ArtistsConcat();
             doujinTags.Text = doujin.TagsConcat();
             var testRow = DatabaseControler.doujinCache.NewRow();
@@ -162,6 +168,12 @@ namespace Doujin_Interface
             Margin = margin;
             doujinName.Text = doujin.name;
             doujinCreator.Text = doujin.ArtistsConcat();
+            foreach (var tag in doujin.tags)
+            {
+                DoujinUtility.MainWindow.tagList.Add(tag);
+                Console.WriteLine(tag);
+            }
+            Console.WriteLine(doujin.tags);
             doujinTags.Text = string.Join(", ", doujin.tags);
             Tag = doujin.nhentaiId.ToString();
 

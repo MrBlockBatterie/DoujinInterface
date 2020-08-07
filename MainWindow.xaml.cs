@@ -62,6 +62,9 @@ namespace Sankaku_Interface
         private List<Image> favDoujinImage = new List<Image>();
         private List<Doujin> favDoujin = new List<Doujin>();
         private List<int> favId = new List<int>();
+
+        public List<string> tagList = new List<string>();
+
         public List<NotificationControlList> NotificationList = new List<NotificationControlList>();
         private static readonly HttpClient client = new HttpClient();
         public string[] extensions = { ".png", ".jpg" };
@@ -160,14 +163,15 @@ namespace Sankaku_Interface
             {
                 if (Doujin_Interface.Properties.Settings.Default.User == "skip")
                 {
-                    accountElement.Visibility = Visibility.Visible;
                     search.Visibility = Visibility.Hidden;
+                    accountElement.Visibility = Visibility.Visible;
                     return;
                 }
                 if (Doujin_Interface.Properties.Settings.Default.User != null && Doujin_Interface.Properties.Settings.Default.TokenExpiration != null)
                 {
                     if (DateTime.Now > Doujin_Interface.Properties.Settings.Default.TokenExpiration)
                     {
+                        search.Visibility = Visibility.Hidden;
                         accountElement.Visibility = Visibility.Hidden;
                         registerAndLoginElement.Visibility = Visibility.Visible;
                         return;
@@ -185,6 +189,7 @@ namespace Sankaku_Interface
                 {
                     accountElement.Visibility = Visibility.Hidden;
                     registerAndLoginElement.Visibility = Visibility.Visible;
+                    search.Visibility = Visibility.Hidden;
                 }
                 
             }
@@ -202,6 +207,10 @@ namespace Sankaku_Interface
             settingElement.Visibility = Visibility.Visible;
             settingElement.IsEnabled = true;
             search.Visibility = Visibility.Hidden;
+            string json = JsonConvert.SerializeObject(tagList.ToArray());
+
+            //write string to file
+            System.IO.File.WriteAllText(@"D:\path.txt", json);
         }
 
         public void DisplayNotifications()
