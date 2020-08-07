@@ -409,12 +409,12 @@ namespace Sankaku_Interface
             {
                 foreach (var item in notifyer.updateChecker.newReleases.Values.Distinct())
                 {
-                    this.notificationPanellul.Children.Add(Notifications.NotificationNoImg(this, $"New Doujin uploads available", $"{item}", ""));
+                    this.notificationPanellul.Children.Add(Notifications.NotificationNoImg( $"New Doujin uploads available", $"{item}", ""));
                 }
             }
             else
             {
-                this.notificationPanellul.Children.Add(Notifications.NotificationNoImg(this, $"No new uploads on subscribed tags", "", ""));
+                this.notificationPanellul.Children.Add(Notifications.NotificationNoImg( $"No new uploads on subscribed tags", "", ""));
             }
         }
 

@@ -52,18 +52,20 @@ namespace Doujin_Interface.uiElements.searchElement
         
         
         private bool popOrder = false;
+
+        //botched to work with api changes, language%3 removed from valid language strings
         string searchLang()
         {
             switch (langEnum)
             {
                 case SearchLang.ENGLISH:
-                    return "language%3Aenglish";
+                    return "english";
                 case SearchLang.GERMAN:
                     return "language%3Agerman";
                 case SearchLang.JAPANESE:
-                    return "language%3Ajapanese";
+                    return "japanese";
                 case SearchLang.ALL:
-                    return "";
+                    return String.Empty;
             }
             return "";
         }
@@ -155,7 +157,7 @@ namespace Doujin_Interface.uiElements.searchElement
                 DatabaseControler.favorites.WriteXml(DatabaseControler.favDataPath);
                 //.Add();
 
-                var notify = Notifications.Notifications.NotificationNoImg(window, doujin.name, "", "The doujin got favorised and you can acess it at your favourite page");
+                var notify = Notifications.Notifications.NotificationNoImg(doujin.name, "", "The doujin got favorised and you can acess it at your favourite page");
                 
                 DoujinUtility.MainWindow.notificationPanellul.Children.Add(notify);
             }

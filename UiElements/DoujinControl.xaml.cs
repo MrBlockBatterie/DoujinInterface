@@ -35,12 +35,19 @@ namespace Doujin_Interface
         private double gridPrevSize;
         private bool expanded = false;
         private bool allreadyRead = false;
+        private int nHentaiId;
+        private ContextMenu cm;
+        private bool cmLoggedIn = false;
         public DoujinControl()
         {
             InitializeComponent();
             prevSize = this.Height;
             tagsPrevSize = doujinTags.Height;
             gridPrevSize = infoGrid.Height;
+            Thickness margin = Margin;
+            margin.Right = 10;
+            margin.Bottom = 10;
+            Margin = margin;
         }
         public DoujinControl(int nhentaiId)
         {
@@ -49,23 +56,24 @@ namespace Doujin_Interface
             tagsPrevSize = doujinTags.Height;
             gridPrevSize = infoGrid.Height;
             Doujin doujin = new Doujin(nhentaiId);
+            this.nHentaiId = nhentaiId;
 
 
 
-            foreach (Database.DoujinSet.DoujinDataRow row in Database.DatabaseControler.favorites)
+            //foreach (Database.DoujinSet.DoujinDataRow row in Database.DatabaseControler.favorites)
+            //{
+            if (DatabaseControler.favorites.Any(item => item.nHentaiID == doujin.nhentaiId))
             {
-                if (row.nHentaiID == doujin.nhentaiId)
-                {
 
-                    doujin = new Doujin(row.nHentaiID);
-                    doujin.favorised = true;
+                //doujin = new Doujin(row.nHentaiID);
+                doujin.favorised = true;
 
-                    Console.WriteLine("fav matched");
-                    heart.Source = new BitmapImage(new Uri("pack://application:,,,/UiElements/heart_fav.png"));
+                Console.WriteLine("fav matched");
+                heart.Source = new BitmapImage(new Uri("pack://application:,,,/UiElements/heart_fav.png"));
 
 
-                }
             }
+            //}
 
 
             var source = new BitmapImage(new Uri(doujin.coverUrl));
@@ -77,7 +85,7 @@ namespace Doujin_Interface
             img.Height = 230;
             img.Margin = new Thickness(5, 3, 5, 3);
             img.MouseLeftButtonDown += Img_MouseLeftButtonDown;
-            img.MouseRightButtonDown += Img_MouseRightButtonDown;
+            //img.MouseRightButtonDown += Img_MouseRightButtonDown;
             heart.MouseLeftButtonDown += Heart_MouseLeftButtonDown;
             Thickness margin = Margin;
             margin.Right = 10;
@@ -89,12 +97,9 @@ namespace Doujin_Interface
             var testRow = DatabaseControler.doujinCache.NewRow();
             testRow[0] = nhentaiId;
             testRow[1] = true;
-            
+
             bool contains = DatabaseControler.doujinCache.AsEnumerable().Any(row => nhentaiId == row.Field<Int32>("hentaiID"));
-            if (contains)
-            {
-                throw new Exception(nhentaiId.ToString());
-            }
+
         }
         public DoujinControl(Doujin doujin)
         {
@@ -102,24 +107,42 @@ namespace Doujin_Interface
             prevSize = this.Height;
             tagsPrevSize = doujinTags.Height;
             gridPrevSize = infoGrid.Height;
-            
+            this.nHentaiId = doujin.nhentaiId;
 
 
 
-            foreach (Database.DoujinSet.DoujinDataRow row in Database.DatabaseControler.favorites)
+
+            if (DatabaseControler.favorites.Any(item => item.nHentaiID == doujin.nhentaiId))
             {
-                if (row.nHentaiID == doujin.nhentaiId)
+
+                //doujin = new Doujin(row.nHentaiID);
+                doujin.favorised = true;
+
+                Console.WriteLine("fav matched");
+                heart.Source = new BitmapImage(new Uri("pack://application:,,,/UiElements/heart_fav.png"));
+
+
+            }
+
+            var cm = new ContextMenu();
+            var mitem = new MenuItem { Header = "Recommend to" };
+            cm.Items.Add(mitem);
+
+            if (DoujinUtility.loggedIn)
+            {
+                foreach (var friend in DoujinUtility.MainWindow.accountElement.apiHelper.GetFriends().Result.Friends)
                 {
 
-                    //doujin = new Doujin(row.nHentaiID);
-                    doujin.favorised = true;
-
-                    Console.WriteLine("fav matched");
-                    heart.Source = new BitmapImage(new Uri("pack://application:,,,/UiElements/heart_fav.png"));
-
+                    mitem.Items.Add(new MenuItem { Header = friend });
 
                 }
             }
+            else
+            {
+                mitem.Items.Add(new MenuItem { Header = "You have to be logged in to use this feature" });
+            }
+            this.cm = cm;
+
 
 
             var source = new BitmapImage(new Uri(doujin.coverUrl));
@@ -141,7 +164,7 @@ namespace Doujin_Interface
             doujinCreator.Text = doujin.ArtistsConcat();
             doujinTags.Text = string.Join(", ", doujin.tags);
             Tag = doujin.nhentaiId.ToString();
-           
+
 
             bool contains = DatabaseControler.doujinCache.AsEnumerable().Any(row => doujin.nhentaiId == row.Field<Int32>("hentaiID"));
             if (contains)
@@ -152,7 +175,7 @@ namespace Doujin_Interface
 
 
 
-            private void Heart_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void Heart_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Image obj = (Image)sender;
             Grid grid = (Grid)obj.Parent;
@@ -176,7 +199,7 @@ namespace Doujin_Interface
                 DatabaseControler.favorites.WriteXml(DatabaseControler.favDataPath);
                 //.Add();
 
-                var notify = Notifications.Notifications.NotificationNoImg(DoujinUtility.MainWindow, doujin.name, "", "The doujin got favorised and you can acess it at your favourite page");
+                var notify = Notifications.Notifications.NotificationNoImg(doujin.name, "", "The doujin got favorised and you can acess it at your favourite page");
 
                 DoujinUtility.MainWindow.notificationPanellul.Children.Add(notify);
             }
@@ -184,9 +207,31 @@ namespace Doujin_Interface
 
         private void Img_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
-            var img = (Image)sender;
-            DetailsWindow detailsWindow = new DetailsWindow(new Doujin((int)img.Tag));
-            detailsWindow.Show();
+            if (DoujinUtility.loggedIn & !cmLoggedIn)
+            {
+                var mitem = (MenuItem)cm.Items.GetItemAt(0);
+                mitem.Items.Clear();
+                foreach (var friend in DoujinUtility.friends)
+                {
+
+                    var subItem = new MenuItem
+                    {
+                        Header = friend
+                    };
+                    subItem.Click += async delegate
+                    {
+                        await DoujinUtility.MainWindow.accountElement.apiHelper.RecommendDoujin(friend, nHentaiId);
+                    };
+                    mitem.Items.Add(subItem);
+
+                }
+                cmLoggedIn = true;
+            }
+            //var img = (Image)sender;
+            //DetailsWindow detailsWindow = new DetailsWindow(new Doujin((int)img.Tag));
+            //detailsWindow.Show();
+            cm.IsOpen = true;
+
         }
 
         private void Img_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -242,11 +287,11 @@ namespace Doujin_Interface
             //f
             var fadeIn = new DoubleAnimation(1, TimeSpan.FromSeconds(0.2));
             var blurIn = new DoubleAnimation(0.4, TimeSpan.FromSeconds(0.2));
-            heart.BeginAnimation(Image.OpacityProperty,fadeIn);
+            heart.BeginAnimation(Image.OpacityProperty, fadeIn);
             download.BeginAnimation(Image.OpacityProperty, fadeIn);
             blur.BeginAnimation(Image.OpacityProperty, blurIn);
         }
-        
+
 
         private void UserControl_MouseLeave(object sender, MouseEventArgs e)
         {
@@ -265,18 +310,18 @@ namespace Doujin_Interface
                 var result = folder.ShowDialog();
                 if (result == WinForms.DialogResult.OK)
                 {
-                    
+
                     StartTask(nHentaiId, folder);
-                    
+
                     //var thread = new Thread(() => DownloadThread(nHentaiId, folder));
-                    
+
                 }
-            }     
+            }
         }
 
         private void infoGrid_MouseEnter(object sender, MouseEventArgs e)
         {
-            
+
         }
 
         private void infoGrid_MouseLeave(object sender, MouseEventArgs e)
@@ -291,7 +336,7 @@ namespace Doujin_Interface
                 this.BeginAnimation(UserControl.HeightProperty, fadeOut);
                 expanded = false;
             }
-            
+
         }
 
         private void infoGrid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

@@ -19,19 +19,23 @@ namespace Doujin_Interface.Notifications
     /// <summary>
     /// Interaktionslogik für notificationControl.xaml
     /// </summary>
-    public partial class friendControl : UserControl
+    public partial class FriendControl : UserControl
     {
         
-        public friendControl(string userName, int friendCount, int ratingCount)
+        public FriendControl(string userName, int friendCount, int ratingCount)
         {
             InitializeComponent();
             name.Text = userName;
             friendsCount.Text = friendCount.ToString();
             doujinsRated.Text = ratingCount.ToString();
+            var margin = new Thickness();
+            margin.Left = 10;
+            margin.Bottom = 10;
+            Margin = margin;
         }
 
         //optinal
-        public friendControl(string userName, BitmapImage profilepic, int friendCount, int ratingCount)
+        public FriendControl(string userName, BitmapImage profilepic, int friendCount, int ratingCount)
         {
             InitializeComponent();
             name.Text = userName;

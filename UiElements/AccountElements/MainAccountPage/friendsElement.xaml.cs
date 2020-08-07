@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Doujin_Interface.Connection;
+using Doujin_Interface.Notifications;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,16 +15,45 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace Doujin_Interface.UiElements.AccountElements.MainAccountPage
 {
     /// <summary>
     /// Interaktionslogik für showcaseElement.xaml
     /// </summary>
-    public partial class friendsElement : UserControl
+    public partial class FriendsElement : UserControl
     {
-        public friendsElement()
+        private bool initialized = false;
+        public ApiHelper apiHelper;
+        public FriendsElement()
         {
             InitializeComponent();
+        }
+
+        public async Task ShowFriends()
+        {
+
+            if (initialized == false)
+            {
+                try
+                {
+                    var mutuals = await apiHelper.GetFriends();
+                    foreach (var item in mutuals.Friends)
+                    {
+                        FriendControl friend = new FriendControl(item, 0, 0);
+                        friendsGrid.Children.Add(friend);
+                    }
+                    initialized = true;
+                }
+                catch (Exception e)
+                {
+                    DoujinUtility.MainWindow.notificationPanellul.Children.Add(Notifications.Notifications.NotificationNoImg("An error occured", "", e.Message));
+                } 
+            }
+            else
+            {
+
+            }
         }
     }
 }

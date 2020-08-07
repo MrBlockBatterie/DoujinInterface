@@ -25,7 +25,8 @@ namespace Doujin_Interface.Connection
     {
         private const string IP = "http://localhost:44323";
         private HttpClient client;
-        private AuthenticatedUser _user;
+        public AuthenticatedUser user;
+        
         public ApiHelper()
         {
             var httpClientHandler = new HttpClientHandler
@@ -40,8 +41,8 @@ namespace Doujin_Interface.Connection
             client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
             this.client = client;
-            Login("marceldavis","Pass123.");
-            GetRecommendedDoujin();
+
+            
             //var response = RegisterToServer("davis@email.de", "Pass1234.", "Pass1234.").Result;
             //_user = GetToken("davis@email.de", "Pass1234.").Result;
             //Console.WriteLine(_user.Access_Token);
@@ -116,7 +117,7 @@ namespace Doujin_Interface.Connection
 
         public async Task<string> RegisterToServer(string email, string password, string repeatPassword, string username)
         {
-            HttpWebRequest webRequest = HttpWebRequest.CreateHttp(IP+"/api/Account/Register");
+            HttpWebRequest webRequest = HttpWebRequest.CreateHttp(IP + "/api/Account/Register");
             {
                 var form = new RegisterForm(email, password, repeatPassword, username);
                 var formData = JsonConvert.SerializeObject(form);
@@ -187,8 +188,8 @@ namespace Doujin_Interface.Connection
                 DoujinId = doujinId,
                 FriendName = username
             };
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _user.Access_Token);
-            using (var response = await client.PutAsJsonAsync("api/user/recommendations/add", data))
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", user.Access_Token);
+            using (var response = await client.PostAsJsonAsync("api/user/recommendations/add", data))
             {
 
                 if (response.IsSuccessStatusCode)
@@ -200,21 +201,21 @@ namespace Doujin_Interface.Connection
                 {
                     Console.WriteLine(response.ReasonPhrase);
                 }
-                
+
             }
         }
 
         public async Task<RecommendationViewModel> GetRecommendedDoujin()
         {
-            if (_user != null)
+            if (user != null)
             {
                 try
                 {
 
-                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _user.Access_Token);
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", user.Access_Token);
                     using (var response = await client.GetAsync("api/user/recommendations/get"))
                     {
-                        
+
                         if (response.IsSuccessStatusCode)
                         {
                             var result = await response.Content.ReadAsAsync<RecommendationViewModel>();
@@ -226,7 +227,7 @@ namespace Doujin_Interface.Connection
                             Console.WriteLine(response.ReasonPhrase);
                             return null;
                         }
-                        
+
                     }
 
                 }
@@ -280,7 +281,7 @@ namespace Doujin_Interface.Connection
                 {
                     new KeyValuePair<string,string>("FriendName",username)
                 });
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _user.Access_Token);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", user.Access_Token);
             using (var response = await client.PutAsJsonAsync("api/user/friends/add", data))
             {
 
@@ -295,20 +296,74 @@ namespace Doujin_Interface.Connection
                 }
 
             }
-        } 
+        }
 
         public async Task<HttpStatusCode> Login(string name, string password)
         {
-           _user = await GetToken(name, password);
-            Properties.Settings.Default.User = JsonConvert.SerializeObject(_user);
+            user = await GetToken(name, password);
+            Properties.Settings.Default.User = JsonConvert.SerializeObject(user);
             return HttpStatusCode.OK;
+        }
+
+        public async Task<MutualFriends> GetFriends(string name = null)
+        {
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", user.Access_Token);
+            //MutualFriends result = new MutualFriends();
+
+            //var response = await client.GetStringAsync("/api/user/friends/get");
+            //Console.WriteLine(response);
+            //using (var response = await client.GetAsync("/api/user/friends/get"))
+            //{
+
+            //    if (response.IsSuccessStatusCode)
+            //    {
+            //        result = await response.Content.ReadAsAsync<MutualFriends>();
+            //        Console.WriteLine(result);
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine(response.ReasonPhrase);
+            //    }
+
+            //}
+            HttpWebRequest webRequest = HttpWebRequest.CreateHttp(IP + "/api/user/friends/get");
+            {
+
+
+                byte[] data = Encoding.UTF8.GetBytes("");
+
+                webRequest.Method = "GET";
+                webRequest.Headers.Add("Authorization", "Bearer " + user.Access_Token);
+                webRequest.ContentType = "application/json";
+                webRequest.ContentLength = data.Length;
+                webRequest.Proxy = new WebProxy("https://localhost:44323/", true);
+
+
+                //using (Stream stream = webRequest.GetRequestStream())
+                //{
+                //    stream.Write(data, 0, data.Length);
+                //}
+
+            }
+
+            using (HttpWebResponse webResponse = (HttpWebResponse)webRequest.GetResponse())
+            {
+                using (StreamReader streamReader = new StreamReader(webResponse.GetResponseStream()))
+                {
+                    string response = await streamReader.ReadToEndAsync();
+                    var result = JsonConvert.DeserializeObject<MutualFriends>(response);
+                    return result;
+                }
+
+            }
+
+            
         }
 
 
 
 
-
     }
- 
+
 }
 

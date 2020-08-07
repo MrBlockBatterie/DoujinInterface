@@ -24,6 +24,7 @@ namespace Doujin_Interface.UiElements.AccountElements.MainAccountPage
     /// </summary>
     public partial class AccountElement : UserControl
     {
+        
         Grid currentWindowButtonGrid;
         public AuthenticatedUser user;
         private bool _loggedIn = false;
@@ -35,6 +36,7 @@ namespace Doujin_Interface.UiElements.AccountElements.MainAccountPage
             set
             {
                 _loggedIn = value;
+                DoujinUtility.loggedIn = value;
                 loggedInAs.Text = $"logged in as {user.UserName}";
             }
         }
@@ -49,7 +51,7 @@ namespace Doujin_Interface.UiElements.AccountElements.MainAccountPage
                 }
                 else
                 {
-                    _apiHelper = new ApiHelper();
+                    _apiHelper = new ApiHelper {user = this.user};
                     return _apiHelper;
                 }
             }
@@ -117,17 +119,21 @@ namespace Doujin_Interface.UiElements.AccountElements.MainAccountPage
             moveActiveIndicator();
         }
 
-        private void recommendedGrid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private async void recommendedGrid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             accountTabs.SelectedIndex = 1;
             currentWindowButtonGrid = recommendedGrid;
+            recommendedTab.apiHelper = apiHelper;
+            await recommendedTab.ShowRecommendations();
             moveActiveIndicator();
         }
 
-        private void friendsGrid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private async void friendsGrid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             accountTabs.SelectedIndex = 2;
             currentWindowButtonGrid = friendsGrid;
+            friendsTab.apiHelper = apiHelper;
+            await friendsTab.ShowFriends();
             moveActiveIndicator();
         }
 

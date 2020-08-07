@@ -18,9 +18,9 @@ namespace Doujin_Interface.UiElements.AccountElements.MainAccountPage
     /// <summary>
     /// Interaktionslogik für showcaseElement.xaml
     /// </summary>
-    public partial class showcaseElement : UserControl
+    public partial class ShowcaseElement : UserControl
     {
-        public showcaseElement()
+        public ShowcaseElement()
         {
             InitializeComponent();
         }

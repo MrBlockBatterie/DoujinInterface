@@ -179,7 +179,7 @@ namespace Doujin_Interface
                 DatabaseControler.favorites.WriteXml(DatabaseControler.favDataPath);
                 //.Add();
 
-                var notify = Notifications.Notifications.NotificationNoImg(DoujinUtility.MainWindow, doujin.name, "", "The doujin got favorised and you can acess it at your favourite page");
+                var notify = Notifications.Notifications.NotificationNoImg(doujin.name, "", "The doujin got favorised and you can acess it at your favourite page");
 
                 DoujinUtility.MainWindow.notificationPanellul.Children.Add(notify);
             }

@@ -23,10 +23,11 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Windows.Media.Animation;
 using Doujin_Interface.Notifications.NotificationControlListControl;
+using Sankaku_Interface;
 
 namespace Doujin_Interface.Notifications
 {
-    public class Notifications 
+    public class Notifications
     {
 
         public static void NotificationControlForList(string header, string underline, string caption)
@@ -40,18 +41,23 @@ namespace Doujin_Interface.Notifications
 
         }
 
-        public static Control NotificationNoImg(Window mainWindow, string header, string underline, string caption) 
+        public static void CreateErrorNotification(Exception e)
+        {
+            DoujinUtility.MainWindow.notificationPanellul.Children.Add(NotificationNoImg("An error occured","",e.Message));
+        }
+
+        public static Control NotificationNoImg(string header, string underline, string caption)
         {
             NotificationControl notificationControl = new NotificationControl();
-      /*       DoubleAnimation da = new DoubleAnimation();
-             da.From = 0;
-             da.To = 360;
-             da.Duration = new Duration(TimeSpan.FromSeconds(3));
-             da.RepeatBehavior = RepeatBehavior.Forever;
-             RotateTransform rt = new RotateTransform();
-             notificationControl.RenderTransform = rt;
-             rt.BeginAnimation(RotateTransform.AngleProperty, da);
- */
+            //DoubleAnimation da = new DoubleAnimation();
+            //da.From = 0;
+            //da.To = 360;
+            //da.Duration = new Duration(TimeSpan.FromSeconds(3));
+            //da.RepeatBehavior = RepeatBehavior.Forever;
+            //RotateTransform rt = new RotateTransform();
+            //notificationControl.RenderTransform = rt;
+            //rt.BeginAnimation(RotateTransform.AngleProperty, da);
+            
             notificationControl.Width = 350;
             notificationControl.Height = 80;
             notificationControl.HorizontalAlignment = HorizontalAlignment.Right;
@@ -179,5 +185,5 @@ namespace Doujin_Interface.Notifications
             }
         }
     }
-    
+
 }

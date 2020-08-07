@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using Doujin_Interface.Connection.Models;
+using Microsoft.Win32;
 using Newtonsoft.Json;
 using Sankaku_Interface;
 using System;
@@ -22,27 +23,47 @@ namespace Doujin_Interface
     {
         public static MainWindow MainWindow;
         public static UpdateFeed.UpdateChecker updateChecker;
+        public static AuthenticatedUser user;
+        public static bool loggedIn = false;
+        public static List<string> friends
+        {
+            get
+            {
+                if (_friends.Count == 0)
+                {
+                    foreach (var item in DoujinUtility.MainWindow.accountElement.apiHelper.GetFriends().Result.Friends)
+                    {
+                        _friends.Add(item);
+                    }
+                }
+                return _friends;
+            }
+        }
+        private static List<string> _friends = new List<string>();
+
+
         public static string GetExtension(int doujinMediaID, Boolean cover, Doujin doujin)
         {
             string page = null;
-            string[] fileTypes = {".jpg",".png",".gif"};
+            string[] fileTypes = { ".jpg", ".png", ".gif" };
             HttpWebResponse response = null;
             switch (cover)
             {
                 case false:
                     page = "5t";
-                break;
+                    break;
 
                 case true:
                     page = "cover";
-                break;
+                    break;
             }
 
             foreach (string type in fileTypes)
             {
                 Console.WriteLine("testing ---> " + type);
                 var request = WebRequest.Create("https://t.nhentai.net/galleries/" + doujinMediaID + "/" + page + type);
-                try {
+                try
+                {
                     response = (HttpWebResponse)request.GetResponse();
                 }
                 catch
@@ -50,7 +71,7 @@ namespace Doujin_Interface
                     Console.WriteLine("error ---> " + type);
                     continue;
                 }
-            
+
                 switch (response.StatusCode)
                 {
                     case HttpStatusCode.OK:
@@ -72,7 +93,7 @@ namespace Doujin_Interface
 
                 }
 
-                }
+            }
             return null;
         }
         public static Result Search(string search, string tagsIn, string artistIn, string characterIn, string parodyIn, Boolean popOrder, string lang, int page)
@@ -165,11 +186,11 @@ namespace Doujin_Interface
             doc.LoadXml(node.ToString());
             //doc.Save(artistIn + ".xml");
             int id = 0;
-            
+
             XElement table = XElement.Parse(node.ToString());
             foreach (XElement element in table.Elements())
             {
-                
+
                 if (element.Name == "result")
                 {
                     Doujin doujin = new Doujin();
@@ -191,7 +212,7 @@ namespace Doujin_Interface
                             //Console.WriteLine("extension is " + extension);
                             //doujin.coverExt = extension;
                             doujin.coverUrl = "https://t.nhentai.net/galleries/" + title.Value + "/1t";
-                            
+
 
 
 
@@ -199,7 +220,7 @@ namespace Doujin_Interface
                         }
                         if (title.Name == "images")
                         {
-                            
+
                             foreach (var pages in title.Elements())
                             {
                                 if (pages.Name == "thumbnail")
@@ -219,7 +240,7 @@ namespace Doujin_Interface
                                             extension = ".png";
                                             doujin.coverExt = ".png";
                                             doujin.thumbnailExt = ".png";
-                                            
+
                                         }
 
                                     }
@@ -230,14 +251,14 @@ namespace Doujin_Interface
                         }
                         if (title.Name == "tags")
                         {
-                            
+
                             foreach (var tag in title.Elements())
                             {
                                 if (tag.Name == "url")
                                 {
-                                    
+
                                     string[] split = tag.Value.Split('/');
-                                    
+
                                     if (split[1] == "tag")
                                     {
                                         doujin.tags.Add(split[2]);
@@ -271,7 +292,7 @@ namespace Doujin_Interface
                             }
                         }
 
-                        
+
                         if (title.Name == "title")
                         {
                             foreach (var pretty in title.Elements())
@@ -302,16 +323,16 @@ namespace Doujin_Interface
                     continue;
                 }
             }
-            
+
             result.images = images;
             result.doujinshi = doujinshi;
             query = "";
             return result;
         }
-        
-    
-            
-        
+
+
+
+
         public static List<string> GetPage(Doujin doujin)
         {
             var request = WebRequest.Create("https://nhentai.net/api/gallery/" + doujin.nhentaiId);
@@ -330,28 +351,28 @@ namespace Doujin_Interface
             XElement table = XElement.Parse(node.ToString());
             foreach (XElement element in table.Elements())
             {
-                        if (element.Name == "images")
-                        {
+                if (element.Name == "images")
+                {
 
-                            foreach (var pages in element.Elements())
+                    foreach (var pages in element.Elements())
+                    {
+                        if (pages.Name == "pages")
+                        {
+                            foreach (var t in pages.Elements())
                             {
-                                if (pages.Name == "pages")
+                                if (t.Value == "j")
                                 {
-                                    foreach (var t in pages.Elements())
-                                    {
-                                        if (t.Value == "j")
-                                        {
-                                            extensions.Add(".jpg");
-                                        }
-                                        else if (t.Value == "p")
-                                        {
-                                            extensions.Add(".png");
-                                        }
-                                    }
+                                    extensions.Add(".jpg");
+                                }
+                                else if (t.Value == "p")
+                                {
+                                    extensions.Add(".png");
                                 }
                             }
                         }
-                    
+                    }
+                }
+
             }
             Console.WriteLine("REEEEEEEEEEEEEEEEEEEEEEEEE " + extensions.Count);
             return extensions;
@@ -404,7 +425,7 @@ namespace Doujin_Interface
         {
             System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(@"");
 
-            
+
         }
         public static void FavoriteSave(Doujin doujin)
         {
@@ -414,7 +435,7 @@ namespace Doujin_Interface
 
         public static Doujin DataRowToDoujin(DoujinDataRow row)
         {
-            return new Doujin(row.ID,row.nHentaiID,row.mediaID,row.pages,row.name,row.fullName,row.extension,row.extension,row.language,row.favorite,row.coverUrl);
+            return new Doujin(row.ID, row.nHentaiID, row.mediaID, row.pages, row.name, row.fullName, row.extension, row.extension, row.language, row.favorite, row.coverUrl);
         }
         public static void AddDoujinDataRow(Doujin d, DoujinDataDataTable dt)
         {
@@ -577,6 +598,7 @@ namespace Doujin_Interface
 
             return foundChild;
         }
+        
 
 
     }
@@ -585,8 +607,7 @@ namespace Doujin_Interface
         public List<Doujin> doujinshi = new List<Doujin>();
         public List<Image> images = new List<Image>();
     }
-    
+
 
 }
 
-    

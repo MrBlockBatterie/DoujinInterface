@@ -92,6 +92,7 @@
     <Compile Include="Connection\JSON\LoginForm.cs" />
     <Compile Include="Connection\JSON\RegisterForm.cs" />
     <Compile Include="Connection\Models\AuthenticatedUser.cs" />
+    <Compile Include="Connection\Models\Friends.cs" />
     <Compile Include="Connection\Models\RecommendedDoujin.cs" />
     <Compile Include="Database\DatabaseControler.cs" />
     <Compile Include="UiElements\AccountElements\MainAccountPage\AccountElement.xaml.cs">
@@ -100,17 +101,17 @@
     <Compile Include="UiElements\AccountElements\MainAccountPage\Addables\AccountDoujinControl.xaml.cs">
       <DependentUpon>AccountDoujinControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UiElements\AccountElements\MainAccountPage\Addables\friendControl.xaml.cs">
-      <DependentUpon>friendControl.xaml</DependentUpon>
+    <Compile Include="UiElements\AccountElements\MainAccountPage\Addables\FriendControl.xaml.cs">
+      <DependentUpon>FriendControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UiElements\AccountElements\MainAccountPage\recomendedElement.xaml.cs">
-      <DependentUpon>recomendedElement.xaml</DependentUpon>
+    <Compile Include="UiElements\AccountElements\MainAccountPage\RecomendedElement.xaml.cs">
+      <DependentUpon>RecomendedElement.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UiElements\AccountElements\MainAccountPage\friendsElement.xaml.cs">
-      <DependentUpon>friendsElement.xaml</DependentUpon>
+    <Compile Include="UiElements\AccountElements\MainAccountPage\FriendsElement.xaml.cs">
+      <DependentUpon>FriendsElement.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UiElements\AccountElements\MainAccountPage\showcaseElement.xaml.cs">
-      <DependentUpon>showcaseElement.xaml</DependentUpon>
+    <Compile Include="UiElements\AccountElements\MainAccountPage\ShowcaseElement.xaml.cs">
+      <DependentUpon>ShowcaseElement.xaml</DependentUpon>
     </Compile>
     <Compile Include="UiElements\DoujinControl.xaml.cs">
       <DependentUpon>DoujinControl.xaml</DependentUpon>
@@ -175,19 +176,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UiElements\AccountElements\MainAccountPage\Addables\friendControl.xaml">
+    <Page Include="UiElements\AccountElements\MainAccountPage\Addables\FriendControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UiElements\AccountElements\MainAccountPage\recomendedElement.xaml">
+    <Page Include="UiElements\AccountElements\MainAccountPage\RecomendedElement.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UiElements\AccountElements\MainAccountPage\friendsElement.xaml">
+    <Page Include="UiElements\AccountElements\MainAccountPage\FriendsElement.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UiElements\AccountElements\MainAccountPage\showcaseElement.xaml">
+    <Page Include="UiElements\AccountElements\MainAccountPage\ShowcaseElement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

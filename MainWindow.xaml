@@ -31,7 +31,7 @@
             <StackPanel x:Name="notificationsgrid"/>
         </ScrollViewer>
 
-        <WrapPanel x:Name="notificationPanellul" Width="350" HorizontalAlignment="Right" Margin="0,92,0,40">
+        <WrapPanel x:Name="notificationPanellul" Width="350" HorizontalAlignment="Right" Margin="0,92,0,40" Panel.ZIndex="1000">
             <WrapPanel.LayoutTransform>
                 <RotateTransform Angle="180"/>
             </WrapPanel.LayoutTransform>

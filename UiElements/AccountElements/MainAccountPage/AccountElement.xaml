@@ -28,13 +28,13 @@
         </Grid>
         <TabControl x:Name="accountTabs" HorizontalAlignment="Left" Height="1080" Margin="170,0,-1672,0" VerticalAlignment="Top" Width="1728" TabStripPlacement="Left" BorderBrush="{x:Null}" Background="{DynamicResource BackgroundBrush}" SelectedIndex="0">
             <TabItem Header="scEItem" Visibility="Hidden">
-                <local:showcaseElement x:Name="showcaseTab"></local:showcaseElement>
+                <local:ShowcaseElement x:Name="showcaseTab"></local:ShowcaseElement>
             </TabItem>
             <TabItem Header="rcEItem" Visibility="Hidden">
-                <local:recomendedElement x:Name="recommendedTab"></local:recomendedElement>
+                <local:RecomendedElement x:Name="recommendedTab"></local:RecomendedElement>
             </TabItem>
             <TabItem Header="frEItem" Visibility="Hidden">
-                <local:friendsElement></local:friendsElement>
+                <local:FriendsElement x:Name="friendsTab"></local:FriendsElement>
             </TabItem>
         </TabControl>
 

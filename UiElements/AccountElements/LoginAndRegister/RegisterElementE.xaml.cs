@@ -54,6 +54,7 @@ namespace Doujin_Interface.UiElements.AccountElements.LoginAndRegister
                             Visibility = Visibility.Hidden;
                             DoujinUtility.MainWindow.accountElement.user = JsonConvert.DeserializeObject<Connection.Models.AuthenticatedUser>(Properties.Settings.Default.User);
                             DoujinUtility.MainWindow.accountElement.loggedIn = true;
+                            
                             DoujinUtility.MainWindow.accountElement.Visibility = Visibility.Visible;
                             DoujinUtility.MainWindow.accountElement.apiHelper = apiHelper;
                         }
