@@ -58,7 +58,12 @@ namespace Doujin_Interface.UiElements.AccountElements.MainAccountPage
 
         private async void addButton_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            await apiHelper.AddFriend(addFriendsBox.Text);       
+               
+        }
+
+        private async void addButton_Click(object sender, RoutedEventArgs e)
+        {
+            await apiHelper.AddFriend(addFriendsBox.Text);
         }
     }
 }

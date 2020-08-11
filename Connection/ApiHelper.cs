@@ -277,22 +277,22 @@ namespace Doujin_Interface.Connection
 
         public async Task AddFriend(string username)
         {
-            var data = new FormUrlEncodedContent(new[]
-                {
-                    new KeyValuePair<string,string>("FriendName",username)
-                });
+            var data = new FriendRequest { FriendName = username };
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", user.Access_Token);
-            using (var response = await client.PutAsJsonAsync("api/user/friends/add", data))
+            using (var response = await client.PostAsJsonAsync("api/user/friends/add", data))
             {
 
                 if (response.IsSuccessStatusCode)
                 {
-                    var result = response.Content.ReadAsAsync<string>();
+                    
+                    var result = await response.Content.ReadAsAsync<string>();
                     Console.WriteLine(result);
+                    Notifications.Notifications.CreateStatusNotification(response.StatusCode, result);
                 }
                 else
                 {
                     Console.WriteLine(response.ReasonPhrase);
+                    Notifications.Notifications.CreateStatusNotification(response.StatusCode, response.ReasonPhrase);
                 }
 
             }

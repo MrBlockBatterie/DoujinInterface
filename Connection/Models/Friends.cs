@@ -10,4 +10,8 @@ namespace Doujin_Interface.Connection.Models
     {
         public string[] Friends { get; set; }
     }
+    public class FriendRequest
+    {
+        public string FriendName { get; set; }
+    }
 }
