@@ -46,6 +46,11 @@ namespace Doujin_Interface.Notifications
             DoujinUtility.MainWindow.notificationPanellul.Children.Add(NotificationNoImg("An error occured","",e.Message));
         }
 
+        public static void CreateStatusNotification(HttpStatusCode status, string message)
+        {
+            DoujinUtility.MainWindow.notificationPanellul.Children.Add(NotificationNoImg(status.ToString(), "", message));
+        }
+
         public static Control NotificationNoImg(string header, string underline, string caption)
         {
             NotificationControl notificationControl = new NotificationControl();

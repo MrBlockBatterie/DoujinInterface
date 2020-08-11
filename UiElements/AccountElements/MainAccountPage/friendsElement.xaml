@@ -21,7 +21,7 @@
         <Border BorderBrush="#9958008B" BorderThickness="1" Height="30" Margin="169,10,0,0" VerticalAlignment="Top" CornerRadius="3" Background="#667C1685" HorizontalAlignment="Left" Width="106"/>
         <TextBox x:Name="addFriendsBox" Style="{StaticResource TextBoxStyle}" HorizontalAlignment="Left" Height="30" Margin="300,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="135" FontSize="20" Background="{x:Null}" Foreground="White" SelectionBrush="{x:Null}" Panel.ZIndex="1" />
         <Border BorderBrush="#CC7C1685" BorderThickness="2" Height="30" Margin="300,10,0,0" VerticalAlignment="Top" CornerRadius="3" Background="#FF202225" HorizontalAlignment="Left" Width="135"/>
-        <Button x:Name="addButton" Content="Add" Height="29" Margin="440,10,0,0" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Panel.ZIndex="10" Foreground="White" FontFamily="Segoe UI Semibold" FontSize="20" Cursor="Hand" HorizontalAlignment="Left" Width="106" MouseDown="addButton_MouseDown"/>
+        <Button x:Name="addButton" Content="Add" Height="29" Margin="440,10,0,0" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Panel.ZIndex="10" Foreground="White" FontFamily="Segoe UI Semibold" FontSize="20" Cursor="Hand" HorizontalAlignment="Left" Width="106" MouseDown="addButton_MouseDown" Click="addButton_Click"/>
         <Border BorderBrush="#9958008B" BorderThickness="1" Height="30" Margin="440,10,0,0" VerticalAlignment="Top" CornerRadius="3" Background="#667C1685" HorizontalAlignment="Left" Width="106"/>
     </Grid>
 </UserControl>
