@@ -23,20 +23,20 @@ namespace Doujin_Interface.Connection
 {
     public class ApiHelper
     {
-        private const string IP = "http://localhost:44323";
+        private const string IP = "http://185.239.239.81:44323";
         private HttpClient client;
         public AuthenticatedUser user;
         
         public ApiHelper()
         {
-            var httpClientHandler = new HttpClientHandler
-            {
-                Proxy = new WebProxy("https://localhost:44323/", true),
-                UseProxy = true
-            };
+            //var httpClientHandler = new HttpClientHandler
+            //{
+            //    Proxy = new WebProxy("https://185.239.239.81:44323/", true),
+            //    UseProxy = true
+            //};
 
             HttpClient client = new HttpClient(/*handler: httpClientHandler*/);
-            client.BaseAddress = new Uri("http://localhost:44323/");
+            client.BaseAddress = new Uri("http://185.239.239.81:44323/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -126,7 +126,7 @@ namespace Doujin_Interface.Connection
                 webRequest.Method = "POST";
                 webRequest.ContentType = "application/json";
                 webRequest.ContentLength = data.Length;
-                webRequest.Proxy = new WebProxy("https://localhost:44323/", true);
+                //webRequest.Proxy = new WebProxy("https://localhost:44323/", true);
 
 
                 using (Stream stream = webRequest.GetRequestStream())
@@ -336,7 +336,7 @@ namespace Doujin_Interface.Connection
                 webRequest.Headers.Add("Authorization", "Bearer " + user.Access_Token);
                 webRequest.ContentType = "application/json";
                 webRequest.ContentLength = data.Length;
-                webRequest.Proxy = new WebProxy("https://localhost:44323/", true);
+                //webRequest.Proxy = new WebProxy("https://localhost:44323/", true);
 
 
                 //using (Stream stream = webRequest.GetRequestStream())
