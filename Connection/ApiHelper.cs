@@ -23,7 +23,7 @@ namespace Doujin_Interface.Connection
 {
     public class ApiHelper
     {
-        private static string[] mode = { "http://localhost:44323/", "https://185.239.239.81:44323/" };
+        private static string[] mode = { "http://localhost:44323/", "http://185.239.239.81:44323/" };
         private string IP = mode[1];
         private HttpClient client;
         public AuthenticatedUser user;
