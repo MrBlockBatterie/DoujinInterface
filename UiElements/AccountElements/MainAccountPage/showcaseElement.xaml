@@ -10,9 +10,10 @@
     </UserControl.Resources>
     <Grid>
         <Rectangle Fill="{DynamicResource BackgroundLightGray}"/>
-        <ScrollViewer Style="{StaticResource ScrollViewerStyle}" Foreground="{DynamicResource InterfacePurple}">
-            <!--<WrapPanel Margin="20,20,10,0"/>-->
-            <Rectangle Height="1001"></Rectangle>
+        <Image Source="baseline_autorenew_white_18dp.png" Margin="10,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="30" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
+        <ScrollViewer Style="{StaticResource ScrollViewerStyle}" Margin="0,50,0,0" Foreground="{DynamicResource InterfacePurple}">
+            
+            <Rectangle Height="400"></Rectangle>
         </ScrollViewer>
 
     </Grid>

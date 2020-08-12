@@ -65,5 +65,12 @@ namespace Doujin_Interface.UiElements.AccountElements.MainAccountPage
         {
             await apiHelper.AddFriend(addFriendsBox.Text);
         }
+
+        private async void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            friendsGrid.Children.Clear();
+            initialized = false;
+            await ShowFriends();
+        }
     }
 }

@@ -23,10 +23,11 @@ namespace Doujin_Interface.Connection
 {
     public class ApiHelper
     {
-        private const string IP = "http://185.239.239.81:44323";
+        private static string[] mode = { "http://localhost:44323/", "https://185.239.239.81:44323/" };
+        private string IP = mode[1];
         private HttpClient client;
         public AuthenticatedUser user;
-        
+
         public ApiHelper()
         {
             //var httpClientHandler = new HttpClientHandler
@@ -36,13 +37,13 @@ namespace Doujin_Interface.Connection
             //};
 
             HttpClient client = new HttpClient(/*handler: httpClientHandler*/);
-            client.BaseAddress = new Uri("http://185.239.239.81:44323/");
+            client.BaseAddress = new Uri(IP);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
             this.client = client;
 
-            
+
             //var response = RegisterToServer("davis@email.de", "Pass1234.", "Pass1234.").Result;
             //_user = GetToken("davis@email.de", "Pass1234.").Result;
             //Console.WriteLine(_user.Access_Token);
@@ -284,7 +285,7 @@ namespace Doujin_Interface.Connection
 
                 if (response.IsSuccessStatusCode)
                 {
-                    
+
                     var result = await response.Content.ReadAsAsync<string>();
                     Console.WriteLine(result);
                     Notifications.Notifications.CreateStatusNotification(response.StatusCode, result);
@@ -357,7 +358,29 @@ namespace Doujin_Interface.Connection
 
             }
 
-            
+
+        }
+        public async Task PostFavorite(int id)
+        {
+
+            var data = new PostFavDoujin { Id = id };
+
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", user.Access_Token);
+            using (var response = await client.PostAsJsonAsync("api/user/favorites/add", data))
+            {
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = response.Content.ReadAsAsync<string>();
+                    Console.WriteLine(result);
+                }
+                else
+                {
+                    Console.WriteLine(response.ReasonPhrase);
+                }
+
+            }
+
         }
 
 

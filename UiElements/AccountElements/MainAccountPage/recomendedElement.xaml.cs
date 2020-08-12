@@ -62,5 +62,12 @@ namespace Doujin_Interface.UiElements.AccountElements.MainAccountPage
                 }
             }
         }
+
+        private async void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            recommendations.Children.Clear();
+            initialized = false;
+            await ShowRecommendations();
+        }
     }
 }

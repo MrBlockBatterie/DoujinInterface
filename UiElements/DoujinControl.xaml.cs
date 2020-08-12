@@ -3,6 +3,7 @@ using Doujin_Interface.uiElements;
 using Sankaku_Interface;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.IO;
 using System.Linq;
@@ -214,6 +215,23 @@ namespace Doujin_Interface
                 var notify = Notifications.Notifications.NotificationNoImg(doujin.name, "", "The doujin got favorised and you can acess it at your favourite page");
 
                 DoujinUtility.MainWindow.notificationPanellul.Children.Add(notify);
+                try
+                {
+                    if (DoujinUtility.MainWindow.accountElement.loggedIn)
+                    {
+                        DoujinUtility.MainWindow.accountElement.apiHelper.PostFavorite(nhId);
+                    }
+                    else
+                    {
+                        DoujinUtility.MainWindow.accountElement.apiHelper.user = Newtonsoft.Json.JsonConvert.DeserializeObject<Doujin_Interface.Connection.Models.AuthenticatedUser>(Doujin_Interface.Properties.Settings.Default.User);
+                        DoujinUtility.MainWindow.accountElement.apiHelper.PostFavorite(nhId);
+                    }
+                    
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
         }
 

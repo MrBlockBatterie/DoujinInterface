@@ -106,6 +106,7 @@
     <Compile Include="Connection\JSON\RegisterForm.cs" />
     <Compile Include="Connection\Models\AuthenticatedUser.cs" />
     <Compile Include="Connection\Models\Friends.cs" />
+    <Compile Include="Connection\Models\PostDoujinModels.cs" />
     <Compile Include="Connection\Models\RecommendedDoujin.cs" />
     <Compile Include="Database\DatabaseControler.cs" />
     <Compile Include="UiElements\AccountElements\MainAccountPage\AccountElement.xaml.cs">
@@ -413,6 +414,9 @@
     <Resource Include="UiElements\AccountElements\MainAccountPage\Addables\heart_nofav.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UiElements\AccountElements\MainAccountPage\baseline_autorenew_white_18dp.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

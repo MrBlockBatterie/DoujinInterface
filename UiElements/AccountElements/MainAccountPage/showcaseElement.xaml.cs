@@ -24,5 +24,10 @@ namespace Doujin_Interface.UiElements.AccountElements.MainAccountPage
         {
             InitializeComponent();
         }
+
+        private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }
