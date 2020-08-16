@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Doujin_Interface.uiElements.navBar"
-             xmlns:Doujin_Interface="clr-namespace:Doujin_Interface" x:Class="Doujin_Interface.uiElements.navBar.NavBarLeftSide"
+             xmlns:Doujin_Interface="clr-namespace:Doujin_Interface" xmlns:navbar="clr-namespace:Doujin_Interface.UiElements.NavBar" x:Class="Doujin_Interface.uiElements.navBar.NavBarLeftSide"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="280" HorizontalAlignment="Left" Height="1960" Background="#FF252729">
     <Grid x:Name="rootGrid" Width="280">
@@ -20,7 +20,11 @@
             <Image x:Name="barIcon" HorizontalAlignment="Left" Height="32" Margin="10,11,0,0" VerticalAlignment="Top" Width="32" Source="barIcon.png" Stretch="None" Cursor="None" Panel.ZIndex="2000" RenderTransformOrigin="0.703,0.375"/>
             <ProgressBar x:Name="dashboardBar" HorizontalAlignment="Left" Height="2" VerticalAlignment="Top" Width="198" Margin="72,37,0,0" Background="White" BorderBrush="#00BCBCBC" Panel.ZIndex="2000" Foreground="#FF5D0093" SmallChange="1" Visibility="Hidden"/>
         </Grid>
-        <Grid x:Name="homeGrid" HorizontalAlignment="Left" Height="54" VerticalAlignment="Top" Width="280" Panel.ZIndex="12000" Margin="0,54,0,0" MouseLeftButtonDown="homeGrid_MouseLeftButtonDown">
+        
+        
+
+
+        <!--<Grid x:Name="homeGrid" HorizontalAlignment="Left" Height="54" VerticalAlignment="Top" Width="280" Panel.ZIndex="12000" Margin="0,54,0,0" MouseLeftButtonDown="homeGrid_MouseLeftButtonDown">
             <Image x:Name="homeIcon" HorizontalAlignment="Left" Height="32" Margin="10,11,0,0" VerticalAlignment="Top" Width="32" Source="homeIcon.png" Cursor="Arrow" Panel.ZIndex="2000"/>
             <TextBlock x:Name="homeText" HorizontalAlignment="Left" Height="32" Margin="72,11,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="198" Background="Transparent"  Foreground="White" FontFamily="Segoe UI Semibold" FontSize="22" Cursor="Arrow" Panel.ZIndex="2000" Text="Home"/>
             <ProgressBar x:Name="homeBar" HorizontalAlignment="Left" Height="2" VerticalAlignment="Top" Width="198" Margin="72,37,0,0" Background="White" BorderBrush="#00BCBCBC" Panel.ZIndex="2000" Foreground="#FF5D0093" SmallChange="1"/>
@@ -54,6 +58,6 @@
             <TextBlock x:Name="settingsText" HorizontalAlignment="Left" Height="32" Margin="72,11,0,0" TextWrapping="Wrap" Text="Settings" VerticalAlignment="Top" Width="198" Background="Transparent" Foreground="White" FontFamily="Segoe UI Semibold" FontSize="22" Panel.ZIndex="2000"/>
             <Image x:Name="settingsIcon" HorizontalAlignment="Left" Height="32" Margin="10,11,0,0" VerticalAlignment="Top" Width="32" Source="settingsIcon.png" Cursor="Arrow" Panel.ZIndex="2000"/>
             <ProgressBar x:Name="settingsBar" HorizontalAlignment="Left" Height="2" VerticalAlignment="Top" Width="198" Margin="72,36,0,0" Background="White" BorderBrush="#00BCBCBC" Panel.ZIndex="2000" Foreground="#FF5D0093" Value="-1" SmallChange="1"/>
-        </Grid>
+        </Grid>-->
     </Grid>
 </UserControl>

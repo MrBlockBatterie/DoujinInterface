@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Doujin_Interface.Notifications;
+using Doujin_Interface.UiElements.NavBar;
 
 namespace Doujin_Interface.uiElements.navBar
 {
@@ -24,6 +25,26 @@ namespace Doujin_Interface.uiElements.navBar
     public partial class NavBarLeftSide : UserControl
     {
         MainWindow window;
+
+        private static NavBarElement homeElement = new NavBarElement("Home", "homeIcon.png");
+        private static NavBarElement favElement = new NavBarElement("Favorites", "favIcon.png");
+        private static NavBarElement bookmarkElement = new NavBarElement("Bookmarks", "bookmarkIcon.png");
+        private static NavBarElement hgamesElement = new NavBarElement("Games", "gameIcon.png");
+        private static NavBarElement notificationsElement = new NavBarElement("Notficiations", "notificationsIcon.png");
+        private static NavBarElement updateFeedElement = new NavBarElement("Update Feed", "notificationsIcon.png");
+        private static NavBarElement accountElement = new NavBarElement("Account", "accountIcon.png");
+        private static NavBarElement settingsElement = new NavBarElement("Settings", "settingsIcon.png");
+        private NavBarElement[] children =
+        {
+            homeElement,
+            bookmarkElement,
+            favElement,
+            hgamesElement,
+            notificationsElement,
+            updateFeedElement,
+            accountElement,
+            settingsElement
+        };
         UiState uiState
         {
             get { return _uiState; }
@@ -87,15 +108,55 @@ namespace Doujin_Interface.uiElements.navBar
         }
         private UiState _uiState = UiState.Home;
     
+
         public NavBarLeftSide()
         {
             InitializeComponent();
+            CreateItems();
+            for (int i = 0; i < rootGrid.Children.OfType<NavBarElement>().Count(); i++)
+            {
+                var item = rootGrid.Children.OfType<NavBarElement>().ElementAt(i);
+                //item.Margin = new Thickness { Top = 54*(i+1), Left = 10 };
+                var margin = item.Margin;
+                margin.Top = 54 * (i + 1);
+                margin.Left = 10;
+                item.Margin = margin;
+                item.VerticalAlignment = VerticalAlignment.Top;
+                item.HorizontalAlignment = HorizontalAlignment.Left;
+                Panel.SetZIndex(item, 10 + i);
+            }
             
         }
+
+        private void CreateItems()
+        {
+            homeElement.MouseLeftButtonDown += homeGrid_MouseLeftButtonDown;
+            favElement.MouseLeftButtonDown += favGrid_MouseLeftButtonDown;
+            //hgamesElement.MouseLeftButtonDown += homeGrid_MouseLeftButtonDown;
+            notificationsElement.MouseLeftButtonDown += notificationsGrid_MouseLeftButtonDown;
+            updateFeedElement.MouseLeftButtonDown += updateFeedGrid_MouseLeftButtonDown;
+            accountElement.MouseLeftButtonDown += accountGrid_MouseLeftButtonDown;
+            settingsElement.MouseLeftButtonDown += settingsGrid_MouseLeftButtonDown;
+            foreach (var item in children)
+            { 
+                rootGrid.Children.Add(item);
+            }
+                
+        }
+
         public NavBarLeftSide(MainWindow mainWindow)
         {
             InitializeComponent();
             window = mainWindow;
+            CreateItems();
+            for (int i = 0; i < rootGrid.Children.OfType<NavBarElement>().Count(); i++)
+            {
+                var item = rootGrid.Children.OfType<NavBarElement>().ElementAt(i);
+                item.Margin = new Thickness { Top = (54 * (i + 1)) + 10 , Left = 11 };
+                item.VerticalAlignment = VerticalAlignment.Top;
+                item.HorizontalAlignment = HorizontalAlignment.Left;
+                Panel.SetZIndex(item, 10 + i);
+            }
         }
 
         private void homeText_TextChanged(object sender, TextChangedEventArgs e)
@@ -108,7 +169,7 @@ namespace Doujin_Interface.uiElements.navBar
             if (uiState != UiState.Home)
             {
                 uiState = UiState.Home;
-                NavBar.MoveActivIndicator(this, homeGrid);
+                NavBar.MoveActiveIndicator(this, homeElement);
                 NavBar.alwaysMaxed = false;
             }
         }
@@ -118,7 +179,7 @@ namespace Doujin_Interface.uiElements.navBar
             if (uiState != UiState.Favorites)
             {
                 uiState = UiState.Favorites;
-                NavBar.MoveActivIndicator(this, favGrid);
+                NavBar.MoveActiveIndicator(this, favElement);
                 NavBar.alwaysMaxed = false;
             }
         }
@@ -128,7 +189,7 @@ namespace Doujin_Interface.uiElements.navBar
             if (uiState != UiState.Notifications)
             {
                 uiState = UiState.Notifications;
-                NavBar.MoveActivIndicator(this, notificationsGrid);
+                NavBar.MoveActiveIndicator(this, notificationsElement);
                 NavBar.alwaysMaxed = true;
                 Notifications.Notifications.AddNotifications();
             }
@@ -139,7 +200,7 @@ namespace Doujin_Interface.uiElements.navBar
             if (uiState != UiState.Notifyer)
             {
                 uiState = UiState.Notifyer;
-                NavBar.MoveActivIndicator(this, updateFeedGrid);
+                NavBar.MoveActiveIndicator(this, updateFeedElement);
                 NavBar.alwaysMaxed = false;
             }
         }
@@ -149,7 +210,7 @@ namespace Doujin_Interface.uiElements.navBar
             if (uiState != UiState.Account)
             {
                 uiState = UiState.Account;
-                NavBar.MoveActivIndicator(this, accountGrid);
+                NavBar.MoveActiveIndicator(this, accountElement);
                 NavBar.alwaysMaxed = false;
             }
         }
@@ -159,7 +220,7 @@ namespace Doujin_Interface.uiElements.navBar
             if (uiState != UiState.Settings)
             {
                 uiState = UiState.Settings;
-                NavBar.MoveActivIndicator(this, settingsGrid);
+                NavBar.MoveActiveIndicator(this, settingsElement);
                 NavBar.alwaysMaxed = true;
             }
         }

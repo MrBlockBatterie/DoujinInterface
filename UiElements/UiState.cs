@@ -14,6 +14,7 @@ namespace Doujin_Interface.UiElements
         Notifications,
         Account,
         Settings,
-        Notifyer
+        Notifyer,
+        Bookmarks
     }
 }

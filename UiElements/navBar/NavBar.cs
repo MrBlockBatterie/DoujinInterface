@@ -23,6 +23,7 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Windows.Media.Animation;
 using Sankaku_Interface;
+using Doujin_Interface.UiElements.NavBar;
 
 namespace Doujin_Interface.uiElements.navBar
 {
@@ -33,19 +34,19 @@ namespace Doujin_Interface.uiElements.navBar
         public static NavBarLeftSide CreateNavBar(MainWindow window)
         {
             NavBarLeftSide navBar = new NavBarLeftSide(window);
-            List<Grid> blocks = new List<Grid>();
-            Grid prefGrid = new Grid();
-            Dictionary<Grid, ProgressBar> refDict = new Dictionary<Grid, ProgressBar>()
-            {
-                {navBar.dashboardGrid, navBar.dashboardBar },
-                {navBar.homeGrid, navBar.homeBar },
-                {navBar.favGrid, navBar.favBar },
-                {navBar.hgamesGrid, navBar.gamesBar },
-                {navBar.notificationsGrid, navBar.notificationsBar },
-                {navBar.accountGrid, navBar.accountBar },
-                {navBar.settingsGrid, navBar.settingsBar },
-                {navBar.updateFeedGrid, navBar.updateFeedBar }
-            };
+            List<NavBarElement> blocks = new List<NavBarElement>();
+            NavBarElement prefGrid = new NavBarElement();
+            //Dictionary<Grid, ProgressBar> refDict = new Dictionary<Grid, ProgressBar>()
+            //{
+            //    {navBar.dashboardGrid, navBar.dashboardBar },
+            //    {navBar.homeGrid, navBar.homeBar },
+            //    {navBar.favGrid, navBar.favBar },
+            //    {navBar.hgamesGrid, navBar.gamesBar },
+            //    {navBar.notificationsGrid, navBar.notificationsBar },
+            //    {navBar.accountGrid, navBar.accountBar },
+            //    {navBar.settingsGrid, navBar.settingsBar },
+            //    {navBar.updateFeedGrid, navBar.updateFeedBar }
+            //};
             //Bug fix deswegen 2 mal
             navBar.activeWindow.Background = DoujinUtility.MainWindow.animatedBrush;
             navBar.activeWindow.BorderBrush = DoujinUtility.MainWindow.animatedBrush;
@@ -65,33 +66,32 @@ namespace Doujin_Interface.uiElements.navBar
             {
                 navBar.Width = 280;
             }
-            foreach (Grid obj in navBar.rootGrid.Children.OfType<Grid>())
+            foreach (NavBarElement obj in navBar.rootGrid.Children.OfType<NavBarElement>())
             {
-                DoujinUtility.FindChild<ProgressBar>(obj, null).Foreground = DoujinUtility.MainWindow.animatedBrush;
-
-
+                //DoujinUtility.FindChild<ProgressBar>(obj, null).Foreground = DoujinUtility.MainWindow.animatedBrush;
+                
                 blocks.Add(obj);
 
             }
-            foreach (Grid grid in blocks)
+            foreach (NavBarElement element in blocks)
             {
                 navBar.Width = 52;
-                grid.MouseEnter += delegate (object sender, MouseEventArgs e) { NavBarText_MouseEnter(sender, e, navBar, grid, refDict[grid]); };
-                grid.MouseLeave += delegate (object sender, MouseEventArgs e) { NavBarText_MouseLeave(sender, e, navBar, grid, refDict[grid]); };
-                grid.Margin = new Thickness(grid.Margin.Left, (prefGrid.Margin.Top + grid.Height + 11), grid.Margin.Right, grid.Margin.Bottom);
+                element.MouseEnter += delegate (object sender, MouseEventArgs e) { NavBarText_MouseEnter(sender, e, navBar, element, element.progressbar); };
+                element.MouseLeave += delegate (object sender, MouseEventArgs e) { NavBarText_MouseLeave(sender, e, navBar, element, element.progressbar); };
+                //element.Margin = new Thickness(element.Margin.Left, (prefGrid.Margin.Top + element.Height + 11), element.Margin.Right, element.Margin.Bottom);
                 Console.WriteLine(prefGrid.Margin.Top);
-                prefGrid = grid;
+                prefGrid = element;
             }
             return navBar;
         }
 
-        public static void MoveActivIndicator(NavBarLeftSide navBar, Grid grid)
+        public static void MoveActiveIndicator(NavBarLeftSide navBar, NavBarElement grid)
         {
             Duration duration = new Duration(TimeSpan.FromMilliseconds(200));
-            ThicknessAnimation move = new ThicknessAnimation(new Thickness(navBar.activeWindow.Margin.Left, navBar.activeWindow.Margin.Top, 0, 0), new Thickness(navBar.activeWindow.Margin.Left, grid.Margin.Top + 11, 0, 0), duration);
+            ThicknessAnimation move = new ThicknessAnimation(new Thickness(navBar.activeWindow.Margin.Left, navBar.activeWindow.Margin.Top, 0, 0), new Thickness(navBar.activeWindow.Margin.Left, grid.Margin.Top, 0, 0), duration);
             navBar.activeWindow.BeginAnimation(Border.MarginProperty, move);
         }
-        private static void NavBarText_MouseLeave(object sender, MouseEventArgs e, NavBarLeftSide navBar, Grid grid, ProgressBar progressBar)
+        private static void NavBarText_MouseLeave(object sender, MouseEventArgs e, NavBarLeftSide navBar, NavBarElement grid, ProgressBar progressBar)
         {
             Duration duration = new Duration(TimeSpan.FromMilliseconds(300));
             DoubleAnimation doubleanimation = new DoubleAnimation(progressBar.Value - 100, duration);
@@ -100,7 +100,7 @@ namespace Doujin_Interface.uiElements.navBar
 
         }
 
-        private static void NavBarText_MouseEnter(object sender, MouseEventArgs e, NavBarLeftSide navBar, Grid grid, ProgressBar progressBar)
+        private static void NavBarText_MouseEnter(object sender, MouseEventArgs e, NavBarLeftSide navBar, NavBarElement element, ProgressBar progressBar)
         {
             Duration duration = new Duration(TimeSpan.FromMilliseconds(300));
             DoubleAnimation doubleanimation = new DoubleAnimation(progressBar.Value + 100, duration);
