@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Doujin_Interface.Notifications;
 using Doujin_Interface.UiElements.NavBar;
+using System.Windows.Markup.Localizer;
 
 namespace Doujin_Interface.uiElements.navBar
 {
@@ -36,9 +37,9 @@ namespace Doujin_Interface.uiElements.navBar
         private static NavBarElement settingsElement = new NavBarElement("Settings", "settingsIcon.png");
         private NavBarElement[] children =
         {
-            homeElement,
-            bookmarkElement,
+            homeElement,    
             favElement,
+            bookmarkElement,
             hgamesElement,
             notificationsElement,
             updateFeedElement,
@@ -78,6 +79,10 @@ namespace Doujin_Interface.uiElements.navBar
                         window.notifyer.Visibility = Visibility.Hidden;
                         window.notifyer.IsEnabled = false;
                         break;
+                    case UiState.Bookmarks:
+                        window.bookmarks.Visibility = Visibility.Hidden;
+                        break;
+
 
                 }
                 _uiState = value;
@@ -102,6 +107,9 @@ namespace Doujin_Interface.uiElements.navBar
                         break;
                     case UiState.Notifyer:
                         window.DisplayNotifyer();
+                        break;
+                    case UiState.Bookmarks:
+                        window.DisplayBookmarks();
                         break;
                 }
             }
@@ -137,11 +145,22 @@ namespace Doujin_Interface.uiElements.navBar
             updateFeedElement.MouseLeftButtonDown += updateFeedGrid_MouseLeftButtonDown;
             accountElement.MouseLeftButtonDown += accountGrid_MouseLeftButtonDown;
             settingsElement.MouseLeftButtonDown += settingsGrid_MouseLeftButtonDown;
+            bookmarkElement.MouseLeftButtonDown += BookmarkElement_MouseLeftButtonDown;
             foreach (var item in children)
             { 
                 rootGrid.Children.Add(item);
             }
                 
+        }
+
+        private void BookmarkElement_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (uiState != UiState.Bookmarks)
+            {
+                uiState = UiState.Bookmarks;
+                NavBar.MoveActiveIndicator(this, bookmarkElement);
+                NavBar.alwaysMaxed = false;
+            }
         }
 
         public NavBarLeftSide(MainWindow mainWindow)

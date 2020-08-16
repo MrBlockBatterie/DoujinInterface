@@ -432,5 +432,11 @@
   <ItemGroup>
     <Resource Include="UiElements\NavBar\bookmarkIcon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UiElements\Viewer\bookmarkIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UiElements\Viewer\baseline_info_white_18dp.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

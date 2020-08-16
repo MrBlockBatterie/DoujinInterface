@@ -92,11 +92,8 @@ namespace Sankaku_Interface
             //client.RegisterToServer("david@david.david.com", "David@1&1.de", "David@1&1.de").Wait();
 
             //Doujin_Interface.Properties.Settings.Default.User = null;
-            
-            //-----------------------------------------------------------------------------
-            //For Damian
-            //On stackoverflow they said the way the task is called migth cause deadlock so it might be a good idea to start looking here
-            //-------------------------------------------------------------------------------
+
+
             DoujinUtility.MainWindow = this;
             DoujinUtility.MainWindow.animatedBrush.Color = Color.FromArgb(255, 138, 0, 219);
             //var test = new HIDoujin("Bokurano@Mii-chan | Our @Mii-chan","english", 1278968);
@@ -196,16 +193,16 @@ namespace Sankaku_Interface
                     registerAndLoginElement.Visibility = Visibility.Visible;
                     search.Visibility = Visibility.Hidden;
                 }
-                
+
             }
             else
             {
                 accountElement.Visibility = Visibility.Visible;
                 search.Visibility = Visibility.Hidden;
             }
-            
+
             //registerAndLoginElement.Visibility = Visibility.Visible;
-            
+
         }
         public void DisplaySettings()
         {
@@ -224,7 +221,21 @@ namespace Sankaku_Interface
             notificationscroll.Visibility = Visibility.Visible;
             notificationscroll.IsEnabled = true;
         }
+        public void DisplayBookmarks()
+        {
+            search.Visibility = Visibility.Hidden;
+            bookmarks.Visibility = Visibility.Visible;
+            bookmarks.IsEnabled = true;
+            if (bookmarkgrid.Children.Count < DatabaseControler.bookmarks.Count)
+            {
+                bookmarkgrid.Children.Clear();
+                foreach (DoujinCacheRow row in DatabaseControler.bookmarks)
+                {
+                    bookmarkgrid.Children.Add(new DoujinControl(new Doujin(row.hentaiID)));
+                }
 
+            }
+        }
         public void DisplayFavorites()
         {
             search.Visibility = Visibility.Hidden;
@@ -423,19 +434,19 @@ namespace Sankaku_Interface
             {
                 foreach (var item in notifyer.updateChecker.newReleases.Values.Distinct())
                 {
-                    this.notificationPanellul.Children.Add(Notifications.NotificationNoImg( $"New Doujin uploads available", $"{item}", ""));
+                    this.notificationPanellul.Children.Add(Notifications.NotificationNoImg($"New Doujin uploads available", $"{item}", ""));
                 }
             }
             else
             {
-                this.notificationPanellul.Children.Add(Notifications.NotificationNoImg( $"No new uploads on subscribed tags", "", ""));
+                this.notificationPanellul.Children.Add(Notifications.NotificationNoImg($"No new uploads on subscribed tags", "", ""));
             }
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Doujin_Interface.Properties.Settings.Default.Save();
-           
+
         }
     }
 }

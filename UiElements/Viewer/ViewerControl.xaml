@@ -9,7 +9,9 @@
         <Image x:Name="buttonBack" HorizontalAlignment="Left" Height="36" VerticalAlignment="Top" Width="36" Source="baseline_keyboard_arrow_left_black_18dp.png"/>
         
         <Image x:Name="buttonFav" HorizontalAlignment="Left" Height="36" VerticalAlignment="Top" Width="36" Source="baseline_grade_black_18dp.png"/>
+        <Image x:Name="buttonBookmark" HorizontalAlignment="Left" Height="36" VerticalAlignment="Top" Width="36" Source="bookmarkIcon.png"/>
         <Image x:Name="buttonHome" HorizontalAlignment="Left" Height="36" VerticalAlignment="Top" Width="36" Source="baseline_home_black_18dp.png"/>
+        <Image x:Name="buttonInfo" HorizontalAlignment="Left" Height="36" VerticalAlignment="Top" Width="36" Source="baseline_info_white_18dp.png"/>
         <Image x:Name="buttonSize" HorizontalAlignment="Left" Height="36" VerticalAlignment="Top" Width="36" Source="baseline_open_in_full_black_18dp.png"/>
         <Image x:Name="buttonNext" HorizontalAlignment="Left" Height="36" VerticalAlignment="Top" Width="36" Source="baseline_keyboard_arrow_right_black_18dp.png"/>
         

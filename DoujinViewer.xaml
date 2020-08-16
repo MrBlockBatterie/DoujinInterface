@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Doujin_Interface" xmlns:doujinviewer="clr-namespace:Doujin_Interface.UiElements.DoujinViewer"
         mc:Ignorable="d"
         Title="DoujinViewer" Height="750.9" Width="1031.6" Closing="Window_Closing" Closed="Window_Closed" KeyDown="scrollview_KeyDown">
-    <Grid Background="#FF36393F">
+    <Grid x:Name="root" Background="#FF36393F">
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -27,5 +27,10 @@
         <Border x:Name="pageNumberBackground" BorderBrush="{DynamicResource DoujinControlBackgroundBrush}" BorderThickness="1" Height="40" Width="120" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,60,50" Padding="0" Background="{DynamicResource DoujinControlBackgroundBrush}" CornerRadius="12">
             <TextBlock x:Name="pageNumberText" HorizontalAlignment="Left" Height="27" Margin="5,6,0,0" TextWrapping="Wrap" Text="Page: 69/69" VerticalAlignment="Top" Width="108" Foreground="{DynamicResource CaretBrush}" TextAlignment="Center" FontWeight="Bold" FontSize="16"/>
         </Border>
+        <WrapPanel x:Name="notificationPanel" Width="350" HorizontalAlignment="Right" Margin="0,92,0,40" Panel.ZIndex="1000">
+            <WrapPanel.LayoutTransform>
+                <RotateTransform Angle="180"/>
+            </WrapPanel.LayoutTransform>
+        </WrapPanel>
     </Grid>
 </Window>

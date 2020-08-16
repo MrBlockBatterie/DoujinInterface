@@ -1,4 +1,5 @@
-﻿using Sankaku_Interface;
+﻿using Doujin_Interface.Database;
+using Sankaku_Interface;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -40,6 +41,7 @@ namespace Doujin_Interface
             viewport.EndInit();
             control.parent = this;
             //gDoujin.pageExt = DoujinUtility.GetPage(gDoujin);
+            
         }
         public DoujinViewer(int mediaid, int nhentaiid, int pages, string coverurl, string ext)
         {
@@ -135,6 +137,7 @@ namespace Doujin_Interface
             Console.WriteLine($"Doujin Viewer: p={p}, page count={gDoujin.pageCount}, readP={readP}");
             if (readP >= 0.8 && !(Database.DatabaseControler.doujinCache.AsEnumerable().Any(row => gDoujin.nhentaiId == row.Field<Int32>("hentaiID"))))
             {
+
                 Database.DatabaseControler.doujinCache.AddDoujinCacheRow(gDoujin.nhentaiId, true);
                 Database.DatabaseControler.doujinCache.WriteXml("cache.xml");
 
@@ -142,6 +145,13 @@ namespace Doujin_Interface
                 if (DoujinUtility.FindChild<DoujinControl>(DoujinUtility.MainWindow.picgrid, gDoujin.nhentaiId.ToString()) != null)
                 {
                     DoujinUtility.FindChild<DoujinControl>(DoujinUtility.MainWindow.picgrid, gDoujin.nhentaiId.ToString()).img.Opacity = 0.3;
+                }
+                if(Database.DatabaseControler.bookmarks.Any(item => item.hentaiID == gDoujin.nhentaiId))
+                {
+                    Database.DatabaseControler.bookmarks.RemoveDoujinCacheRow(Database.DatabaseControler.bookmarks.FindByhentaiID(gDoujin.nhentaiId));
+                    DoujinUtility.MainWindow.notificationPanellul.Children.Add(Notifications.Notifications.NotificationNoImg("Bookmarked Doujin has been removed", "", ""));
+                    notificationPanel.Children.Add(Notifications.Notifications.NotificationNoImg("Bookmarked Doujin has been removed", "", ""));
+                    Database.DatabaseControler.bookmarks.WriteXml(Database.DatabaseControler.bookmarkFilePath);
                 }
             }
         
@@ -304,7 +314,45 @@ namespace Doujin_Interface
         }
         public void Fav()
         {
+            if (DoujinUtility.CheckFavorised(gDoujin))
+            {
+                DatabaseControler.favorites.FindBynHentaiID(gDoujin.nhentaiId).favorite = false;
+                //DatabaseControler.mainDataTable.FindBynHentaiID(nhId).favorite = false;
+                
+                DatabaseControler.favorites.RemoveDoujinDataRow(DatabaseControler.favorites.FindBynHentaiID(gDoujin.nhentaiId));
 
+                DatabaseControler.favorites.WriteXml(DatabaseControler.favDataPath);
+            }
+            else
+            {
+                
+                
+                DoujinUtility.AddDoujinDataRow(gDoujin, DatabaseControler.favorites);
+                DatabaseControler.favorites.WriteXml(DatabaseControler.favDataPath);
+                //.Add();
+
+                var notify = Notifications.Notifications.NotificationNoImg(gDoujin.name, "", "The doujin got favorised and you can acess it at your favourite page");
+                notificationPanel.Children.Add(Notifications.Notifications.NotificationNoImg(gDoujin.name, "", "The doujin got favorised and you can acess it at your favourite page"));
+
+                DoujinUtility.MainWindow.notificationPanellul.Children.Add(notify);
+                try
+                {
+                    if (DoujinUtility.MainWindow.accountElement.loggedIn)
+                    {
+                        DoujinUtility.MainWindow.accountElement.apiHelper.PostFavorite(gDoujin.nhentaiId);
+                    }
+                    else
+                    {
+                        DoujinUtility.MainWindow.accountElement.apiHelper.user = Newtonsoft.Json.JsonConvert.DeserializeObject<Doujin_Interface.Connection.Models.AuthenticatedUser>(Doujin_Interface.Properties.Settings.Default.User);
+                        DoujinUtility.MainWindow.accountElement.apiHelper.PostFavorite(gDoujin.nhentaiId);
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
         }
         public void UpdatePageNumber()
         {

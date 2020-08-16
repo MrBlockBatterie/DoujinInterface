@@ -399,8 +399,15 @@ namespace Doujin_Interface
 
         private void later_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            BookmarkThis();
-            DoujinUtility.MainWindow.notificationPanellul.Children.Add(Notifications.Notifications.NotificationNoImg("Bookmark set","",""));
+            if (!Database.DatabaseControler.bookmarks.Any(item => item.hentaiID == nHentaiId))
+            {
+                BookmarkThis();
+                DoujinUtility.MainWindow.notificationPanellul.Children.Add(Notifications.Notifications.NotificationNoImg("Bookmark set", "", "")); 
+            }
+            else
+            {
+                DoujinUtility.MainWindow.notificationPanellul.Children.Add(Notifications.Notifications.NotificationNoImg("Bookmark allready set", "", ""));
+            }
         }
         private void BookmarkThis()
         {

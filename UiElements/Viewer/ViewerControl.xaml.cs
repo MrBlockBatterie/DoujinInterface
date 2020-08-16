@@ -48,6 +48,11 @@ namespace Doujin_Interface.UiElements.DoujinViewer
             buttonHome.MouseDown += delegate { parent.Home(); };
             buttonSize.MouseDown += delegate { parent.Strech(); };
             buttonNext.MouseDown += delegate { parent.PageNext(); };
+            buttonInfo.MouseLeftButtonDown += delegate
+            {
+                var detail = new DetailsWindow(parent.gDoujin);
+                detail.Show();
+            };
             
 
         }

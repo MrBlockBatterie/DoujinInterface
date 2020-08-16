@@ -23,6 +23,10 @@
         <ScrollViewer x:Name="favscroll" Style="{StaticResource ScrollViewerStyle}" Margin="84,10,10,10" IsEnabled="False" Visibility="Hidden">
             <WrapPanel x:Name="favgrid" Background="#FF36393F"/>
         </ScrollViewer>
+        
+        <ScrollViewer x:Name="bookmarks" Style="{StaticResource ScrollViewerStyle}" Margin="84,10,10,10" IsEnabled="False" Visibility="Hidden">
+            <WrapPanel x:Name="bookmarkgrid" Background="#FF36393F"/>
+        </ScrollViewer>
 
 
         <ProgressBar x:Name="progress" HorizontalAlignment="Left" Height="22" VerticalAlignment="Top" Width="873" Margin="283,744,0,0" Foreground="#FF7817B0" Visibility="Hidden"/>
