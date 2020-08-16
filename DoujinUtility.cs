@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -96,7 +97,184 @@ namespace Doujin_Interface
             }
             return null;
         }
+
+
         public static Result Search(string search, string tagsIn, string artistIn, string characterIn, string parodyIn, Boolean popOrder, string lang, int page)
+        {
+            string query = "";
+            string url = "https://nhentai.net/api/galleries/search?query=";
+            List<Doujin> doujinshi = new List<Doujin>();
+            List<System.Windows.Controls.Image> images = new List<Image>();
+            Result result = new Result();
+
+            if (search != "")
+            {
+                query += search + "+";
+            }
+            if (tagsIn != "")
+            {
+                if (tagsIn.Contains(","))
+                {
+                    foreach (string str in tagsIn.Split(','))
+                    {
+                        query += ("tag%3A\"" + str + "\"+");
+                    }
+                }
+                else
+                {
+                    query += ("tag%3A\"" + tagsIn + "\"+");
+                }
+            }
+            if (artistIn != "")
+            {
+                if (artistIn.Contains(","))
+                {
+                    foreach (string str in artistIn.Split(','))
+                    {
+                        query += ("artist%3A\"" + str + "\"+");
+                    }
+                }
+                else
+                {
+                    query += ("artist%3A\"" + artistIn + "\"+");
+                }
+
+
+            }
+            if (characterIn != "")
+            {
+                if (characterIn.Contains(","))
+                {
+                    foreach (string str in characterIn.Split(','))
+                    {
+                        query += ("character%3A\"" + str + "\"+");
+                    }
+                }
+                else
+                {
+                    query += ("character%3A\"" + characterIn + "\"+");
+                }
+            }
+            if (parodyIn != "")
+            {
+                if (parodyIn.Contains(","))
+                {
+                    foreach (string str in characterIn.Split(','))
+                    {
+                        query += ("parody%3A\"" + str + "\"+");
+                    }
+                }
+                else
+                {
+                    query += ("parody%3A\"" + parodyIn + "\"+");
+                }
+            }
+            query += lang;
+            if (popOrder)
+            {
+                query += "&order=popular";
+            }
+            query += "&page=" + page;
+            Console.WriteLine(url + query);
+            var request = WebRequest.Create("https://nhentai.net/api/galleries/search?query=" + query);
+            request.ContentType = "application/xml; charset=utf-8";
+            string text;
+            var response = (HttpWebResponse)request.GetResponse();
+            using (var sr = new StreamReader(response.GetResponseStream()))
+            {
+                text = sr.ReadToEnd();
+            }
+            var searchResult = JsonConvert.DeserializeObject<DoujinSearchResult>(text);
+            foreach (var item in searchResult.Result)
+            {
+                var doujin = new Doujin
+                {
+                    fullName = item.Title.English,
+                    name = item.Title.Pretty,
+                    id = item.Id,
+                    mediaId = int.Parse(item.Media_id),
+                    pageCount = item.Num_pages,
+                };
+                foreach(var doujinImages in item.Images)
+                {
+                    switch (doujinImages.Cover.T)
+                    {
+                        case "j":
+                            doujin.coverExt = ".jpg";
+                            break;
+                        case "p":
+                            doujin.coverExt = ".png";
+                            break;
+                        case "g":
+                            doujin.coverExt = ".gif";
+                            break;
+                    }
+                    switch (doujinImages.Thumbnail.T)
+                    {
+                        case "j":
+                            doujin.thumbnailExt = ".jpg";
+                            break;
+                        case "p":
+                            doujin.thumbnailExt = ".png";
+                            break;
+                        case "g":
+                            doujin.thumbnailExt = ".gif";
+                            break;
+                    }
+                    foreach(var pages in doujinImages.Pages)
+                    {
+                        switch (pages.T)
+                        {
+                            case "j":
+                                doujin.pageExt.Add(".jpg");
+                                break;
+                            case "p":
+                                doujin.pageExt.Add(".png");
+                                break;
+                            case "g":
+                                doujin.pageExt.Add(".gif");
+                                break;
+                        }
+
+                    }
+                }
+                foreach(var tags in item.Tags)
+                {
+                    switch (tags.Type)
+                    {
+                        case "artist":
+                            doujin.artists.Add(tags.Name);
+                            break;
+                        case "group":
+                            doujin.group.Add(tags.Name);
+                            break;
+                        case "language":
+                            doujin.language = tags.Name;
+                            break;
+                        case "parody":
+                            doujin.parodys.Add(tags.Name);
+                            break;
+                        case "character":
+                            doujin.character.Add(tags.Name);
+                            break;
+                        case "tag":
+                            doujin.tags.Add(tags.Name);
+                            break;
+                    }
+                }
+                doujin.coverUrl = "https://t.nhentai.net/galleries/" + doujin.mediaId + "/1t" + doujin.coverExt;
+                doujinshi.Add(doujin);
+            }
+
+            result.images = images;
+            result.doujinshi = doujinshi;
+            query = "";
+            return result;
+        }
+
+
+        //Outdated
+        public static Result OutdatedSearch(string search, string tagsIn, string artistIn, string characterIn, string parodyIn, Boolean popOrder, string lang, int page)
         {
             string query = "";
             string url = "https://nhentai.net/api/galleries/search?query=";
@@ -207,8 +385,8 @@ namespace Doujin_Interface
                         if (title.Name == "media_id")
                         {
                             doujin.mediaId = int.Parse(title.Value);
-                            Image img = new Image();
-                            images.Add(img);
+                            //Image img = new Image();
+                            //images.Add(img);
                             //Console.WriteLine("extension is " + extension);
                             //doujin.coverExt = extension;
                             doujin.coverUrl = "https://t.nhentai.net/galleries/" + title.Value + "/1t";

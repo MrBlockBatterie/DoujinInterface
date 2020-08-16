@@ -73,17 +73,17 @@ namespace Doujin_Interface.uiElements.searchElement
         {
             try
             {
-                Result result = DoujinUtility.Search(generalSearch.Text, tagsSearch.Text, artistSearch.Text, charaSearch.Text, parodySearch.Text, popOrder, searchLang(), page);
+                Result result = DoujinUtility.OutdatedSearch(generalSearch.Text, tagsSearch.Text, artistSearch.Text, charaSearch.Text, parodySearch.Text, popOrder, searchLang(), page);
                 List<Doujin> localDoujinList = result.doujinshi;
-                foreach (Image img in result.images)
+                foreach (Doujin doujin in result.doujinshi)
                 {
                     //Image img = new Image();
                     
 
-                    Doujin doujin = result.doujinshi.ElementAt(result.images.IndexOf(img));
+                    //Doujin doujin = result.doujinshi.ElementAt(result.images.IndexOf(img));
                     DoujinControl doujinControl = new DoujinControl(doujin);
 
-                    Console.WriteLine(result.doujinshi.ElementAt(result.images.IndexOf(img)).coverUrl);
+                    //Console.WriteLine(result.doujinshi.ElementAt(result.images.IndexOf(img)).coverUrl);
 
                     foreach (Database.DoujinSet.DoujinDataRow row in Database.DatabaseControler.favorites)
                     {

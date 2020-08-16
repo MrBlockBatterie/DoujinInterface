@@ -105,6 +105,7 @@
     <Compile Include="Connection\JSON\LoginForm.cs" />
     <Compile Include="Connection\JSON\RegisterForm.cs" />
     <Compile Include="Connection\Models\AuthenticatedUser.cs" />
+    <Compile Include="Connection\Models\NHentaiDoujinModel.cs" />
     <Compile Include="Connection\Models\Friends.cs" />
     <Compile Include="Connection\Models\PostDoujinModels.cs" />
     <Compile Include="Connection\Models\RecommendedDoujin.cs" />
