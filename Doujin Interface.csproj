@@ -419,5 +419,8 @@
   <ItemGroup>
     <Resource Include="UiElements\AccountElements\MainAccountPage\baseline_autorenew_white_18dp.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UiElements\baseline_schedule_white_18dp.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

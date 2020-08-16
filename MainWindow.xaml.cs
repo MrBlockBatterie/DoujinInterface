@@ -149,6 +149,11 @@ namespace Sankaku_Interface
                 DatabaseControler.doujinCache.ReadXml("cache.xml");
 
             }
+            if (File.Exists(DatabaseControler.bookmarkFilePath))
+            {
+                DatabaseControler.bookmarks.ReadXml(DatabaseControler.bookmarkFilePath);
+
+            }
             //Page(1);
         }
         public void DisplayNotifyer()

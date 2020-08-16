@@ -11,11 +11,13 @@ namespace Doujin_Interface.Database
     {
         public const string favDataPath = "favs.xml";
         public const string cacheDataPath = "cache.xml";
+        public const string bookmarkFilePath = "bookmarks.xml";
 
         public static DoujinDataDataTable mainDataTable = new DoujinDataDataTable();
         public static DoujinDataDataTable favorites = new DoujinDataDataTable();
         public static DoujinDataDataTable localDummy = new DoujinDataDataTable();
         public static KeepUpdatedDataTable updates = new KeepUpdatedDataTable();
         public static DoujinCacheDataTable doujinCache = new DoujinCacheDataTable();
+        public static DoujinCacheDataTable bookmarks = new DoujinCacheDataTable();
     }
 }

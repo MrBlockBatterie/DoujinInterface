@@ -108,6 +108,7 @@ namespace Doujin_Interface
             bool contains = DatabaseControler.doujinCache.AsEnumerable().Any(row => nhentaiId == row.Field<Int32>("hentaiID"));
 
         }
+        
         public DoujinControl(Doujin doujin)
         {
             InitializeComponent();
@@ -319,7 +320,9 @@ namespace Doujin_Interface
             var blurIn = new DoubleAnimation(0.4, TimeSpan.FromSeconds(0.2));
             heart.BeginAnimation(Image.OpacityProperty, fadeIn);
             download.BeginAnimation(Image.OpacityProperty, fadeIn);
+            later.BeginAnimation(Image.OpacityProperty, fadeIn);
             blur.BeginAnimation(Image.OpacityProperty, blurIn);
+            
         }
 
 
@@ -329,6 +332,7 @@ namespace Doujin_Interface
             heart.BeginAnimation(Image.OpacityProperty, fadeOut);
             download.BeginAnimation(Image.OpacityProperty, fadeOut);
             blur.BeginAnimation(Image.OpacityProperty, fadeOut);
+            later.BeginAnimation(Image.OpacityProperty, fadeOut);
         }
 
         private void download_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -391,6 +395,17 @@ namespace Doujin_Interface
                 this.BeginAnimation(UserControl.HeightProperty, fadeIn);
                 expanded = true;
             }
+        }
+
+        private void later_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            BookmarkThis();
+            DoujinUtility.MainWindow.notificationPanellul.Children.Add(Notifications.Notifications.NotificationNoImg("Bookmark set","",""));
+        }
+        private void BookmarkThis()
+        {
+            DatabaseControler.bookmarks.AddDoujinCacheRow(nHentaiId, false);
+            DatabaseControler.bookmarks.WriteXml(DatabaseControler.bookmarkFilePath);
         }
     }
 }

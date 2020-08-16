@@ -27,6 +27,7 @@
             <TextBlock x:Name="doujinTags" HorizontalAlignment="Left" Height="18" Margin="10,36,0,0" TextWrapping="Wrap" Text="Tag1,Tag2,Tag3,Tag4,Tag5,Tag6" VerticalAlignment="Top" Width="140" Foreground="#FF9E9E9E"/>
         </Grid>
         <Image x:Name="download" HorizontalAlignment="Left" Height="35" Margin="10,192,0,0" VerticalAlignment="Top" Width="35" Source="download.png" Opacity="0" MouseLeftButtonDown="download_MouseLeftButtonDown"/>
-        
+        <Image x:Name="later" HorizontalAlignment="Left" Height="33" Margin="63,194,0,0" VerticalAlignment="Top" Width="34" Source="baseline_schedule_white_18dp.png" Opacity="0" MouseLeftButtonDown="later_MouseLeftButtonDown"/>
+
     </Grid>
 </UserControl>
